@@ -7,102 +7,102 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		83745E5EBABDFD19E327AE68 /* Pods_SinkerCalculation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 572CE39DAAD32E6FE7D9482A /* Pods_SinkerCalculation.framework */; };
-		BE6B678120DF4F1F00E99FF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B678020DF4F1F00E99FF7 /* AppDelegate.swift */; };
-		BE6B678320DF4F1F00E99FF7 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B678220DF4F1F00E99FF7 /* FirstViewController.swift */; };
-		BE6B678520DF4F1F00E99FF7 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B678420DF4F1F00E99FF7 /* SecondViewController.swift */; };
-		BE6B678820DF4F1F00E99FF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE6B678620DF4F1F00E99FF7 /* Main.storyboard */; };
-		BE6B678A20DF4F2100E99FF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE6B678920DF4F2100E99FF7 /* Assets.xcassets */; };
-		BE6B678D20DF4F2100E99FF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE6B678B20DF4F2100E99FF7 /* LaunchScreen.storyboard */; };
+		BEBD042D20DF69AB00325635 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD042C20DF69AB00325635 /* AppDelegate.swift */; };
+		BEBD042F20DF69AB00325635 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD042E20DF69AB00325635 /* FirstViewController.swift */; };
+		BEBD043120DF69AB00325635 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD043020DF69AB00325635 /* SecondViewController.swift */; };
+		BEBD043420DF69AB00325635 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEBD043220DF69AB00325635 /* Main.storyboard */; };
+		BEBD043620DF69AC00325635 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEBD043520DF69AC00325635 /* Assets.xcassets */; };
+		BEBD043920DF69AC00325635 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEBD043720DF69AC00325635 /* LaunchScreen.storyboard */; };
+		FBE0AF8DB1C773F6E6BBCB5C /* Pods_SinkerCalculation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F252484F8B2ECD01876F1B /* Pods_SinkerCalculation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		572CE39DAAD32E6FE7D9482A /* Pods_SinkerCalculation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SinkerCalculation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE6B677D20DF4F1F00E99FF7 /* SinkerCalculation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinkerCalculation.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE6B678020DF4F1F00E99FF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BE6B678220DF4F1F00E99FF7 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		BE6B678420DF4F1F00E99FF7 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		BE6B678720DF4F1F00E99FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BE6B678920DF4F2100E99FF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BE6B678C20DF4F2100E99FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		BE6B678E20DF4F2100E99FF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E67EE2D618D8BCA5528889C4 /* Pods-SinkerCalculation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SinkerCalculation.release.xcconfig"; path = "Pods/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation.release.xcconfig"; sourceTree = "<group>"; };
-		E8E88D0FA2C6CBA9D00FBFA0 /* Pods-SinkerCalculation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SinkerCalculation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation.debug.xcconfig"; sourceTree = "<group>"; };
+		2C732692112CC38385A0F0A8 /* Pods-SinkerCalculation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SinkerCalculation.release.xcconfig"; path = "Pods/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation.release.xcconfig"; sourceTree = "<group>"; };
+		31F252484F8B2ECD01876F1B /* Pods_SinkerCalculation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SinkerCalculation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CB096E73EFD428365888C03 /* Pods-SinkerCalculation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SinkerCalculation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation.debug.xcconfig"; sourceTree = "<group>"; };
+		BEBD042920DF69AB00325635 /* SinkerCalculation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinkerCalculation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEBD042C20DF69AB00325635 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BEBD042E20DF69AB00325635 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		BEBD043020DF69AB00325635 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		BEBD043320DF69AB00325635 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BEBD043520DF69AC00325635 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BEBD043820DF69AC00325635 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BEBD043A20DF69AC00325635 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BE6B677A20DF4F1F00E99FF7 /* Frameworks */ = {
+		BEBD042620DF69AB00325635 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83745E5EBABDFD19E327AE68 /* Pods_SinkerCalculation.framework in Frameworks */,
+				FBE0AF8DB1C773F6E6BBCB5C /* Pods_SinkerCalculation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		22B3172E31FEAAF516756843 /* Pods */ = {
+		9763972D316CFCDC105F62FB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E8E88D0FA2C6CBA9D00FBFA0 /* Pods-SinkerCalculation.debug.xcconfig */,
-				E67EE2D618D8BCA5528889C4 /* Pods-SinkerCalculation.release.xcconfig */,
+				9CB096E73EFD428365888C03 /* Pods-SinkerCalculation.debug.xcconfig */,
+				2C732692112CC38385A0F0A8 /* Pods-SinkerCalculation.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		9B68EFD12FA9735D1A2C5EE6 /* Frameworks */ = {
+		BEBD042020DF69AB00325635 = {
 			isa = PBXGroup;
 			children = (
-				572CE39DAAD32E6FE7D9482A /* Pods_SinkerCalculation.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		BE6B677420DF4F1F00E99FF7 = {
-			isa = PBXGroup;
-			children = (
-				BE6B677F20DF4F1F00E99FF7 /* SinkerCalculation */,
-				BE6B677E20DF4F1F00E99FF7 /* Products */,
-				22B3172E31FEAAF516756843 /* Pods */,
-				9B68EFD12FA9735D1A2C5EE6 /* Frameworks */,
+				BEBD042B20DF69AB00325635 /* SinkerCalculation */,
+				BEBD042A20DF69AB00325635 /* Products */,
+				9763972D316CFCDC105F62FB /* Pods */,
+				E9D1F8B90EAE82D8673C37AD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		BE6B677E20DF4F1F00E99FF7 /* Products */ = {
+		BEBD042A20DF69AB00325635 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BE6B677D20DF4F1F00E99FF7 /* SinkerCalculation.app */,
+				BEBD042920DF69AB00325635 /* SinkerCalculation.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BE6B677F20DF4F1F00E99FF7 /* SinkerCalculation */ = {
+		BEBD042B20DF69AB00325635 /* SinkerCalculation */ = {
 			isa = PBXGroup;
 			children = (
-				BE6B678020DF4F1F00E99FF7 /* AppDelegate.swift */,
-				BE6B678220DF4F1F00E99FF7 /* FirstViewController.swift */,
-				BE6B678420DF4F1F00E99FF7 /* SecondViewController.swift */,
-				BE6B678620DF4F1F00E99FF7 /* Main.storyboard */,
-				BE6B678920DF4F2100E99FF7 /* Assets.xcassets */,
-				BE6B678B20DF4F2100E99FF7 /* LaunchScreen.storyboard */,
-				BE6B678E20DF4F2100E99FF7 /* Info.plist */,
+				BEBD042C20DF69AB00325635 /* AppDelegate.swift */,
+				BEBD042E20DF69AB00325635 /* FirstViewController.swift */,
+				BEBD043020DF69AB00325635 /* SecondViewController.swift */,
+				BEBD043220DF69AB00325635 /* Main.storyboard */,
+				BEBD043520DF69AC00325635 /* Assets.xcassets */,
+				BEBD043720DF69AC00325635 /* LaunchScreen.storyboard */,
+				BEBD043A20DF69AC00325635 /* Info.plist */,
 			);
 			path = SinkerCalculation;
+			sourceTree = "<group>";
+		};
+		E9D1F8B90EAE82D8673C37AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				31F252484F8B2ECD01876F1B /* Pods_SinkerCalculation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BE6B677C20DF4F1F00E99FF7 /* SinkerCalculation */ = {
+		BEBD042820DF69AB00325635 /* SinkerCalculation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BE6B679120DF4F2100E99FF7 /* Build configuration list for PBXNativeTarget "SinkerCalculation" */;
+			buildConfigurationList = BEBD043D20DF69AC00325635 /* Build configuration list for PBXNativeTarget "SinkerCalculation" */;
 			buildPhases = (
-				44833FEFEB6131497A1F7C2F /* [CP] Check Pods Manifest.lock */,
-				BE6B677920DF4F1F00E99FF7 /* Sources */,
-				BE6B677A20DF4F1F00E99FF7 /* Frameworks */,
-				BE6B677B20DF4F1F00E99FF7 /* Resources */,
-				CC27A851C8BC2BC0B4811CAC /* [CP] Embed Pods Frameworks */,
+				6424397AE336789E3E14771D /* [CP] Check Pods Manifest.lock */,
+				BEBD042520DF69AB00325635 /* Sources */,
+				BEBD042620DF69AB00325635 /* Frameworks */,
+				BEBD042720DF69AB00325635 /* Resources */,
+				B4426C9A0B4BBCBB2BED45E6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -110,25 +110,25 @@
 			);
 			name = SinkerCalculation;
 			productName = SinkerCalculation;
-			productReference = BE6B677D20DF4F1F00E99FF7 /* SinkerCalculation.app */;
+			productReference = BEBD042920DF69AB00325635 /* SinkerCalculation.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		BE6B677520DF4F1F00E99FF7 /* Project object */ = {
+		BEBD042120DF69AB00325635 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = sawatch;
 				TargetAttributes = {
-					BE6B677C20DF4F1F00E99FF7 = {
-						CreatedOnToolsVersion = 9.4;
+					BEBD042820DF69AB00325635 = {
+						CreatedOnToolsVersion = 9.4.1;
 					};
 				};
 			};
-			buildConfigurationList = BE6B677820DF4F1F00E99FF7 /* Build configuration list for PBXProject "SinkerCalculation" */;
+			buildConfigurationList = BEBD042420DF69AB00325635 /* Build configuration list for PBXProject "SinkerCalculation" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -136,31 +136,31 @@
 				en,
 				Base,
 			);
-			mainGroup = BE6B677420DF4F1F00E99FF7;
-			productRefGroup = BE6B677E20DF4F1F00E99FF7 /* Products */;
+			mainGroup = BEBD042020DF69AB00325635;
+			productRefGroup = BEBD042A20DF69AB00325635 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BE6B677C20DF4F1F00E99FF7 /* SinkerCalculation */,
+				BEBD042820DF69AB00325635 /* SinkerCalculation */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BE6B677B20DF4F1F00E99FF7 /* Resources */ = {
+		BEBD042720DF69AB00325635 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE6B678D20DF4F2100E99FF7 /* LaunchScreen.storyboard in Resources */,
-				BE6B678A20DF4F2100E99FF7 /* Assets.xcassets in Resources */,
-				BE6B678820DF4F1F00E99FF7 /* Main.storyboard in Resources */,
+				BEBD043920DF69AC00325635 /* LaunchScreen.storyboard in Resources */,
+				BEBD043620DF69AC00325635 /* Assets.xcassets in Resources */,
+				BEBD043420DF69AB00325635 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		44833FEFEB6131497A1F7C2F /* [CP] Check Pods Manifest.lock */ = {
+		6424397AE336789E3E14771D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -178,7 +178,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CC27A851C8BC2BC0B4811CAC /* [CP] Embed Pods Frameworks */ = {
+		B4426C9A0B4BBCBB2BED45E6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -199,31 +199,31 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BE6B677920DF4F1F00E99FF7 /* Sources */ = {
+		BEBD042520DF69AB00325635 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE6B678520DF4F1F00E99FF7 /* SecondViewController.swift in Sources */,
-				BE6B678120DF4F1F00E99FF7 /* AppDelegate.swift in Sources */,
-				BE6B678320DF4F1F00E99FF7 /* FirstViewController.swift in Sources */,
+				BEBD043120DF69AB00325635 /* SecondViewController.swift in Sources */,
+				BEBD042D20DF69AB00325635 /* AppDelegate.swift in Sources */,
+				BEBD042F20DF69AB00325635 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BE6B678620DF4F1F00E99FF7 /* Main.storyboard */ = {
+		BEBD043220DF69AB00325635 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				BE6B678720DF4F1F00E99FF7 /* Base */,
+				BEBD043320DF69AB00325635 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		BE6B678B20DF4F2100E99FF7 /* LaunchScreen.storyboard */ = {
+		BEBD043720DF69AC00325635 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				BE6B678C20DF4F2100E99FF7 /* Base */,
+				BEBD043820DF69AC00325635 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -231,7 +231,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		BE6B678F20DF4F2100E99FF7 /* Debug */ = {
+		BEBD043B20DF69AC00325635 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -291,7 +291,7 @@
 			};
 			name = Debug;
 		};
-		BE6B679020DF4F2100E99FF7 /* Release */ = {
+		BEBD043C20DF69AC00325635 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -345,9 +345,9 @@
 			};
 			name = Release;
 		};
-		BE6B679220DF4F2100E99FF7 /* Debug */ = {
+		BEBD043E20DF69AC00325635 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8E88D0FA2C6CBA9D00FBFA0 /* Pods-SinkerCalculation.debug.xcconfig */;
+			baseConfigurationReference = 9CB096E73EFD428365888C03 /* Pods-SinkerCalculation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -364,9 +364,9 @@
 			};
 			name = Debug;
 		};
-		BE6B679320DF4F2100E99FF7 /* Release */ = {
+		BEBD043F20DF69AC00325635 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E67EE2D618D8BCA5528889C4 /* Pods-SinkerCalculation.release.xcconfig */;
+			baseConfigurationReference = 2C732692112CC38385A0F0A8 /* Pods-SinkerCalculation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -386,25 +386,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BE6B677820DF4F1F00E99FF7 /* Build configuration list for PBXProject "SinkerCalculation" */ = {
+		BEBD042420DF69AB00325635 /* Build configuration list for PBXProject "SinkerCalculation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BE6B678F20DF4F2100E99FF7 /* Debug */,
-				BE6B679020DF4F2100E99FF7 /* Release */,
+				BEBD043B20DF69AC00325635 /* Debug */,
+				BEBD043C20DF69AC00325635 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BE6B679120DF4F2100E99FF7 /* Build configuration list for PBXNativeTarget "SinkerCalculation" */ = {
+		BEBD043D20DF69AC00325635 /* Build configuration list for PBXNativeTarget "SinkerCalculation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BE6B679220DF4F2100E99FF7 /* Debug */,
-				BE6B679320DF4F2100E99FF7 /* Release */,
+				BEBD043E20DF69AC00325635 /* Debug */,
+				BEBD043F20DF69AC00325635 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = BE6B677520DF4F1F00E99FF7 /* Project object */;
+	rootObject = BEBD042120DF69AB00325635 /* Project object */;
 }
