@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		BEBD042D20DF69AB00325635 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD042C20DF69AB00325635 /* AppDelegate.swift */; };
-		BEBD042F20DF69AB00325635 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD042E20DF69AB00325635 /* FirstViewController.swift */; };
-		BEBD043120DF69AB00325635 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD043020DF69AB00325635 /* SecondViewController.swift */; };
 		BEBD043420DF69AB00325635 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEBD043220DF69AB00325635 /* Main.storyboard */; };
 		BEBD043620DF69AC00325635 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEBD043520DF69AC00325635 /* Assets.xcassets */; };
 		BEBD043920DF69AC00325635 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEBD043720DF69AC00325635 /* LaunchScreen.storyboard */; };
+		BEBD044120DF6FB300325635 /* ViewControllerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD044020DF6FB300325635 /* ViewControllerInformation.swift */; };
+		BEBD044320DF6FFC00325635 /* ViewControllerWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD044220DF6FFC00325635 /* ViewControllerWeight.swift */; };
+		BEBD044520DF712900325635 /* ViewControllerCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD044420DF712900325635 /* ViewControllerCalculation.swift */; };
 		FBE0AF8DB1C773F6E6BBCB5C /* Pods_SinkerCalculation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F252484F8B2ECD01876F1B /* Pods_SinkerCalculation.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,12 +23,13 @@
 		9CB096E73EFD428365888C03 /* Pods-SinkerCalculation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SinkerCalculation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation.debug.xcconfig"; sourceTree = "<group>"; };
 		BEBD042920DF69AB00325635 /* SinkerCalculation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinkerCalculation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEBD042C20DF69AB00325635 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BEBD042E20DF69AB00325635 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		BEBD043020DF69AB00325635 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		BEBD043320DF69AB00325635 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BEBD043520DF69AC00325635 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEBD043820DF69AC00325635 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEBD043A20DF69AC00325635 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEBD044020DF6FB300325635 /* ViewControllerInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerInformation.swift; sourceTree = "<group>"; };
+		BEBD044220DF6FFC00325635 /* ViewControllerWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerWeight.swift; sourceTree = "<group>"; };
+		BEBD044420DF712900325635 /* ViewControllerCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCalculation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +75,9 @@
 			isa = PBXGroup;
 			children = (
 				BEBD042C20DF69AB00325635 /* AppDelegate.swift */,
-				BEBD042E20DF69AB00325635 /* FirstViewController.swift */,
-				BEBD043020DF69AB00325635 /* SecondViewController.swift */,
+				BEBD044420DF712900325635 /* ViewControllerCalculation.swift */,
+				BEBD044220DF6FFC00325635 /* ViewControllerWeight.swift */,
+				BEBD044020DF6FB300325635 /* ViewControllerInformation.swift */,
 				BEBD043220DF69AB00325635 /* Main.storyboard */,
 				BEBD043520DF69AC00325635 /* Assets.xcassets */,
 				BEBD043720DF69AC00325635 /* LaunchScreen.storyboard */,
@@ -203,9 +206,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEBD043120DF69AB00325635 /* SecondViewController.swift in Sources */,
+				BEBD044320DF6FFC00325635 /* ViewControllerWeight.swift in Sources */,
+				BEBD044520DF712900325635 /* ViewControllerCalculation.swift in Sources */,
 				BEBD042D20DF69AB00325635 /* AppDelegate.swift in Sources */,
-				BEBD042F20DF69AB00325635 /* FirstViewController.swift in Sources */,
+				BEBD044120DF6FB300325635 /* ViewControllerInformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
