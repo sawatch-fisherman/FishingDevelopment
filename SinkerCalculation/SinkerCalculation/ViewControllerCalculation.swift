@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Eureka
 
-class ViewControllerCalculation: UIViewController {
+class ViewControllerCalculation: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setEurekaControl()
         // Do any additional setup after loading the view.
     }
 
@@ -22,6 +24,50 @@ class ViewControllerCalculation: UIViewController {
     }
     
 
+    func setEurekaControl() {
+        
+        // "オモサ"の正数と小数点の桁数を設定
+        let wrapFormatter = NumberFormatter()
+        wrapFormatter.maximumIntegerDigits = 1
+        wrapFormatter.minimumIntegerDigits = 1
+        wrapFormatter.maximumFractionDigits = 2
+        wrapFormatter.minimumFractionDigits = 2
+
+        form
+            // Section1
+            +++ Section("各項目を選択してください")
+            <<< PickerInputRow<String>(){
+                $0.title = "使用するウキ"
+                $0.options = ["G8","G7","G6"]
+                $0.value = "G8"
+            }
+            
+            <<< PickerInputRow<String>(){
+                $0.title = "使用するオモリの個数"
+                $0.options = ["2","3","4"]
+                $0.value = "2"
+            }
+            <<< DecimalRow() {
+                $0.title = "余分な重さ"
+                $0.value = 1.12
+                $0.formatter = wrapFormatter
+            }
+            
+            
+            // Section_2
+            +++ Section("")
+            
+            <<< ButtonRow() {
+                $0.title = "計算"
+                }.onCellSelection{ cell, row in
+                    // move View Controller of "ID:toResult".
+                    //self.performSegue(withIdentifier: "toResult", sender: nil)
+                    
+                    
+                    //self.dismiss(animated: true, completion: nil)
+                    
+                }
+    }
     /*
     // MARK: - Navigation
 
