@@ -6,6 +6,8 @@
 //  Copyright © 2018年 sawatch. All rights reserved.
 //
 
+// Description: [画面2] ウキとオモリのオモサを設定する画面
+
 import UIKit
 import Eureka
 

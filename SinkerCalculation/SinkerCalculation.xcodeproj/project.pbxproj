@@ -14,6 +14,7 @@
 		BEBD044120DF6FB300325635 /* ViewControllerInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD044020DF6FB300325635 /* ViewControllerInformation.swift */; };
 		BEBD044320DF6FFC00325635 /* ViewControllerWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD044220DF6FFC00325635 /* ViewControllerWeight.swift */; };
 		BEBD044520DF712900325635 /* ViewControllerCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD044420DF712900325635 /* ViewControllerCalculation.swift */; };
+		BEBD044720E2D26200325635 /* ViewControllerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD044620E2D26200325635 /* ViewControllerResult.swift */; };
 		FBE0AF8DB1C773F6E6BBCB5C /* Pods_SinkerCalculation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F252484F8B2ECD01876F1B /* Pods_SinkerCalculation.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		BEBD044020DF6FB300325635 /* ViewControllerInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerInformation.swift; sourceTree = "<group>"; };
 		BEBD044220DF6FFC00325635 /* ViewControllerWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerWeight.swift; sourceTree = "<group>"; };
 		BEBD044420DF712900325635 /* ViewControllerCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCalculation.swift; sourceTree = "<group>"; };
+		BEBD044620E2D26200325635 /* ViewControllerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			children = (
 				BEBD042C20DF69AB00325635 /* AppDelegate.swift */,
 				BEBD044420DF712900325635 /* ViewControllerCalculation.swift */,
+				BEBD044620E2D26200325635 /* ViewControllerResult.swift */,
 				BEBD044220DF6FFC00325635 /* ViewControllerWeight.swift */,
 				BEBD044020DF6FB300325635 /* ViewControllerInformation.swift */,
 				BEBD043220DF69AB00325635 /* Main.storyboard */,
@@ -209,6 +212,7 @@
 				BEBD044320DF6FFC00325635 /* ViewControllerWeight.swift in Sources */,
 				BEBD044520DF712900325635 /* ViewControllerCalculation.swift in Sources */,
 				BEBD042D20DF69AB00325635 /* AppDelegate.swift in Sources */,
+				BEBD044720E2D26200325635 /* ViewControllerResult.swift in Sources */,
 				BEBD044120DF6FB300325635 /* ViewControllerInformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

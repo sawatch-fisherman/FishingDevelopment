@@ -1,17 +1,19 @@
 //
-//  ViewControllerInformation.swift
+//  ViewControllerResult.swift
 //  SinkerCalculation
 //
-//  Created by さわっち on 2018/06/24.
+//  Created by さわっち on 2018/06/27.
 //  Copyright © 2018年 sawatch. All rights reserved.
 //
 
-// Description: [画面3] アプリの情報を表示する画面
+// Description: [画面4] 計算の結果を出力する画面
+
+// memo: [その1] ViewControllerResult から ViewControllerCalculation へ戻る処理は、
+//              ViewControllerCalculation に記述している。
 
 import UIKit
-import Eureka
 
-class ViewControllerInformation: FormViewController {
+class ViewControllerResult: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -6,6 +6,10 @@
 //  Copyright © 2018年 sawatch. All rights reserved.
 //
 
+// Description: [画面1] 計算の値を入力する画面
+
+
+
 import UIKit
 import Eureka
 
@@ -52,8 +56,7 @@ class ViewControllerCalculation: FormViewController {
                 $0.value = 1.12
                 $0.formatter = wrapFormatter
             }
-            
-            
+
             // Section_2
             +++ Section("")
             
@@ -61,10 +64,7 @@ class ViewControllerCalculation: FormViewController {
                 $0.title = "計算"
                 }.onCellSelection{ cell, row in
                     // move View Controller of "ID:toResult".
-                    //self.performSegue(withIdentifier: "toResult", sender: nil)
-                    
-                    
-                    //self.dismiss(animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "toResultViewController", sender: nil)
                     
                 }
     }
@@ -77,5 +77,15 @@ class ViewControllerCalculation: FormViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    /// Storyboadで ViewControllerResult から ViewControllerCalculation へ戻るために必要
+    @IBAction func unwindToViewControllerResult(segue: UIStoryboardSegue) {
+        // 戻る際の処理が必要な場合は記述
+    }
+
+    
+    
+    
+    
 
 }
