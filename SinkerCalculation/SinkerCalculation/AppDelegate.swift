@@ -14,6 +14,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
+    // データベースの定義 start
+    // Calu画面の設定値
+    var db_CaluInterface: DataBaseTable.CaluInterfaceTable = DataBaseTable.CaluInterfaceTable.init()
+    
+    // オモリとウキ画面の値
+    var db_Weights:WeightsDB = WeightsDB.init()
+    struct WeightsDB {
+        var db_Sinker: DataBaseTable.WeightTable
+        var db_Float: DataBaseTable.WeightTable
+        init(){
+            db_Sinker = DataBaseTable.WeightTable.init()
+            db_Float = DataBaseTable.WeightTable.init()
+        }
+    }
+    // データベースの定義 finish
+
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
