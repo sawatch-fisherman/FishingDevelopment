@@ -27,6 +27,13 @@ class ViewControllerWeight: FormViewController {
     }
     
     
+    @IBAction func clickButtonSave(_ sender: Any) {
+    }
+    
+    @IBAction func clickButtonCancel(_ sender: Any) {
+    }
+    
+    
     
     func setEurekaControl() {
 
