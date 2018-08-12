@@ -1,75 +1,17 @@
 //
-//  ViewControllerResult.swift
+//  CalculationCombination.swift
 //  SinkerCalculation
 //
-//  Created by さわっち on 2018/06/27.
+//  Created by さわっち on 2018/08/12.
 //  Copyright © 2018年 sawatch. All rights reserved.
 //
 
-// Description: [画面4] 計算の結果を出力する画面
-
-// memo: [その1] ViewControllerResult から ViewControllerCalculation へ戻る処理は、
-//              ViewControllerCalculation に記述している。
-
+import Foundation
 import UIKit
 
-class ViewControllerResult: UIViewController {
+class CalculationCombination {
 
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // 試しに関数のテスト
-        CreateResultTable()
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
-    // 表を作成する処理を記述する
-    //  ----------------------------- Start -----------------------------
-    func CreateResultTable(){
-        // クラスのオブジェクトを生成
-        let CCalcCombi = CalculationCombination()
-        var resutlCombination = [[CalculationCombination.Sinker]]()
-        
-        // 選択したウキに合った、オモリの組合せパターンを表示
-        resutlCombination = CCalcCombi.MainCalculation()
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //  ----------------------------- Finish -----------------------------
-    
-    
-    // 計算の処理を記述する
-    //  ----------------------------- Start -----------------------------
+    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
     // メンバ変数
     struct Sinker {
@@ -90,14 +32,11 @@ class ViewControllerResult: UIViewController {
     
     // 組合せの結果の2次元配列
     var resultCombinationArray = [[Sinker]]()
-    
-    
-    let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+
     /////////////////////
     // 計算処理の最初!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     /////////////////////
-    func MainCalculation(){
+    func MainCalculation()->[[Sinker]]{
         
         MakeSinkerArray()
         
@@ -122,7 +61,7 @@ class ViewControllerResult: UIViewController {
         
         // 重複の削除
         DeleteDuplicationMain()
-
+        
         #if DEBUG
         //print("2 - 重複削除後")
         DebugPrintResultArray()
@@ -132,6 +71,8 @@ class ViewControllerResult: UIViewController {
         print("経過時間-半分: ",elapsed_1)
         print("経過時間-全部: ",elapsed_2)
         #endif
+    
+        return resultCombinationArray
     }
     
     // 辞書は順番がランダムのため、2次元配列に変更する
@@ -352,6 +293,5 @@ class ViewControllerResult: UIViewController {
     }
     //  ----------------------------- Finish -----------------------------
     
-
-
+    
 }
