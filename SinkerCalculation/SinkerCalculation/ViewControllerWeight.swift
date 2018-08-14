@@ -23,7 +23,7 @@ class ViewControllerWeight: FormViewController {
         // TにAを設定
         setAppDelegateToCalculationDataBase()
 
-        //
+        // コントロールの設定
         setEurekaControl()
     }
 
@@ -32,7 +32,7 @@ class ViewControllerWeight: FormViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    // 保存の処理
     @IBAction func clickButtonSave(_ sender: Any) {
         // 値を設定
         setCalculationDataBaseToAppDelegate()
@@ -49,12 +49,13 @@ class ViewControllerWeight: FormViewController {
         return
     }
     
+    // 取消しの処理
     @IBAction func clickButtonCancel(_ sender: Any) {
         
         // アラートを表示
         let title = "キャンセル確認"
         let message = "編集中の内容を破棄してよろしいですか？"
-        
+
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         let defaultAction: UIAlertAction = UIAlertAction(title: "戻る", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) -> Void in
@@ -64,7 +65,7 @@ class ViewControllerWeight: FormViewController {
         
         let cancelAction: UIAlertAction = UIAlertAction(title: "破棄する", style: UIAlertActionStyle.cancel, handler: {
             (action: UIAlertAction!) -> Void in
-            
+
             // "編集中の内容を破棄しました"
             let alert2 = UIAlertController(title: "", message: "編集中の内容を破棄しました", preferredStyle: UIAlertControllerStyle.alert)
             //present(alert, animated: true, completion: nil)
@@ -74,16 +75,14 @@ class ViewControllerWeight: FormViewController {
                     alert2.dismiss(animated: true, completion: nil)
                 })
             })
-            
-            
-            
+
         })
-        
+
         alert.addAction(cancelAction)
         alert.addAction(defaultAction)
-        
+
         present(alert, animated: true, completion: nil)
-        
+
         setReload()
     }
     
@@ -414,7 +413,6 @@ class ViewControllerWeight: FormViewController {
     // When do you use this function?
     // 1.Save                 保存
     func setCalculationDataBaseToAppDelegate(){
-        
         // ウキ
         appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g8] = CCalcDB.getArrayDataBaseWeightFloat(getKey: .g8)
         appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g7] = CCalcDB.getArrayDataBaseWeightFloat(getKey: .g7)

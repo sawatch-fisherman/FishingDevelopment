@@ -12,7 +12,32 @@ import UIKit
 class CalculationCombination {
 
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+
+    // 答えの雛形
+    // この値を使用して、結果の画面に計算結果を表示する
+    // タイトル     [例 : パターン 7個\nオモリ3個: 3B(1.00g)+余重(0.01g)]
+    // Cell複数
+    struct resultTable {
+        var header:  String
+        var cells =  [cellTable]()
+        
+        init(){
+            self.header = ""
+            self.cells.removeAll()
+        }
+    }
+
+    // Cell1個の値     [例 : 合計 : 0.37g,  余り : -0.01g \n詳細 : G8(0.07g), G7(0.09g), G7(0.09g), G6(0.12g)]
+    struct cellTable {
+        var summary: String
+        var detail: String
+
+        init(){
+            self.summary = ""
+            self.detail = ""
+        }
+    }
+
     // メンバ変数
     struct Sinker {
         var number: String
@@ -22,10 +47,22 @@ class CalculationCombination {
             self.number = number
             self.weight = weight
         }
+
+        static func ==(lhs: Sinker, rhs: Sinker) -> Bool {
+            if(lhs.number != rhs.number){
+                return false
+            }
+            if(lhs.weight != rhs.weight){
+                return false
+            }
+            return true
+        }
     }
+    
     
     var maxRangeOfWeight:Double = 0
     var minRangeOfWeight:Double = 0
+    var selectFlotWeight:Double = 0     // headerの表示に使う
     
     // 計算用のオモリの配列
     var sinkerArrayForCalu = [Sinker]()
@@ -34,48 +71,46 @@ class CalculationCombination {
     var resultCombinationArray = [[Sinker]]()
 
     /////////////////////
-    // 計算処理の最初!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    /////////////////////
-    func MainCalculation()->[[Sinker]]{
-        
+    // 計算処理の最初!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!resultTable
+    func MainCalculation()->resultTable{
+
         MakeSinkerArray()
-        
+
         // 最大値と最小値を求める
         SetRangeOfWeight()
-        
-        // debug
+
+        #if DEBUG
         let start = Date()
-        
+        #endif
+
         // オモリの組合せ 1パターン[1次元 配列][例:0.20g, 0.30g, 0.45g]
         let blankCombinationOfSinkersArray = [Sinker]()
         GetSinkersCombinationRepeatedly(argNumber: 0, argNowCombination: blankCombinationOfSinkersArray)
-        
-        
+
+        #if DEBUG
         let elapsed_1 = Date().timeIntervalSince(start)
-        
-        //print("1 - パターン抽出後")
-        //DebugPrintResultArray()
-        
-        // もしパターンが0なら抜けろ！
-        // メッセージを出力
-        
+        #endif
         // 重複の削除
         DeleteDuplicationMain()
-        
+
         #if DEBUG
         //print("2 - 重複削除後")
         DebugPrintResultArray()
-        
+
         // 経過時間
         let elapsed_2 = Date().timeIntervalSince(start)
         print("経過時間-半分: ",elapsed_1)
         print("経過時間-全部: ",elapsed_2)
         #endif
-    
-        return resultCombinationArray
+
+        let returnCombinationList:resultTable = CreatResutTable()
+
+        return returnCombinationList
     }
     
     // 辞書は順番がランダムのため、2次元配列に変更する
+    
+    ///
     func MakeSinkerArray() {
         sinkerArrayForCalu.append(Sinker(number: DataBaseTable.WeightIndex.g8.rawValue, weight: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g8]!))
         sinkerArrayForCalu.append(Sinker(number: DataBaseTable.WeightIndex.g7.rawValue, weight: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g7]!))
@@ -95,7 +130,7 @@ class CalculationCombination {
     
     // 最大値を求める (ウキの重量 + 余重)
     func SetRangeOfWeight(){
-        var rangeOfWeight:Double = 0.0;
+        selectFlotWeight = 0.0;
         
         var selectSize:DataBaseTable.WeightIndex = DataBaseTable.WeightIndex.b6
         switch(appDelegate.db_CaluInterface.usingFloatSelect)
@@ -110,18 +145,18 @@ class CalculationCombination {
         case "G2": selectSize = DataBaseTable.WeightIndex.g2
         case "G1": selectSize = DataBaseTable.WeightIndex.g1
         case "B" : selectSize = DataBaseTable.WeightIndex.b1
-        case "B2": selectSize = DataBaseTable.WeightIndex.b2
-        case "B3": selectSize = DataBaseTable.WeightIndex.b3
-        case "B4": selectSize = DataBaseTable.WeightIndex.b4
-        case "B5": selectSize = DataBaseTable.WeightIndex.b5
-        case "B6": selectSize = DataBaseTable.WeightIndex.b6
+        case "2B": selectSize = DataBaseTable.WeightIndex.b2
+        case "3B": selectSize = DataBaseTable.WeightIndex.b3
+        case "4B": selectSize = DataBaseTable.WeightIndex.b4
+        case "5B": selectSize = DataBaseTable.WeightIndex.b5
+        case "6B": selectSize = DataBaseTable.WeightIndex.b6
         default: selectSize = DataBaseTable.WeightIndex.b6          // Error
         }
-        
-        rangeOfWeight = appDelegate.db_Weights.db_Float.weights[selectSize]!
-        maxRangeOfWeight = rangeOfWeight + appDelegate.db_CaluInterface.extraWeightSinker
-        minRangeOfWeight = rangeOfWeight
-        
+
+        selectFlotWeight = appDelegate.db_Weights.db_Float.weights[selectSize]!
+        maxRangeOfWeight = selectFlotWeight + appDelegate.db_CaluInterface.extraWeightSinker
+        minRangeOfWeight = selectFlotWeight - appDelegate.db_CaluInterface.extraWeightSinker
+
     }
     
     // 組合せの算出
@@ -148,7 +183,7 @@ class CalculationCombination {
             }
             
         }
-        
+
         // もし最後に使うSinkersだったらメンバー変数に配列を格納する
         if(argNumber == appDelegate.db_CaluInterface.theNumberOfSinkers) {
             
@@ -177,7 +212,7 @@ class CalculationCombination {
             if(argNumber >= appDelegate.db_CaluInterface.theNumberOfSinkers){
                 break
             }
-            
+
             // [1次元配列]に格納
             simpleCombinationOfSinkersArray = tempCombinationOfSinkersArray
             
@@ -189,7 +224,7 @@ class CalculationCombination {
             // 再循環（この関数）
             GetSinkersCombinationRepeatedly(argNumber: NowIndexSinker, argNowCombination: simpleCombinationOfSinkersArray)
         }
-        
+
         return
     }
     
@@ -197,24 +232,18 @@ class CalculationCombination {
     
     // 2次元配列の重複を削除
     func DeleteDuplicationMain(){
-        
+
         // 2次元配列の並び替え
         resultCombinationArray.sort(by: {$0[0].weight > $1[0].weight})
-        
+
         // 重複の削除
         DeleteDuplicationDetail()
-        
-        //Debug
-        print("Loop処理 再構築後")
-        DebugPrintResultArray()
-        
+
         return
     }
     
     
     // 2次元配列の重複を削除
-    // true:  削除あり
-    // false: 削除なし
     func DeleteDuplicationDetail() {
         // 重複の削除
         var numberOfLoopingOutSide:Int = resultCombinationArray.count
@@ -276,9 +305,8 @@ class CalculationCombination {
         }
         return
     }
-    
-    
-    
+
+    #if DEBUG
     // デバッグ用 作成された回答の組み合わせをログに出力する
     func DebugPrintResultArray(){
         
@@ -291,7 +319,128 @@ class CalculationCombination {
         
         return
     }
+    #endif
     //  ----------------------------- Finish -----------------------------
-    
-    
+
+
+    /// Description: [計算結果]画面に出力する文字列を作成する
+    ///              事前に作成した[オモリの組合せ]配列を元に作成する
+    ///              例:
+    ///              header(section)
+    ///              - [オモリ3個: 3B(1.00g)+余重(0.01g)]\nパターン 7個]
+    ///              cell(summary)
+    ///              - [G4 + G3 + B]
+    ///              cell(detail)
+    ///              - [合計 : 1.00g,    余り : 0.01g \nG8(0.07g) G7(0.09g) G7(0.09g) G6(0.12g)]
+    /// - Author: sawatch
+    /// - Date: 2018/08/14
+    /// - Version: 1.0.0
+    /// - Parameters:
+    ///   - paramA: パラメータAの説明
+    ///   - paramB: パラメータBの説明
+    /// - Returns: [計算結果]画面に出力する文字列
+    func CreatResutTable()->resultTable{
+        var returnValue = resultTable()
+
+        // headerの作成    例 : [パターン 7個\nオモリ3個: 3B(1.00g)+余重(0.01g)]
+        let headerText:String = "オモリ \(String(format: "%d", appDelegate.db_CaluInterface.theNumberOfSinkers))個 : \(appDelegate.db_CaluInterface.usingFloatSelect)(\(String(format:"%.2lf", selectFlotWeight))g)±余重(\(String(format:"%.2lf", appDelegate.db_CaluInterface.extraWeightSinker)))g\nパターン \(String(format: "%d", resultCombinationArray.count))個"
+
+        returnValue.header = headerText
+
+        // cell
+        // 例 : [G4 + G3 + B]
+        // 例 : [合計 : 1.00g,    余り : 0.01g \nG8(0.07g) G7(0.09g) G7(0.09g) G6(0.12g)]
+        var cell = cellTable()
+
+        var weightSum:Double = 0.0
+        var weightExtra:Double = 0.0
+
+        var textSizeSummary:String = ""
+        var textSizeDetail:String = ""
+
+        var loopTimes:Int = 0
+        var nameNumber:String = ""
+
+        for oneOfCombination in resultCombinationArray
+        {
+            // 初期化
+            cell = cellTable()
+
+            weightSum = 0.0
+            weightExtra = 0.0
+            loopTimes = 0
+
+            textSizeSummary = ""
+            textSizeDetail = ""
+            nameNumber = ""
+
+            for oneOfSinker in oneOfCombination
+            {
+                loopTimes += 1
+                nameNumber = ConvertNumberWord(argSource: oneOfSinker.number)
+
+                weightSum += oneOfSinker.weight
+
+                // 例 : [G4 + G3 + B]
+                // プラスは最後は付与しない
+                if(loopTimes == oneOfCombination.count){
+                    textSizeSummary =  "\(textSizeSummary)\(nameNumber)"
+                }else{
+                    textSizeSummary =  "\(textSizeSummary)\(nameNumber) + "
+                }
+
+                // 例 : [G8(0.07g) G7(0.09g) G7(0.09g) G6(0.12g)]
+                textSizeDetail = "\(textSizeDetail)\(nameNumber)(\(String(format:"%.2lf",oneOfSinker.weight))g) "
+            }
+            // 例 : [G4 + G3 + B]
+            cell.summary = textSizeSummary
+
+            // [合計 : 1.00g,    余り : 0.01g \nG8(0.07g) G7(0.09g) G7(0.09g) G6(0.12g)]
+            weightExtra = weightSum - selectFlotWeight
+            cell.detail = "合計 : \(String(format:"%.2lf",weightSum))g    余り : \(String(format:"%.2lf",weightExtra))\n\(textSizeDetail)"
+
+            returnValue.cells.append(cell)
+        }
+
+        return returnValue
+    }
+
+    /// Description: ウキ/オモリの号数を、プログラム用から表示用に変換する
+    ///              例:
+    ///              変更[前]: b3
+    ///              変更[後]: 3B
+    /// - Author: sawatch
+    /// - Date: 2018/08/14
+    /// - Version: 1.0.0
+    /// - Parameters:
+    ///   - paramA: プログラム用の号数
+    /// - Returns: 表示用の号数
+    func ConvertNumberWord(argSource:String)->String{
+        var returnDestination:String = ""
+        switch(argSource)
+        {
+        // ["G8","G7","G6","G5","G4","G3","G2","G1","B","B2","B3","B4","B5","B6"]
+        case "g8": returnDestination = "G8"
+        case "g7": returnDestination = "G7"
+        case "g6": returnDestination = "G6"
+        case "g5": returnDestination = "G5"
+        case "g4": returnDestination = "G4"
+        case "g3": returnDestination = "G3"
+        case "g2": returnDestination = "G2"
+        case "g1": returnDestination = "G1"
+        case "b1": returnDestination = "B"
+        case "b2": returnDestination = "2B"
+        case "b3": returnDestination = "3B"
+        case "b4": returnDestination = "4B"
+        case "b5": returnDestination = "5B"
+        case "b6": returnDestination = "6B"
+        default: returnDestination = ""          // Error
+        }
+
+        return returnDestination
+    }
+
+
+
+
 }

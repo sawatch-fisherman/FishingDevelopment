@@ -48,7 +48,7 @@ class ViewControllerCalculation: FormViewController {
             +++ Section("各項目を選択してください")
             <<< PickerInputRow<String>("UsingFloat"){
                 $0.title = "使用するウキ"
-                $0.options = ["G8","G7","G6","G5","G4","G3","G2","G1","B","B2","B3","B4","B5","B6"]
+                $0.options = ["G8","G7","G6","G5","G4","G3","G2","G1","B","2B","3B","4B","5B","6B"]
                 $0.value = self.appDelegate.db_CaluInterface.usingFloatSelect
                 }.onChange{ row in
                     self.appDelegate.db_CaluInterface.usingFloatSelect = row.value!
