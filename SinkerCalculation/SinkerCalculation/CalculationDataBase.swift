@@ -21,7 +21,7 @@ class CalculationDataBase: DataBaseTable {
         let retValue:Double = DbWeightFloat.weights[getKey]!
         return retValue
     }
-    
+
     // オモリのデータベース
     var DbWeightSinker:WeightTable = WeightTable()
     func setArrayDataBaseWeightSinker(setKey: CalculationDataBase.WeightIndex, setValue: Double) {

@@ -64,6 +64,9 @@ class DataBaseTable {
         case b4
         case b5
         case b6
+        
+        static let WeightIndexs: [WeightIndex] = [.g8, .g7, .g6, .g5, .g4, .g3, .g2, .g1,
+                                                  .b1, .b2, .b3, .b4, .b5, .b6]
     }
     
     // Calu画面の設定値

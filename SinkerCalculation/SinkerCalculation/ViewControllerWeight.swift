@@ -36,10 +36,9 @@ class ViewControllerWeight: FormViewController {
     @IBAction func clickButtonSave(_ sender: Any) {
         // 値を設定
         setCalculationDataBaseToAppDelegate()
-        
+
         // "保存しました"
         let alert = UIAlertController(title: "", message: "保存しました", preferredStyle: UIAlertControllerStyle.alert)
-        //present(alert, animated: true, completion: nil)
         present(alert, animated: true, completion: {
             // アラートを閉じる
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
@@ -60,11 +59,12 @@ class ViewControllerWeight: FormViewController {
         let defaultAction: UIAlertAction = UIAlertAction(title: "戻る", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) -> Void in
             // ボタン押下後の処理
-            
         })
-        
+
         let cancelAction: UIAlertAction = UIAlertAction(title: "破棄する", style: UIAlertActionStyle.cancel, handler: {
             (action: UIAlertAction!) -> Void in
+            // ボタン押下後の処理
+            self.setReload()
 
             // "編集中の内容を破棄しました"
             let alert2 = UIAlertController(title: "", message: "編集中の内容を破棄しました", preferredStyle: UIAlertControllerStyle.alert)
@@ -83,11 +83,8 @@ class ViewControllerWeight: FormViewController {
 
         present(alert, animated: true, completion: nil)
 
-        setReload()
     }
-    
-    
-    
+
     func setEurekaControl() {
         
         // "オモサ"の正数と小数点の桁数を設定
@@ -104,7 +101,6 @@ class ViewControllerWeight: FormViewController {
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .g8)
                 $0.formatter = wrapFormatter
                 }.onChange{ row in
-                    // 書込み
                     self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .g8, setValue: row.value!)
             }
             <<< DecimalRow("float_g7") {
@@ -119,6 +115,7 @@ class ViewControllerWeight: FormViewController {
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .g6)
                 $0.formatter = wrapFormatter
                 }.onChange{ row in
+                    
                     self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .g6, setValue: row.value!)
             }
             <<< DecimalRow("float_g5") {
@@ -306,6 +303,7 @@ class ViewControllerWeight: FormViewController {
     // キャンセルボタンで設定変更前に戻す
     func setReload(){
         // キャンセルの処理
+
         // オモリ
         form.rowBy(tag: "sinker_g8")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g8]!
         form.rowBy(tag: "sinker_g8")?.reload()
@@ -482,7 +480,71 @@ class ViewControllerWeight: FormViewController {
         
         return
     }
-    
+
+
+    #if DEBUG
+    /// Description: [作成途中]
+    ///              重量が変更された場合、他の項目と重複していないか確認する
+    ///              [※作成途中の理由 : EurekaのonChangeイベントは入力値を１文字ごとに発生する。入力前の値に戻したいときに戻せなかった
+    ///              例：0.12 → 0.17 としたい場合に、 0.17が重複していると 0.10 になってしまう。]
+    ///
+    /// - Author: sawatch
+    /// - Date: 2018/08/15
+    /// - Version: 1.0.0
+    /// - Parameters:
+    ///   - argSelect:String    変更した項目
+    ///   - argKey:String       変更した項目のサイズ
+    ///   - argValue:Double     変更された値
+    /// - Returns: [計算結果]画面に出力する文字列
+    func CheckDuplicationValueFloat(argSelect:String, argKey:String, argValue:Double){
+        var editFlag:Bool = false
+        var valueCompare:Double = 0.0
+        
+        // 他の項目と重量が重複していないか確認する
+        for indexWeight in DataBaseTable.WeightIndex.WeightIndexs
+        {
+            valueCompare = CCalcDB.getArrayDataBaseWeightFloat(getKey: indexWeight)
+
+            // 編集中の項目は対象外
+            if(argKey == indexWeight.rawValue){
+                continue
+            }
+            // 他の項目と値が重複した場合、エラーとする
+            if(argValue == valueCompare){
+                editFlag = true
+                break;
+            }
+        }
+
+        if(editFlag == true){
+            // 重複あり
+            // アラートを表示
+            let title = "重複エラー"
+            let message = "他のオモリと同じ重量になっています。\n他のオモリと異なる重量を設定してください。"
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                (action: UIAlertAction!) -> Void in
+                // ボタン押下後の処理
+                // 編集前の値に戻す
+                // 戻したいけど戻せないため "0.0" にする
+                // let value:Double  = self.CCalcDB.getArrayDataBaseWeightFloat(getKey: DataBaseTable.WeightIndex(rawValue: argKey)!)
+                self.form.rowBy(tag: argSelect)?.baseValue = 0.0
+                self.form.rowBy(tag: argSelect)?.reload()
+            })
+            
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion: nil)
+        }else{
+            // 重複なし
+            // 書込み
+            self.CCalcDB.setArrayDataBaseWeightFloat(setKey: DataBaseTable.WeightIndex(rawValue: argKey)!, setValue: argValue)
+            print(argValue)
+        }
+
+        return
+    }
+    #endif
+
 
 
 }
