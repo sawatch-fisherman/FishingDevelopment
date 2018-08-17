@@ -28,9 +28,11 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
 
         setUserDefaultsToAppDelegate()
 
-        setEurekaControl()
         
+        setEurekaControl()
+    
         setAdMob()
+
         // Do any additional setup after loading the view.
     }
 
@@ -38,7 +40,6 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
     /// Description:    Eurekaの設定
     /// - Author:       sawatch
