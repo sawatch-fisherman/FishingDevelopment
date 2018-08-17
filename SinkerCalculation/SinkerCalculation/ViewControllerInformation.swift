@@ -100,7 +100,7 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
                 selectItem = kindItem.disclaimer.rawValue
                 self.performSegue(withIdentifier: "toInformationDetail", sender: nil)
         case kindItem.inquiry.rawValue:
-                SendMail()
+                sendMail()
         default:
             print("Error")
         }
@@ -124,7 +124,7 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
     ///   - tableView:UITableView                                   : テーブルビュー
     ///   - accessoryButtonTappedForRowWith indexPath:IndexPath     : 選択された行
     /// - Returns:cell 1行のセル
-    func SendMail(){
+    func sendMail(){
         if MFMailComposeViewController.canSendMail(){
             let mailConfig = MFMailComposeViewController()
             mailConfig.mailComposeDelegate = self

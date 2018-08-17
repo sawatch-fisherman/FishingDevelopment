@@ -12,13 +12,16 @@
 
 import UIKit
 import Eureka
+import GoogleMobileAds
 
-class ViewControllerCalculation: FormViewController {
+class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
 
     // AppDelegateのインスタンスを取得
     let defaults: UserDefaults = UserDefaults.standard
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
+    // AdMobバナー
+    var bannerAdmobView: GADBannerView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,8 @@ class ViewControllerCalculation: FormViewController {
         setUserDefaultsToAppDelegate()
 
         setEurekaControl()
+        
+        setAdMob()
         // Do any additional setup after loading the view.
     }
 
@@ -35,6 +40,10 @@ class ViewControllerCalculation: FormViewController {
     }
 
 
+    /// Description:    Eurekaの設定
+    /// - Author:       sawatch
+    /// - Date:         2018/08/17
+    /// - Version:      1.0.0
     func setEurekaControl() {
         // "オモサ"の正数と小   数点の桁数を設定
         let wrapFormatter = DecimalFormatter()
@@ -173,6 +182,74 @@ class ViewControllerCalculation: FormViewController {
         return
         
     }
+
+
+    //////////////////////
+    // AdMob設定 --Start--
+    //////////////////////
+    /// Description:    GADBannerViewの設定値を設定する
+    /// - Author:       sawatch
+    /// - Date:         2018/08/17
+    /// - Version:      1.0.0
+    func setAdMob(){
+        bannerAdmobView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerAdmobView.adUnitID = "ca-app-pub-2499860722935748/3456863002"
+        bannerAdmobView.rootViewController = self
+        bannerAdmobView.load(GADRequest())
+        bannerAdmobView.delegate = self
+        settingBannerViewToView(bannerAdmobView)
+    }
+
+    func settingBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
+    }
+
+    /// Delegate処理 start
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("adViewDidReceiveAd")
+    }
+
+    func adView(_ bannerView: GADBannerView,
+                didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("adViewWillPresentScreen")
+    }
+
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewWillDismissScreen")
+    }
+
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewDidDismissScreen")
+    }
+
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print("adViewWillLeaveApplication")
+    }
+    /// Delegate処理 finish
+    //////////////////////
+    // AdMob設定 --Finish--
+    //////////////////////
 
 
 }

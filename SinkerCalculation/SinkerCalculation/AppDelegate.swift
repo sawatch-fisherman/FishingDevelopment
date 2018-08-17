@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // データベースの定義 start
     // Calu画面の設定値
     var db_CaluInterface: DataBaseTable.CaluInterfaceTable = DataBaseTable.CaluInterfaceTable.init()
-    
+
     // オモリとウキ画面の値
     var db_Weights:WeightsDB = WeightsDB.init()
     struct WeightsDB {

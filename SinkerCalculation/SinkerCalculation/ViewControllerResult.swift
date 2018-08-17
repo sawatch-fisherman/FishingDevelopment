@@ -120,7 +120,7 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
         let CCalcCombo = CalculationCombination()
         // 選択したウキに合った、オモリの組合せパターンを表示
         var returnCombination = CalculationCombination.resultTable()
-        returnCombination = CCalcCombo.MainCalculation()
+        returnCombination = CCalcCombo.mainCalculation()
 
         return returnCombination
     }

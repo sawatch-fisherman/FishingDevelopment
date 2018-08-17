@@ -31,8 +31,11 @@ class ViewControllerWeight: FormViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // 保存の処理
+
+    /// Description: 保存ボタンの処理
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
     @IBAction func clickButtonSave(_ sender: Any) {
         // 値を設定
         setCalculationDataBaseToAppDelegate()
@@ -47,10 +50,13 @@ class ViewControllerWeight: FormViewController {
         })
         return
     }
-    
-    // 取消しの処理
+
+    /// Description: 取消しボタンの処理
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
     @IBAction func clickButtonCancel(_ sender: Any) {
-        
+
         // アラートを表示
         let title = "キャンセル確認"
         let message = "編集中の内容を破棄してよろしいですか？"
@@ -85,8 +91,12 @@ class ViewControllerWeight: FormViewController {
 
     }
 
+    /// Description: Eurekaの設定
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
     func setEurekaControl() {
-        
+
         // "オモサ"の正数と小数点の桁数を設定
         let wrapFormatter = DecimalFormatter()
         wrapFormatter.maximumIntegerDigits = 1
@@ -301,6 +311,12 @@ class ViewControllerWeight: FormViewController {
 
 
     // キャンセルボタンで設定変更前に戻す
+
+    /// Description:    設定値を変更前に戻す
+    /// - note:         "破棄する"が選択された場合に動作する
+    /// - Author:       sawatch
+    /// - Date:         2018/08/17
+    /// - Version:      1.0.0
     func setReload(){
         // キャンセルの処理
 

@@ -72,12 +72,16 @@ class CalculationCombination {
 
     /////////////////////
     // 計算処理の最初!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!resultTable
-    func MainCalculation()->resultTable{
 
-        MakeSinkerArray()
+    /// Description:
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
+    func mainCalculation()->resultTable{
 
-        // 最大値と最小値を求める
-        SetRangeOfWeight()
+        makeSinkerArray()
+
+        setRangeOfWeight()
 
         #if DEBUG
         let start = Date()
@@ -85,13 +89,13 @@ class CalculationCombination {
 
         // オモリの組合せ 1パターン[1次元 配列][例:0.20g, 0.30g, 0.45g]
         let blankCombinationOfSinkersArray = [Sinker]()
-        GetSinkersCombinationRepeatedly(argNumber: 0, argNowCombination: blankCombinationOfSinkersArray)
+        getSinkersCombinationRepeatedly(argNumber: 0, argNowCombination: blankCombinationOfSinkersArray)
 
         #if DEBUG
         let elapsed_1 = Date().timeIntervalSince(start)
         #endif
         // 重複の削除
-        DeleteDuplicationMain()
+        deleteDuplicationMain()
 
         #if DEBUG
         //print("2 - 重複削除後")
@@ -109,9 +113,12 @@ class CalculationCombination {
     }
     
     // 辞書は順番がランダムのため、2次元配列に変更する
-    
-    ///
-    func MakeSinkerArray() {
+    /// Description:    オモリの配列を作成する
+    /// - Note:         辞書は順番がランダムのため、2次元配列に変更する
+    /// - Author:       sawatch
+    /// - Date:         2018/08/17
+    /// - Version:      1.0.0
+    func makeSinkerArray() {
         sinkerArrayForCalu.append(Sinker(number: DataBaseTable.WeightIndex.g8.rawValue, weight: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g8]!))
         sinkerArrayForCalu.append(Sinker(number: DataBaseTable.WeightIndex.g7.rawValue, weight: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g7]!))
         sinkerArrayForCalu.append(Sinker(number: DataBaseTable.WeightIndex.g6.rawValue, weight: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g6]!))
@@ -127,11 +134,14 @@ class CalculationCombination {
         sinkerArrayForCalu.append(Sinker(number: DataBaseTable.WeightIndex.b5.rawValue, weight: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b5]!))
         sinkerArrayForCalu.append(Sinker(number: DataBaseTable.WeightIndex.b6.rawValue, weight: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b6]!))
     }
-    
-    // 最大値を求める (ウキの重量 + 余重)
-    func SetRangeOfWeight(){
-        selectFlotWeight = 0.0;
-        
+
+    /// Description: 最大値/最小値を求める (ウキの重量 ± 余重)
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
+    func setRangeOfWeight(){
+        selectFlotWeight = 0.0
+
         var selectSize:DataBaseTable.WeightIndex = DataBaseTable.WeightIndex.b6
         switch(appDelegate.db_CaluInterface.usingFloatSelect)
         {
@@ -150,17 +160,21 @@ class CalculationCombination {
         case "4B": selectSize = DataBaseTable.WeightIndex.b4
         case "5B": selectSize = DataBaseTable.WeightIndex.b5
         case "6B": selectSize = DataBaseTable.WeightIndex.b6
-        default: selectSize = DataBaseTable.WeightIndex.b6          // Error
+        default: print("setRangeOfWeight-Error")          // Error
         }
 
         selectFlotWeight = appDelegate.db_Weights.db_Float.weights[selectSize]!
         maxRangeOfWeight = selectFlotWeight + appDelegate.db_CaluInterface.extraWeightSinker
         minRangeOfWeight = selectFlotWeight - appDelegate.db_CaluInterface.extraWeightSinker
-
     }
     
     // 組合せの算出
-    func GetSinkersCombinationRepeatedly( argNumber:Int, argNowCombination:[Sinker]){
+    
+    /// Description: Eurekaの設定
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
+    func getSinkersCombinationRepeatedly( argNumber:Int, argNowCombination:[Sinker]){
         
         // 処理の速度を上げる処理
         var Sum:Double = 0.0
@@ -204,7 +218,7 @@ class CalculationCombination {
         // 一時保有
         var tempCombinationOfSinkersArray = [Sinker]()
         tempCombinationOfSinkersArray = argNowCombination
-        
+
         // オモリの種類 × 使用するウキの個数 の加算を行う
         // オモリの種類分ループさせる
         for indexSinker in sinkerArrayForCalu {
@@ -222,29 +236,32 @@ class CalculationCombination {
             // 何個目に使うSinker?
             NowIndexSinker = (argNumber + 1)
             // 再循環（この関数）
-            GetSinkersCombinationRepeatedly(argNumber: NowIndexSinker, argNowCombination: simpleCombinationOfSinkersArray)
+            getSinkersCombinationRepeatedly(argNumber: NowIndexSinker, argNowCombination: simpleCombinationOfSinkersArray)
         }
 
         return
     }
-    
-    
-    
+
     // 2次元配列の重複を削除
-    func DeleteDuplicationMain(){
+    func deleteDuplicationMain(){
 
         // 2次元配列の並び替え
         resultCombinationArray.sort(by: {$0[0].weight > $1[0].weight})
 
         // 重複の削除
-        DeleteDuplicationDetail()
+        deleteDuplicationDetail()
 
         return
     }
     
     
     // 2次元配列の重複を削除
-    func DeleteDuplicationDetail() {
+    
+    /// Description: Eurekaの設定
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
+    func deleteDuplicationDetail() {
         // 重複の削除
         var numberOfLoopingOutSide:Int = resultCombinationArray.count
         

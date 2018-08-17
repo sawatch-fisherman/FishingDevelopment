@@ -39,7 +39,8 @@ class ViewControllerInformationDetail: UIViewController {
     /// - Date: 2018/08/17
     /// - Version: 1.0.0
     func settingUITextView(){
-        //textViewInfoDetail.allowsEditingTextAttributes
+        // textViewInfoDetail.allowsEditingTextAttributes
+        // 未作成
         return
     }
 
@@ -52,11 +53,9 @@ class ViewControllerInformationDetail: UIViewController {
     func setTextToUITextView(argShowPage:Int){
         switch (argShowPage) {
         case ViewControllerInformation.kindItem.version.rawValue:
-            let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-            let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
-            textViewInfoDetail.text = "Version: \(version) -  (\(build)) "
+            setTextVersion()
         case ViewControllerInformation.kindItem.disclaimer.rawValue:
-            textViewInfoDetail.text = "本アプリケーションには、以下の利用規約および免責事項が適用されるものと致します。\n予めお読みいただき内容を十分ご理解いただいたうえで御利用をお願いいたします。同意いただけない場合は御利用はお控えください。\n\n【利用規約および免責事項】\n本アプリケーションの御利用につき、御利用者自身または第三者に何らかのトラブルや損失・損害等などが発生しても、開発者では責任を負いかねますので、ご了承ください。\n本アプリケーションを使用をしても必ずしも目的を達成できない場合もありえます、ご了承ください。\n本アプリケーションの利用に関して、御利用者に御満足いただけるよう努めてまいりますが、止むをえない事由等により開発者が必要と判断した場合には、いつでも、予告なく本アプリケーションの変更、開発の中止、サービスの停止等をすることができるものとします。\n【著作権】\n本ソフトウエアに関する著作権その他の全ての権利は該当の作者に帰属します。"
+            setTextDisclaimer()
         default:
             textViewInfoDetail.text = "Error"
         }
@@ -69,7 +68,7 @@ class ViewControllerInformationDetail: UIViewController {
     /// - Version: 1.0.0
     /// - Parameters:
     ///   - argShowPage:Int 設定する項目番号
-    func SetTextVersion(){
+    func setTextVersion(){
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
         textViewInfoDetail.text = "Version: \(version) -  (\(build)) "
@@ -81,7 +80,7 @@ class ViewControllerInformationDetail: UIViewController {
     /// - Author: sawatch
     /// - Date: 2018/08/17
     /// - Version: 1.0.0
-    func SetTextDisclaimer(){
+    func setTextDisclaimer(){
         textViewInfoDetail.text = "本アプリケーションには、以下の利用規約および免責事項が適用されるものと致します。\n予めお読みいただき内容を十分ご理解いただいたうえで御利用をお願いいたします。同意いただけない場合は御利用はお控えください。\n\n【利用規約および免責事項】\n本アプリケーションの御利用につき、御利用者自身または第三者に何らかのトラブルや損失・損害等などが発生しても、開発者では責任を負いかねますので、ご了承ください。\n本アプリケーションを使用をしても必ずしも目的を達成できない場合もありえます、ご了承ください。\n本アプリケーションの利用に関して、御利用者に御満足いただけるよう努めてまいりますが、止むをえない事由等により開発者が必要と判断した場合には、いつでも、予告なく本アプリケーションの変更、開発の中止、サービスの停止等をすることができるものとします。\n【著作権】\n本ソフトウエアに関する著作権その他の全ての権利は該当の作者に帰属します。"
 
         return
