@@ -18,6 +18,8 @@
 		BEBD044320DF6FFC00325635 /* ViewControllerWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD044220DF6FFC00325635 /* ViewControllerWeight.swift */; };
 		BEBD044520DF712900325635 /* ViewControllerCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD044420DF712900325635 /* ViewControllerCalculation.swift */; };
 		BEBD044720E2D26200325635 /* ViewControllerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBD044620E2D26200325635 /* ViewControllerResult.swift */; };
+		BECCF6162125647900D681E9 /* ViewControllerInformationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECCF6152125647900D681E9 /* ViewControllerInformationDetail.swift */; };
+		BECCF61821264D3E00D681E9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BECCF61721264D3E00D681E9 /* MessageUI.framework */; };
 		FBE0AF8DB1C773F6E6BBCB5C /* Pods_SinkerCalculation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F252484F8B2ECD01876F1B /* Pods_SinkerCalculation.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,8 @@
 		BEBD044220DF6FFC00325635 /* ViewControllerWeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerWeight.swift; sourceTree = "<group>"; };
 		BEBD044420DF712900325635 /* ViewControllerCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerCalculation.swift; sourceTree = "<group>"; };
 		BEBD044620E2D26200325635 /* ViewControllerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerResult.swift; sourceTree = "<group>"; };
+		BECCF6152125647900D681E9 /* ViewControllerInformationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerInformationDetail.swift; sourceTree = "<group>"; };
+		BECCF61721264D3E00D681E9 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BECCF61821264D3E00D681E9 /* MessageUI.framework in Frameworks */,
 				FBE0AF8DB1C773F6E6BBCB5C /* Pods_SinkerCalculation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,6 +95,7 @@
 				BEBD044620E2D26200325635 /* ViewControllerResult.swift */,
 				BEBD044220DF6FFC00325635 /* ViewControllerWeight.swift */,
 				BEBD044020DF6FB300325635 /* ViewControllerInformation.swift */,
+				BECCF6152125647900D681E9 /* ViewControllerInformationDetail.swift */,
 				BEBD043220DF69AB00325635 /* Main.storyboard */,
 				BEBD043520DF69AC00325635 /* Assets.xcassets */,
 				BEBD043720DF69AC00325635 /* LaunchScreen.storyboard */,
@@ -101,6 +107,7 @@
 		E9D1F8B90EAE82D8673C37AD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BECCF61721264D3E00D681E9 /* MessageUI.framework */,
 				31F252484F8B2ECD01876F1B /* Pods_SinkerCalculation.framework */,
 			);
 			name = Frameworks;
@@ -222,6 +229,7 @@
 				BE9B476F211FB10200FE6266 /* CalculationCombination.swift in Sources */,
 				BE9B476B211F9DE100FE6266 /* DataBaseTable.swift in Sources */,
 				BEBD044520DF712900325635 /* ViewControllerCalculation.swift in Sources */,
+				BECCF6162125647900D681E9 /* ViewControllerInformationDetail.swift in Sources */,
 				BEBD042D20DF69AB00325635 /* AppDelegate.swift in Sources */,
 				BEBD044720E2D26200325635 /* ViewControllerResult.swift in Sources */,
 				BEBD044120DF6FB300325635 /* ViewControllerInformation.swift in Sources */,

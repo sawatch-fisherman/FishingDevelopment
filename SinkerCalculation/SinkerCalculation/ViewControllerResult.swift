@@ -21,7 +21,7 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // 試しに関数のテスト
         resultCombination = CreateResultTable()
         
@@ -45,22 +45,12 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
     func numberOfSections(in tableView: UITableView) -> Int{
         return 1
     }
-    
-    
-    // セクションタイトルを返す
-    /*
-     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-     // 例: 3B(1.00g)+0.01g の組合せパターン 2個
-     //tableView.rowHeight = UITableViewAutomaticDimension
-     return "オモリ3個: 3B(1.00g)+余重(0.01g1)あああああああああああああああああああああああああああああああああああ"
-     }
-     */
+
     // ヘッダーの高さ
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
-    
-    
+
     /// Description: (必須メソッド)ヘッダー(セクション)に表示する文字列を設定する
     ///
     ///              header(section)
@@ -94,8 +84,7 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return resultCombination.cells.count
     }
-    
-    // 各行に表示するセルを返す
+
     /// Description: (必須メソッド)各1行のセルごとに表示する文字列を設定する
     ///
     ///              cell(summary)
