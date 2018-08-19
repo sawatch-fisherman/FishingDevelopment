@@ -33,7 +33,6 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
         
         // テーブルビューのデータソースを設定する
         resultTableView.dataSource = self
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,13 +64,14 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50)
-        view.backgroundColor = UIColor.cyan
-        
+        view.backgroundColor = UIColor.rgb(r: 83, g: 141, b: 213, alpha: 1)
+
+
         let headerLabel = UILabel()
         // "パターン 7個\nオモリ3個: 3B(1.00g)+余重(0.01g)"
         headerLabel.text = resultCombination.header
         headerLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50)
-        //headerLabel.textColor = UIColor.white
+        headerLabel.textColor = UIColor.rgb(r: 244, g: 245, b: 247, alpha: 1)
         headerLabel.textAlignment = NSTextAlignment.center
         headerLabel.numberOfLines = 0
         headerLabel.lineBreakMode = NSLineBreakMode.byCharWrapping
@@ -100,7 +100,6 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
     /// - Returns:cell 1行のセル
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-        //tableView.rowHeight = UITableViewAutomaticDimension
         cell.textLabel!.text = resultCombination.cells[indexPath.row].summary
         cell.textLabel!.numberOfLines = 0
         cell.textLabel!.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -118,13 +117,14 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
     /// - Returns:CalculationCombination.resultTable    [計算結果]画面に出力する文字列
     func CreateResultTable()->CalculationCombination.resultTable{
         let CCalcCombo = CalculationCombination()
+
         // 選択したウキに合った、オモリの組合せパターンを表示
         var returnCombination = CalculationCombination.resultTable()
         returnCombination = CCalcCombo.mainCalculation()
 
         return returnCombination
     }
-    
+
 
 
 }

@@ -360,9 +360,18 @@ class CalculationCombination {
         var returnValue = resultTable()
 
         // headerの作成    例 : [パターン 7個\nオモリ3個: 3B(1.00g)+余重(0.01g)]
-        let headerText:String = "オモリ \(String(format: "%d", appDelegate.db_CaluInterface.theNumberOfSinkers))個 : \(appDelegate.db_CaluInterface.usingFloatSelect)(\(String(format:"%.2lf", selectFlotWeight))g)±余重(\(String(format:"%.2lf", appDelegate.db_CaluInterface.extraWeightSinker)))g\nパターン \(String(format: "%d", resultCombinationArray.count))個"
+        let headerText:String = "オモリ \(String(format: "%d", appDelegate.db_CaluInterface.theNumberOfSinkers))個 : \(appDelegate.db_CaluInterface.usingFloatSelect)(\(String(format:"%.2lf", selectFlotWeight))g)±余重(\(String(format:"%.2lf", appDelegate.db_CaluInterface.extraWeightSinker)))g\nパターン < \(String(format: "%d", resultCombinationArray.count)) 個>"
 
         returnValue.header = headerText
+
+
+        if(resultCombinationArray.count == 0){
+            var cellFail = cellTable()
+            cellFail.summary = "該当なし"
+            cellFail.detail = "選択した組合せは見つかりませんでした。\n再度、各項目を変更して計算してください。"
+            returnValue.cells.append(cellFail)
+            return returnValue
+        }
 
         // cell
         // 例 : [G4 + G3 + B]
@@ -458,6 +467,11 @@ class CalculationCombination {
     }
 
 
+    func nothingCombination(){
+        print("")
+        return
+
+    }
 
 
 }
