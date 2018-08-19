@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Calculation" image="iconCalculation" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="計算" image="iconCalculation" id="acW-dT-cKf"/>
                     <connections>
                         <segue destination="tgT-kE-e4G" kind="presentation" identifier="toResultViewController" id="wyc-rN-kcX"/>
                     </connections>
@@ -140,7 +140,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pjY-sR-taQ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Information" image="iconInformation" id="0IH-b5-OKr"/>
+                    <tabBarItem key="tabBarItem" title="情報" image="iconInformation" id="0IH-b5-OKr"/>
                     <connections>
                         <outlet property="informationTableView" destination="Wmd-bo-0rE" id="Juo-wk-e8C"/>
                         <segue destination="06N-6a-Heh" kind="presentation" identifier="toInformationDetail" id="rbV-Dq-qON"/>
@@ -219,11 +219,11 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Weight-->
+        <!--設定-->
         <scene sceneID="eLJ-oJ-zKh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m9w-mN-W90" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Weight" image="iconWeight" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="設定" image="iconWeight" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lVE-dZ-r03">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

@@ -212,101 +212,101 @@ class ViewControllerWeight: FormViewController {
                 $0.title = "G8"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g8)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .g8, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g8.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_g7") {
                 $0.title = "G7"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g7)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .g7, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g7.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_g6") {
                 $0.title = "G6"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g6)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .g6, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g6.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_g5") {
                 $0.title = "G5"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g5)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .g5, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g5.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_g4") {
                 $0.title = "G4"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g4)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .g4, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g4.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_g3") {
                 $0.title = "G3"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g3)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .g3, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g3.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_g2") {
                 $0.title = "G2"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g2)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .g2, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g2.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_g1") {
                 $0.title = "G1"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g1)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .g1, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g1.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_b1") {
                 $0.title = "B"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .b1)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .b1, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.b1.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_b2") {
                 $0.title = "2B"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .b2)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .b2, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.b2.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_b3") {
                 $0.title = "3B"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .b3)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .b3, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.b3.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_b4") {
                 $0.title = "4B"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .b4)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .b4, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.b4.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_b5") {
                 $0.title = "5B"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .b5)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .b5, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.b5.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow("sinker_b6") {
                 $0.title = "6B"
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .b6)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightSinker(setKey: .b6, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.b6.rawValue, checkValue: row.value!)
         }
-        
+
     }
 
 
@@ -498,35 +498,115 @@ class ViewControllerWeight: FormViewController {
     }
 
 
-    #if DEBUG
-    /// Description: [作成途中]
-    ///              重量が変更された場合、他の項目と重複していないか確認する
-    ///              [※作成途中の理由 : EurekaのonChangeイベントは入力値を１文字ごとに発生する。入力前の値に戻したいときに戻せなかった
-    ///              例：0.12 → 0.17 としたい場合に、 0.17が重複していると 0.10 になってしまう。]
+    var editSinkers:[Bool] = [false, false, false, false, false,
+                              false, false, false, false, false,
+                              false, false, false, false]
+    var beforeValueSinkers:[Double] = [ 0.0, 0.0, 0.0, 0.0, 0.0,
+                                        0.0, 0.0, 0.0, 0.0, 0.0,
+                                        0.0, 0.0, 0.0, 0.0]
+
+    /// Description: Sinker項目のEurekaの値のチェックを行う
+    ///              フォーカスの状態
+    ///              IN:  editSinkersをtrueにする
+    ///              OUT: 変更された値が、他の項目と重複していないか確認する
+    ///                   editSinkersをfalseにする
     ///
     /// - Author: sawatch
-    /// - Date: 2018/08/15
+    /// - Date: 2018/08/19
     /// - Version: 1.0.0
     /// - Parameters:
-    ///   - argSelect:String    変更した項目
-    ///   - argKey:String       変更した項目のサイズ
-    ///   - argValue:Double     変更された値
+    ///   - argIndex:Int    変更した項目のサイズ
+    ///   - argSetValue:Double     変更する値
+    func checkValueSinkers(argIndex:Int, checkValue:Double){
+        if(editSinkers[argIndex] == false){
+            beforeValueSinkers[argIndex] = checkValue
+            editSinkers[argIndex] = true
+        } else {
+            CheckDuplicationValueFloat(argIndex: argIndex, argSetValue: checkValue)
+            editSinkers[argIndex] = false
+        }
+
+        return
+    }
+
+    /// Description: 重量が変更された場合、他の項目と重複していないか確認する
+    ///              重複あり: メッセージを出力する
+    ///                       編集前の値に戻す
+    ///              重複なし:DbWeightSinkerの値を更新する
+    ///
+    /// - Author: sawatch
+    /// - Date: 2018/08/19
+    /// - Version: 1.0.0
+    /// - Parameters:
+    ///   - argIndex:Int    変更した項目のサイズ
+    ///   - argSetValue:Double     変更する値
     /// - Returns: [計算結果]画面に出力する文字列
-    func CheckDuplicationValueFloat(argSelect:String, argKey:String, argValue:Double){
+    func CheckDuplicationValueFloat(argIndex:Int, argSetValue:Double){
         var editFlag:Bool = false
         var valueCompare:Double = 0.0
         
+        // 設定するEurekaのタグ名を取得する
+        var selectItem:String = ""
+        var selectKey:String = ""
+        switch(argIndex)
+        {
+        case DataBaseTable.WeightNumber.g8.rawValue:
+            selectItem  = "sinker_g8"
+            selectKey   = DataBaseTable.WeightIndex.g8.rawValue
+        case DataBaseTable.WeightNumber.g7.rawValue:
+            selectItem  = "sinker_g7"
+            selectKey   = DataBaseTable.WeightIndex.g7.rawValue
+        case DataBaseTable.WeightNumber.g6.rawValue:
+            selectItem  = "sinker_g6"
+            selectKey   = DataBaseTable.WeightIndex.g6.rawValue
+        case DataBaseTable.WeightNumber.g5.rawValue:
+            selectItem  = "sinker_g5"
+            selectKey   = DataBaseTable.WeightIndex.g5.rawValue
+        case DataBaseTable.WeightNumber.g4.rawValue:
+            selectItem  = "sinker_g4"
+            selectKey   = DataBaseTable.WeightIndex.g4.rawValue
+        case DataBaseTable.WeightNumber.g3.rawValue:
+            selectItem  = "sinker_g3"
+            selectKey   = DataBaseTable.WeightIndex.g3.rawValue
+        case DataBaseTable.WeightNumber.g2.rawValue:
+            selectItem  = "sinker_g2"
+            selectKey   = DataBaseTable.WeightIndex.g2.rawValue
+        case DataBaseTable.WeightNumber.g1.rawValue:
+            selectItem  = "sinker_g1"
+            selectKey   = DataBaseTable.WeightIndex.g1.rawValue
+        case DataBaseTable.WeightNumber.b1.rawValue:
+            selectItem  = "sinker_b1"
+            selectKey   = DataBaseTable.WeightIndex.b1.rawValue
+        case DataBaseTable.WeightNumber.b2.rawValue:
+            selectItem  = "sinker_b2"
+            selectKey   = DataBaseTable.WeightIndex.b2.rawValue
+        case DataBaseTable.WeightNumber.b3.rawValue:
+            selectItem  = "sinker_b3"
+            selectKey   = DataBaseTable.WeightIndex.b3.rawValue
+        case DataBaseTable.WeightNumber.b4.rawValue:
+            selectItem  = "sinker_b4"
+            selectKey   = DataBaseTable.WeightIndex.b4.rawValue
+        case DataBaseTable.WeightNumber.b5.rawValue:
+            selectItem  = "sinker_b5"
+            selectKey   = DataBaseTable.WeightIndex.b5.rawValue
+        case DataBaseTable.WeightNumber.b6.rawValue:
+            selectItem  = "sinker_b6"
+            selectKey   = DataBaseTable.WeightIndex.b6.rawValue
+        default:
+            print("CheckDuplicationValueFloat-Error")
+        }
+
         // 他の項目と重量が重複していないか確認する
         for indexWeight in DataBaseTable.WeightIndex.WeightIndexs
         {
-            valueCompare = CCalcDB.getArrayDataBaseWeightFloat(getKey: indexWeight)
+            valueCompare = CCalcDB.getArrayDataBaseWeightSinker(getKey: indexWeight)
 
             // 編集中の項目は対象外
-            if(argKey == indexWeight.rawValue){
+            if(selectKey == indexWeight.rawValue){
                 continue
             }
             // 他の項目と値が重複した場合、エラーとする
-            if(argValue == valueCompare){
+            if(argSetValue == valueCompare){
                 editFlag = true
                 break;
             }
@@ -544,8 +624,8 @@ class ViewControllerWeight: FormViewController {
                 // 編集前の値に戻す
                 // 戻したいけど戻せないため "0.0" にする
                 // let value:Double  = self.CCalcDB.getArrayDataBaseWeightFloat(getKey: DataBaseTable.WeightIndex(rawValue: argKey)!)
-                self.form.rowBy(tag: argSelect)?.baseValue = 0.0
-                self.form.rowBy(tag: argSelect)?.reload()
+                self.form.rowBy(tag: selectItem)?.baseValue = self.beforeValueSinkers[argIndex]
+                self.form.rowBy(tag: selectItem)?.reload()
             })
             
             alert.addAction(defaultAction)
@@ -553,14 +633,11 @@ class ViewControllerWeight: FormViewController {
         }else{
             // 重複なし
             // 書込み
-            self.CCalcDB.setArrayDataBaseWeightFloat(setKey: DataBaseTable.WeightIndex(rawValue: argKey)!, setValue: argValue)
-            print(argValue)
+            self.CCalcDB.setArrayDataBaseWeightSinker(setKey: DataBaseTable.WeightIndex(rawValue: selectKey)!, setValue: argSetValue)
+            print(argSetValue)
         }
-
+        
         return
     }
-    #endif
-
-
 
 }

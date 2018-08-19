@@ -68,7 +68,26 @@ class DataBaseTable {
         static let WeightIndexs: [WeightIndex] = [.g8, .g7, .g6, .g5, .g4, .g3, .g2, .g1,
                                                   .b1, .b2, .b3, .b4, .b5, .b6]
     }
-    
+
+    enum WeightNumber: Int {
+        case g8 = 0
+        case g7
+        case g6
+        case g5
+        case g4
+        case g3
+        case g2
+        case g1
+        case b1
+        case b2
+        case b3
+        case b4
+        case b5
+        case b6
+        
+        static let WeightNumbers: [WeightNumber] = [.g8, .g7, .g6, .g5, .g4, .g3, .g2, .g1,
+                                                  .b1, .b2, .b3, .b4, .b5, .b6]
+    }
     // Calu画面の設定値
     struct CaluInterfaceTable {
         var usingFloatSelect: String = "B3"
