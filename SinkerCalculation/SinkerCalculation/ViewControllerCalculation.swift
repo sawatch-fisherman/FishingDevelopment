@@ -73,7 +73,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
                     self.defaults.set(self.appDelegate.db_CaluInterface.theNumberOfSinkers, forKey: DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue)
             }
             <<< DecimalRow() {
-                $0.title = "余分な重さ"
+                $0.title = "余幅 重さ"
                 $0.value = self.appDelegate.db_CaluInterface.extraWeightSinker
                 $0.formatter = wrapFormatter          // これをこのクラスように作らないといけない
                 }.onChange{ row in
