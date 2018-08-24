@@ -16,6 +16,7 @@ import GoogleMobileAds
 
 class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
 
+    
     // AppDelegateのインスタンスを取得
     let defaults: UserDefaults = UserDefaults.standard
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -25,6 +26,10 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //let navigationSetting:UIView = UIView()
+        //navigationSetting.backgroundColor = UIColor.rgb(r: 244, g: 245, b: 247, alpha: 1)
+        //self.navigationItem.titleView = navigationSetting
 
         setUserDefaultsToAppDelegate()
 
@@ -85,7 +90,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
             +++ Section("")
             
             <<< ButtonRow() {
-                $0.title = "計算"
+                $0.title = "計算開始"
                 }.onCellSelection{ cell, row in
                     // move View Controller of "ID:toResult".
                     self.performSegue(withIdentifier: "toResultViewController", sender: nil)

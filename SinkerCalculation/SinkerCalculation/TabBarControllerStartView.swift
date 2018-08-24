@@ -26,8 +26,8 @@ class TabBarControllerStartView: UITabBarController {
     }
 
     func settingTabBar(){
-        tabBarMenu.barTintColor = UIColor.rgb(r: 0, g: 112, b: 192, alpha: 1)
-        tabBarMenu.tintColor = UIColor.rgb(r: 244, g: 245, b: 247, alpha: 1)
+        tabBarMenu.barTintColor = UIColor.rgb(r: 0, g: 112, b: 192, alpha: 1)       // 見やすい白
+        tabBarMenu.tintColor = UIColor.rgb(r: 244, g: 245, b: 247, alpha: 1)        // 円熟した青
         //tabBarMenu.unselectedItemTintColor = UIColor.white
     }
 

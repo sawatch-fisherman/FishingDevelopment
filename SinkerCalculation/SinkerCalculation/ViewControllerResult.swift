@@ -64,7 +64,9 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50)
-        view.backgroundColor = UIColor.rgb(r: 83, g: 141, b: 213, alpha: 1)
+        //view.backgroundColor = UIColor.rgb(r: 83, g: 141, b: 213, alpha: 1)
+        view.backgroundColor = UIColor.rgb(r: 0, g: 102, b: 204, alpha: 1)
+
 
 
         let headerLabel = UILabel()
