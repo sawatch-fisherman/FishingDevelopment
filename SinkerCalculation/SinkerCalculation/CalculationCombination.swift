@@ -93,17 +93,16 @@ class CalculationCombination {
 
         #if DEBUG
         let elapsed_1 = Date().timeIntervalSince(start)
+        print("経過時間-半分: ",elapsed_1)
         #endif
         // 重複の削除
         deleteDuplicationMain()
 
         #if DEBUG
-        //print("2 - 重複削除後")
         DebugPrintResultArray()
 
         // 経過時間
         let elapsed_2 = Date().timeIntervalSince(start)
-        print("経過時間-半分: ",elapsed_1)
         print("経過時間-全部: ",elapsed_2)
         #endif
 

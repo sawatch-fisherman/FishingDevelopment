@@ -47,6 +47,8 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
     }
 
     /// Description:    Eurekaの設定
+    /// - Note: 2018/08/26 - Ver.1.0.1
+    ///                 使用するウキの個数のエラー(範囲値)チェックを追加
     /// - Author:       sawatch
     /// - Date:         2018/08/17
     /// - Version:      1.0.0
@@ -72,7 +74,12 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
             <<< PickerInputRow<Int>(){
                 $0.title = "使用するオモリの個数"
                 $0.options = [2,3,4]
-                $0.value = self.appDelegate.db_CaluInterface.theNumberOfSinkers
+                var number:Int = self.appDelegate.db_CaluInterface.theNumberOfSinkers
+                if ( (2>number) && (4<number) ) {
+                    // 範囲外の値の場合,"2"を設定する
+                    number = 2
+                }
+                $0.value = number
                 }.onChange{ row in
                     self.appDelegate.db_CaluInterface.theNumberOfSinkers = row.value!
                     self.defaults.set(self.appDelegate.db_CaluInterface.theNumberOfSinkers, forKey: DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue)
@@ -102,93 +109,98 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
         // 戻る際の処理が必要な場合は記述
     }
 
-
-    // 起動時にUserDefaultsのデータをAppDelegateに格納する
+    /// Description: 起動時にUserDefaultsのデータをAppDelegateに格納する
+    ///              初回起動時 : デフォルト値を設定する
+    ///              ２回目以降 : UserDefaultsに設定された値を使用する
+    /// - Note: 2018/08/25 - Ver.1.0.1
+    ///              初回起動時にAppDelegateの値が全て"0"の不具合を修正
+    ///              UserDefaultsを初期化する処理を別関数に置き換え
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
     func setUserDefaultsToAppDelegate(){
-        let firstBoot = defaults.bool(forKey: DataBaseTable.UserDefaultsTag.first_boot.rawValue)
-        if(false == firstBoot){
+        var firstBoot:Bool = false
+
+        if (defaults.object(forKey: DataBaseTable.UserDefaultsTag.first_boot.rawValue) == nil) {
+            firstBoot = true
+        }
+        if(true == firstBoot){
             // 初回起動時はデフォルト値を設定する
-            // Calu画面の設定値
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.using_float_select.rawValue : "B3"])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.using_float_weight.rawValue : 0.00])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue : 2])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.extra_weight_sinker.rawValue : 0.0])
-
-            // オモリ
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g8.rawValue : 0.07])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g7.rawValue : 0.09])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g6.rawValue : 0.12])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g5.rawValue : 0.17])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g4.rawValue : 0.20])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g3.rawValue : 0.25])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g2.rawValue : 0.33])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g1.rawValue : 0.45])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b1.rawValue : 0.55])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b2.rawValue : 0.80])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b3.rawValue : 1.00])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b4.rawValue : 1.25])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b5.rawValue : 1.75])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b6.rawValue : 2.20])
-
-            // オモリ
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g8.rawValue : 0.07])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g7.rawValue : 0.09])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g6.rawValue : 0.12])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g5.rawValue : 0.17])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g4.rawValue : 0.20])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g3.rawValue : 0.25])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g2.rawValue : 0.33])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g1.rawValue : 0.45])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b1.rawValue : 0.55])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b2.rawValue : 0.80])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b3.rawValue : 1.00])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b4.rawValue : 1.25])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b5.rawValue : 1.75])
-            defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b6.rawValue : 2.20])
-            
+            formatUserDefaults()
             defaults.set(true, forKey: DataBaseTable.UserDefaultsTag.first_boot.rawValue)
         }
-        // 計算
-        appDelegate.db_CaluInterface.usingFloatSelect = defaults.string(forKey: DataBaseTable.UserDefaultsTag.using_float_select.rawValue)!
+        // [計算]画面の設定値
+        let value:String? = defaults.string(forKey: DataBaseTable.UserDefaultsTag.using_float_select.rawValue)
+        if(value != nil){
+            appDelegate.db_CaluInterface.usingFloatSelect = value!
+        }else{
+            appDelegate.db_CaluInterface.usingFloatSelect = "3B"
+        }
         appDelegate.db_CaluInterface.usingFloatWeight = defaults.double(forKey: DataBaseTable.UserDefaultsTag.using_float_weight.rawValue)
         appDelegate.db_CaluInterface.theNumberOfSinkers = defaults.integer(forKey: DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue)
         appDelegate.db_CaluInterface.extraWeightSinker = defaults.double(forKey: DataBaseTable.UserDefaultsTag.extra_weight_sinker.rawValue)
-        
-        // ウキ
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g8]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_g8.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g7]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_g7.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g6]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_g6.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g5]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_g5.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g4]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_g4.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g3]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_g3.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g2]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_g2.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g1]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_g1.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b1]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_b1.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b2]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_b2.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b3]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_b3.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b4]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_b4.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b5]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_b5.rawValue)
-        appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b6]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.sinker_b6.rawValue)
 
-        // オモリ
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g8]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_g8.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g7]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_g7.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g6]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_g6.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g5]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_g5.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g4]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_g4.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g3]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_g3.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g2]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_g2.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g1]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_g1.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b1]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_b1.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b2]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_b2.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b3]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_b3.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b4]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_b4.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b5]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_b5.rawValue)
-        appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b6]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.float_b6.rawValue)
+        // [設定]画面の設定値
+        for index in 0..<DataBaseTable.WeightNumber.WeightNumbers.count{
+            appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.WeightIndexs[index]]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.FloatTags[index].rawValue)
+            appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.WeightIndexs[index]]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.SinkerTags[index].rawValue)
+
+            #if DEBUG
+            let debugFloat:Double = defaults.double(forKey: DataBaseTable.UserDefaultsTag.FloatTags[index].rawValue)
+            print(debugFloat)
+            let debugSinker:Double = defaults.double(forKey: DataBaseTable.UserDefaultsTag.SinkerTags[index].rawValue)
+            print(debugSinker)
+            #endif
+        }
         return
-        
     }
 
+    /// Description: UserDefaultsにデフォルト値を設定する
+    /// - Note: setUserDefaultsToAppDelegateから処理を抜粋して作成
+    /// - Author: sawatch
+    /// - Date: 2018/08/25
+    /// - Version: 1.0.1
+    func formatUserDefaults(){
+        // 初回起動時はデフォルト値を設定する
+        // [計算]画面の設定値
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.using_float_select.rawValue : "B3"])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.using_float_weight.rawValue : 0.00])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue : 2])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.extra_weight_sinker.rawValue : 0.0])
+
+        // [設定]画面の設定値 オモリ
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g8.rawValue : 0.07])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g7.rawValue : 0.09])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g6.rawValue : 0.12])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g5.rawValue : 0.17])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g4.rawValue : 0.20])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g3.rawValue : 0.25])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g2.rawValue : 0.33])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g1.rawValue : 0.45])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b1.rawValue : 0.55])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b2.rawValue : 0.80])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b3.rawValue : 1.00])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b4.rawValue : 1.25])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b5.rawValue : 1.75])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b6.rawValue : 2.20])
+
+        // [設定]画面の設定値 ウキ
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g8.rawValue : 0.07])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g7.rawValue : 0.09])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g6.rawValue : 0.12])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g5.rawValue : 0.17])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g4.rawValue : 0.20])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g3.rawValue : 0.25])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g2.rawValue : 0.33])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g1.rawValue : 0.45])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b1.rawValue : 0.55])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b2.rawValue : 0.80])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b3.rawValue : 1.00])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b4.rawValue : 1.25])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b5.rawValue : 1.75])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b6.rawValue : 2.20])
+        return
+    }
 
     //////////////////////
     // AdMob設定 --Start--

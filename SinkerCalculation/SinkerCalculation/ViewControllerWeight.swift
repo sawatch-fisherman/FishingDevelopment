@@ -32,6 +32,21 @@ class ViewControllerWeight: FormViewController {
         // Dispose of any resources that can be recreated.
     }
 
+
+    /// Description: [計算], [情報]画面に切替えた際のイベント
+    ///              もし項目が１つでも変更されていた場合、
+    ///              編集情報を破棄して問題ないか？のメッセージを表示する
+    /// - Note: 2018/08/26 - Ver.1.0.1
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.1
+    override func viewWillDisappear(_ animated: Bool) {
+
+        // 未作成
+        // 編集フラグをチェック
+
+    }
+
     /// Description: 保存ボタンの処理
     /// - Author: sawatch
     /// - Date: 2018/08/17
@@ -310,116 +325,71 @@ class ViewControllerWeight: FormViewController {
     }
 
 
-    // キャンセルボタンで設定変更前に戻す
-
     /// Description:    設定値を変更前に戻す
-    /// - note:         "破棄する"が選択された場合に動作する
+    /// - Note:         "破棄する"が選択された場合に動作する
+    ///                 2018/08/26 - Ver.1.0.1
+    ///                   処理のロジックを修正
     /// - Author:       sawatch
     /// - Date:         2018/08/17
     /// - Version:      1.0.0
     func setReload(){
         // キャンセルの処理
 
-        // オモリ
-        form.rowBy(tag: "sinker_g8")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g8]!
-        form.rowBy(tag: "sinker_g8")?.reload()
-        form.rowBy(tag: "sinker_g7")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g7]!
-        form.rowBy(tag: "sinker_g7")?.reload()
-        form.rowBy(tag: "sinker_g6")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g6]!
-        form.rowBy(tag: "sinker_g6")?.reload()
-        form.rowBy(tag: "sinker_g5")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g5]!
-        form.rowBy(tag: "sinker_g5")?.reload()
-        form.rowBy(tag: "sinker_g4")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g4]!
-        form.rowBy(tag: "sinker_g4")?.reload()
-        form.rowBy(tag: "sinker_g3")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g3]!
-        form.rowBy(tag: "sinker_g3")?.reload()
-        form.rowBy(tag: "sinker_g2")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g2]!
-        form.rowBy(tag: "sinker_g2")?.reload()
-        form.rowBy(tag: "sinker_g1")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g1]!
-        form.rowBy(tag: "sinker_g1")?.reload()
-        form.rowBy(tag: "sinker_b1")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b1]!
-        form.rowBy(tag: "sinker_b1")?.reload()
-        form.rowBy(tag: "sinker_b2")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b2]!
-        form.rowBy(tag: "sinker_b2")?.reload()
-        form.rowBy(tag: "sinker_b3")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b3]!
-        form.rowBy(tag: "sinker_b3")?.reload()
-        form.rowBy(tag: "sinker_b4")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b4]!
-        form.rowBy(tag: "sinker_b4")?.reload()
-        form.rowBy(tag: "sinker_b5")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b5]!
-        form.rowBy(tag: "sinker_b5")?.reload()
-        form.rowBy(tag: "sinker_b6")?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b6]!
-        form.rowBy(tag: "sinker_b6")?.reload()
-        
-        // ウキ
-        form.rowBy(tag: "float_g8")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g8]!
-        form.rowBy(tag: "float_g8")?.reload()
-        form.rowBy(tag: "float_g7")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g7]!
-        form.rowBy(tag: "float_g7")?.reload()
-        form.rowBy(tag: "float_g6")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g6]!
-        form.rowBy(tag: "float_g6")?.reload()
-        form.rowBy(tag: "float_g5")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g5]!
-        form.rowBy(tag: "float_g5")?.reload()
-        form.rowBy(tag: "float_g4")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g4]!
-        form.rowBy(tag: "float_g4")?.reload()
-        form.rowBy(tag: "float_g3")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g3]!
-        form.rowBy(tag: "float_g3")?.reload()
-        form.rowBy(tag: "float_g2")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g2]!
-        form.rowBy(tag: "float_g2")?.reload()
-        form.rowBy(tag: "float_g1")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g1]!
-        form.rowBy(tag: "float_g1")?.reload()
-        form.rowBy(tag: "float_b1")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b1]!
-        form.rowBy(tag: "float_b1")?.reload()
-        form.rowBy(tag: "float_b2")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b2]!
-        form.rowBy(tag: "float_b2")?.reload()
-        form.rowBy(tag: "float_b3")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b3]!
-        form.rowBy(tag: "float_b3")?.reload()
-        form.rowBy(tag: "float_b4")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b4]!
-        form.rowBy(tag: "float_b4")?.reload()
-        form.rowBy(tag: "float_b5")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b5]!
-        form.rowBy(tag: "float_b5")?.reload()
-        form.rowBy(tag: "float_b6")?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b6]!
-        form.rowBy(tag: "float_b6")?.reload()
+        // 値を戻す
+        for index in 0..<DataBaseTable.WeightNumber.WeightNumbers.count{
+            // ウキ
+            form.rowBy(tag: DataBaseTable.UserDefaultsTag.FloatTags[index].rawValue)?.baseValue = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.WeightIndexs[index]]!
+            form.rowBy(tag: DataBaseTable.UserDefaultsTag.FloatTags[index].rawValue)?.reload()
+
+            // オモリ
+            form.rowBy(tag: DataBaseTable.UserDefaultsTag.SinkerTags[index].rawValue)?.baseValue = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.WeightIndexs[index]]!
+            form.rowBy(tag: DataBaseTable.UserDefaultsTag.SinkerTags[index].rawValue)?.reload()
+
+            #if DEBUG
+            let debugFloat:Double = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.WeightIndexs[index]]!
+            print(debugFloat)
+            let debugSinker:Double = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.WeightIndexs[index]]!
+            print(debugSinker)
+            #endif
+        }
+
     }
 
-    // AをTへ設定
-    // When do you use this function?
-    // 1.Fist Rold              画面起動
-    // 2.Cancel                 取り消し
-    // 3.Move else View         他画面に移動
+    /// Description: AppDelegateの値をDataBaseテーブル変数に保存する
+    ///              使用状況: 編集した値を以前の値に戻したい時に使用する
+    ///                       1. 画面起動時
+    ///                       2. 取消し
+    ///                       3. 他の画面に移動
+    /// - Note: 2018/08/26 - Ver.1.0.1
+    ///              初回起動時にAppDelegateの値が全て"0"の不具合を修正
+    ///              UserDefaultsを初期化する処理を別関数に置き換え
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
     func setAppDelegateToCalculationDataBase(){
-        // ウキ
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .g8, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g8]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .g7, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g7]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .g6, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g6]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .g5, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g5]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .g4, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g4]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .g3, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g3]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .g2, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g2]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .g1, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.g1]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .b1, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b1]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .b2, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b2]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .b3, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b3]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .b4, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b4]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .b5, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b5]!)
-        CCalcDB.setArrayDataBaseWeightFloat(setKey: .b6, setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.b6]!)
-        
-        // オモリ
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .g8, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g8]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .g7, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g7]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .g6, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g6]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .g5, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g5]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .g4, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g4]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .g3, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g3]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .g2, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g2]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .g1, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.g1]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .b1, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b1]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .b2, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b2]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .b3, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b3]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .b4, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b4]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .b5, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b5]!)
-        CCalcDB.setArrayDataBaseWeightSinker(setKey: .b6, setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b6]!)
-        
-        
+
+        // 値を戻す
+        for index in 0..<DataBaseTable.WeightNumber.WeightNumbers.count{
+            // ウキ
+            CCalcDB.setArrayDataBaseWeightFloat(setKey: DataBaseTable.WeightIndex.WeightIndexs[index],
+                                                 setValue: appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.WeightIndexs[index]]!)
+
+            // オモリ
+            CCalcDB.setArrayDataBaseWeightSinker(setKey: DataBaseTable.WeightIndex.WeightIndexs[index],
+                                                 setValue: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.WeightIndexs[index]]!)
+
+            #if DEBUG
+            let debugFloat1:String = DataBaseTable.WeightIndex.WeightIndexs[index].rawValue
+            print(debugFloat1)
+            let debugFloat2:Double = appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.WeightIndexs[index]]!
+            print(debugFloat2)
+            let debugSinker1:String = DataBaseTable.WeightIndex.WeightIndexs[index].rawValue
+            print(debugSinker1)
+            let debugSinker2:Double = appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.WeightIndexs[index]]!
+            print(debugSinker2)
+            #endif
+        }
+
         return
     }
     
@@ -510,6 +480,13 @@ class ViewControllerWeight: FormViewController {
     ///              IN:  editSinkersをtrueにする
     ///              OUT: 変更された値が、他の項目と重複していないか確認する
     ///                   editSinkersをfalseにする
+    ///              チェック
+    ///              >> 0 チェック
+    ///              >> 他の項目との重複チェック
+    /// - Note: 2018/08/25 - Ver.1.0.1
+    ///              値のチェックする処理を修正
+    ///              ・関数名を修正
+    ///              ・0チェックの関数を追加
     ///
     /// - Author: sawatch
     /// - Date: 2018/08/19
@@ -522,11 +499,50 @@ class ViewControllerWeight: FormViewController {
             beforeValueSinkers[argIndex] = checkValue
             editSinkers[argIndex] = true
         } else {
-            CheckDuplicationValueFloat(argIndex: argIndex, argSetValue: checkValue)
+            let resultZero:Bool = CheckZeroValueSinker(argIndex: argIndex, argSetValue: checkValue)
+            if(resultZero == false){
+                CheckDuplicationValueSinker(argIndex: argIndex, argSetValue: checkValue)
+            }
             editSinkers[argIndex] = false
         }
 
         return
+    }
+
+    /// Description: 重量が変更された場合、値が0かチェックする
+    ///              重複あり: メッセージを出力する
+    ///                       編集前の値に戻す
+    ///              重複なし: 何もしない
+    ///
+    /// - Author: sawatch
+    /// - Date: 2018/08/25
+    /// - Version: 1.0.1
+    /// - Parameters:
+    ///   - argIndex:Int    変更した項目のサイズ
+    ///   - argSetValue:Double     変更する値
+    /// - Returns: true : 値は0.00
+    ///            false: 値は0.01以上
+    func CheckZeroValueSinker(argIndex:Int, argSetValue:Double)->Bool{
+        if(argSetValue.isZero){
+            // 値はゼロ
+            // アラートを表示
+            let title = "入力値エラー"
+            let message = "重量の値が 0 です。\n0.01以上の重量を設定してください。"
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+                (action: UIAlertAction!) -> Void in
+                // ボタン押下後の処理
+                // 編集前の値に戻す
+                let selectTag:String = self.convertIndexToTag(argIndex: argIndex)
+                self.form.rowBy(tag: selectTag)?.baseValue = self.beforeValueSinkers[argIndex]
+                self.form.rowBy(tag: selectTag)?.reload()
+            })
+            
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion: nil)
+            return true
+        }
+        return false
     }
 
     /// Description: 重量が変更された場合、他の項目と重複していないか確認する
@@ -534,6 +550,9 @@ class ViewControllerWeight: FormViewController {
     ///                       編集前の値に戻す
     ///              重複なし:DbWeightSinkerの値を更新する
     ///
+    /// - Note: 2018/08/25 - Ver.1.0.1
+    ///              関数名を修正: "CheckDuplicationValueFloat" → "CheckDuplicationValueSinker"
+    ///              Indexからタグ名と文字型の目次を取得する処理を別関数に置き換え
     /// - Author: sawatch
     /// - Date: 2018/08/19
     /// - Version: 1.0.0
@@ -541,60 +560,13 @@ class ViewControllerWeight: FormViewController {
     ///   - argIndex:Int    変更した項目のサイズ
     ///   - argSetValue:Double     変更する値
     /// - Returns: [計算結果]画面に出力する文字列
-    func CheckDuplicationValueFloat(argIndex:Int, argSetValue:Double){
+    func CheckDuplicationValueSinker(argIndex:Int, argSetValue:Double){
         var editFlag:Bool = false
         var valueCompare:Double = 0.0
-        
-        // 設定するEurekaのタグ名を取得する
-        var selectItem:String = ""
-        var selectKey:String = ""
-        switch(argIndex)
-        {
-        case DataBaseTable.WeightNumber.g8.rawValue:
-            selectItem  = "sinker_g8"
-            selectKey   = DataBaseTable.WeightIndex.g8.rawValue
-        case DataBaseTable.WeightNumber.g7.rawValue:
-            selectItem  = "sinker_g7"
-            selectKey   = DataBaseTable.WeightIndex.g7.rawValue
-        case DataBaseTable.WeightNumber.g6.rawValue:
-            selectItem  = "sinker_g6"
-            selectKey   = DataBaseTable.WeightIndex.g6.rawValue
-        case DataBaseTable.WeightNumber.g5.rawValue:
-            selectItem  = "sinker_g5"
-            selectKey   = DataBaseTable.WeightIndex.g5.rawValue
-        case DataBaseTable.WeightNumber.g4.rawValue:
-            selectItem  = "sinker_g4"
-            selectKey   = DataBaseTable.WeightIndex.g4.rawValue
-        case DataBaseTable.WeightNumber.g3.rawValue:
-            selectItem  = "sinker_g3"
-            selectKey   = DataBaseTable.WeightIndex.g3.rawValue
-        case DataBaseTable.WeightNumber.g2.rawValue:
-            selectItem  = "sinker_g2"
-            selectKey   = DataBaseTable.WeightIndex.g2.rawValue
-        case DataBaseTable.WeightNumber.g1.rawValue:
-            selectItem  = "sinker_g1"
-            selectKey   = DataBaseTable.WeightIndex.g1.rawValue
-        case DataBaseTable.WeightNumber.b1.rawValue:
-            selectItem  = "sinker_b1"
-            selectKey   = DataBaseTable.WeightIndex.b1.rawValue
-        case DataBaseTable.WeightNumber.b2.rawValue:
-            selectItem  = "sinker_b2"
-            selectKey   = DataBaseTable.WeightIndex.b2.rawValue
-        case DataBaseTable.WeightNumber.b3.rawValue:
-            selectItem  = "sinker_b3"
-            selectKey   = DataBaseTable.WeightIndex.b3.rawValue
-        case DataBaseTable.WeightNumber.b4.rawValue:
-            selectItem  = "sinker_b4"
-            selectKey   = DataBaseTable.WeightIndex.b4.rawValue
-        case DataBaseTable.WeightNumber.b5.rawValue:
-            selectItem  = "sinker_b5"
-            selectKey   = DataBaseTable.WeightIndex.b5.rawValue
-        case DataBaseTable.WeightNumber.b6.rawValue:
-            selectItem  = "sinker_b6"
-            selectKey   = DataBaseTable.WeightIndex.b6.rawValue
-        default:
-            print("CheckDuplicationValueFloat-Error")
-        }
+
+        // 設定するEurekaのタグ名とインデックスを取得する
+        let selectTag:String = convertIndexToTag(argIndex: argIndex)
+        let selectKey:String = convertIndexToKey(argIndex: argIndex)
 
         // 他の項目と重量が重複していないか確認する
         for indexWeight in DataBaseTable.WeightIndex.WeightIndexs
@@ -622,10 +594,8 @@ class ViewControllerWeight: FormViewController {
                 (action: UIAlertAction!) -> Void in
                 // ボタン押下後の処理
                 // 編集前の値に戻す
-                // 戻したいけど戻せないため "0.0" にする
-                // let value:Double  = self.CCalcDB.getArrayDataBaseWeightFloat(getKey: DataBaseTable.WeightIndex(rawValue: argKey)!)
-                self.form.rowBy(tag: selectItem)?.baseValue = self.beforeValueSinkers[argIndex]
-                self.form.rowBy(tag: selectItem)?.reload()
+                self.form.rowBy(tag: selectTag)?.baseValue = self.beforeValueSinkers[argIndex]
+                self.form.rowBy(tag: selectTag)?.reload()
             })
             
             alert.addAction(defaultAction)
@@ -640,4 +610,98 @@ class ViewControllerWeight: FormViewController {
         return
     }
 
+    /// Description: 設定するEurekaのタグ名を取得する
+    /// - Author: sawatch
+    /// - Date: 2018/08/25
+    /// - Version: 1.0.1
+    /// - Parameters:
+    ///   - argIndex:Int    変更した項目のサイズ
+    /// - Returns: 設定するEurekaのタグ名
+    func convertIndexToTag(argIndex:Int) -> String {
+        // 設定するEurekaのタグ名を取得する
+        var selectTag:String = ""
+        switch(argIndex)
+        {
+        case DataBaseTable.WeightNumber.g8.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_g8.rawValue
+        case DataBaseTable.WeightNumber.g7.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_g7.rawValue
+        case DataBaseTable.WeightNumber.g6.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_g6.rawValue
+        case DataBaseTable.WeightNumber.g5.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_g5.rawValue
+        case DataBaseTable.WeightNumber.g4.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_g4.rawValue
+        case DataBaseTable.WeightNumber.g3.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_g3.rawValue
+        case DataBaseTable.WeightNumber.g2.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_g2.rawValue
+        case DataBaseTable.WeightNumber.g1.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_g1.rawValue
+        case DataBaseTable.WeightNumber.b1.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_b1.rawValue
+        case DataBaseTable.WeightNumber.b2.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_b2.rawValue
+        case DataBaseTable.WeightNumber.b3.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_b3.rawValue
+        case DataBaseTable.WeightNumber.b4.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_b4.rawValue
+        case DataBaseTable.WeightNumber.b5.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_b5.rawValue
+        case DataBaseTable.WeightNumber.b6.rawValue:
+            selectTag  = DataBaseTable.UserDefaultsTag.sinker_b6.rawValue
+        default:
+            print("convertIndexToTag-Error")
+        }
+
+        return selectTag
+    }
+
+    /// Description: 整数のインデックスを取得する
+    /// - Author: sawatch
+    /// - Date: 2018/08/25
+    /// - Version: 1.0.1
+    /// - Parameters:
+    ///   - argIndex:Int    変更した項目のサイズ
+    /// - Returns: 設定するEurekaのタグ名
+    func convertIndexToKey(argIndex:Int) -> String {
+        // 設定するEurekaのタグ名を取得する
+        var selectKey:String = ""
+
+        switch(argIndex)
+        {
+        case DataBaseTable.WeightNumber.g8.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.g8.rawValue
+        case DataBaseTable.WeightNumber.g7.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.g7.rawValue
+        case DataBaseTable.WeightNumber.g6.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.g6.rawValue
+        case DataBaseTable.WeightNumber.g5.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.g5.rawValue
+        case DataBaseTable.WeightNumber.g4.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.g4.rawValue
+        case DataBaseTable.WeightNumber.g3.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.g3.rawValue
+        case DataBaseTable.WeightNumber.g2.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.g2.rawValue
+        case DataBaseTable.WeightNumber.g1.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.g1.rawValue
+        case DataBaseTable.WeightNumber.b1.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.b1.rawValue
+        case DataBaseTable.WeightNumber.b2.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.b2.rawValue
+        case DataBaseTable.WeightNumber.b3.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.b3.rawValue
+        case DataBaseTable.WeightNumber.b4.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.b4.rawValue
+        case DataBaseTable.WeightNumber.b5.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.b5.rawValue
+        case DataBaseTable.WeightNumber.b6.rawValue:
+            selectKey   = DataBaseTable.WeightIndex.b6.rawValue
+        default:
+            print("convertIndexToKey-Error")
+        }
+
+        return selectKey
+    }
 }

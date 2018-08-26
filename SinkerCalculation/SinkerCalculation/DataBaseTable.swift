@@ -47,8 +47,19 @@ class DataBaseTable {
         case float_b4 = "float_b4"
         case float_b5 = "float_b5"
         case float_b6 = "float_b6"
+
+        static let SinkerTags: [UserDefaultsTag] = [.sinker_g8, .sinker_g7, .sinker_g6, .sinker_g5,
+                                                   .sinker_g4, .sinker_g3, .sinker_g2, .sinker_g1,
+                                                   .sinker_b1, .sinker_b2, .sinker_b3,
+                                                   .sinker_b4, .sinker_b5, .sinker_b6]
+
+        static let FloatTags: [UserDefaultsTag] = [.float_g8, .float_g7, .float_g6, .float_g5,
+                                                    .float_g4, .float_g3, .float_g2, .float_g1,
+                                                    .float_b1, .float_b2, .float_b3,
+                                                    .float_b4, .float_b5, .float_b6]
     }
     
+    // インデックス文字列
     enum WeightIndex: String {
         case g8
         case g7
@@ -65,10 +76,13 @@ class DataBaseTable {
         case b5
         case b6
         
-        static let WeightIndexs: [WeightIndex] = [.g8, .g7, .g6, .g5, .g4, .g3, .g2, .g1,
-                                                  .b1, .b2, .b3, .b4, .b5, .b6]
+        static let WeightIndexs: [WeightIndex] = [.g8, .g7, .g6, .g5,
+                                                  .g4, .g3, .g2, .g1,
+                                                  .b1, .b2, .b3,
+                                                  .b4, .b5, .b6]
     }
 
+    // インデックス整数
     enum WeightNumber: Int {
         case g8 = 0
         case g7
@@ -85,8 +99,10 @@ class DataBaseTable {
         case b5
         case b6
         
-        static let WeightNumbers: [WeightNumber] = [.g8, .g7, .g6, .g5, .g4, .g3, .g2, .g1,
-                                                  .b1, .b2, .b3, .b4, .b5, .b6]
+        static let WeightNumbers: [WeightNumber] = [.g8, .g7, .g6, .g5,
+                                                    .g4, .g3, .g2, .g1,
+                                                    .b1, .b2, .b3,
+                                                    .b4, .b5, .b6]
     }
     // Calu画面の設定値
     struct CaluInterfaceTable {

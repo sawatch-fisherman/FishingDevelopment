@@ -6,10 +6,9 @@
 //  Copyright © 2018年 sawatch. All rights reserved.
 //
 
-// Description: [画面4] 計算の結果を出力する画面
-
-// memo: [その1] ViewControllerResult から ViewControllerCalculation へ戻る処理は、
-//              ViewControllerCalculation に記述している。
+/// Description: [画面4] 計算の結果を出力する画面
+/// - Note: [その1] ViewControllerResult から ViewControllerCalculation へ戻る処理は、
+///                ViewControllerCalculation に記述している。
 
 import UIKit
 
