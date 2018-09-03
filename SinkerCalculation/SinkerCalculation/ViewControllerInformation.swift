@@ -16,19 +16,32 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var informationTableView: UITableView!
     
     var selectItem:Int = kindItem.version.rawValue
-    
+
+
+    /// Description: アプリ情報のインデックス
+    /// - Note: 2018/09/01 - Ver.1.0.1
+    ///              項目[reset]を追加
+    /// - Author: sawatch
+    /// - Date: 2018/08/16
+    /// - Version: 1.0.0
     enum kindItem:Int {
         case version = 0
         case disclaimer
         case inquiry
+        case reset
     }
 
-    // アプリ情報の項目
-    let items:[String] = ["バージョン", "利用規約および免責事項", "開発者に問い合わせ"]
+
+    /// Description: アプリ情報のインデックス
+    /// - Note: 2018/09/01 - Ver.1.0.1
+    ///              項目[リセット]を追加
+    /// - Author: sawatch
+    /// - Date: 2018/08/16
+    /// - Version: 1.0.0
+    let items:[String] = ["バージョン", "利用規約および免責事項", "開発者に問い合わせ", "リセット"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
         // テーブルビュー作成
         //informationTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -54,7 +67,7 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
 
     // セクションタイトルを返す
      func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "アプリ情報"
+        return " アプリ情報"
      }
 
     // セクションごとの行数を返す(必須メソッド)
@@ -63,6 +76,8 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
     }
     
     /// Description: (必須メソッド)各1行のセルごとに表示する文字列を設定する
+    /// - Note: 2018/09/01 - Ver.1.0.1
+    ///              アクセサリの種類を detailButton から デフォルト に変更
     /// - Author: sawatch
     /// - Date: 2018/08/16
     /// - Version: 1.0.0
@@ -72,39 +87,41 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
     /// - Returns:cell 1行のセル
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell:UITableViewCell = informationTableView.dequeueReusableCell(withIdentifier: "InformationCell", for: indexPath)
-        //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         cell.textLabel!.text = items[indexPath.row]
-        // memo
-        // 本当はdisclosureIndicatorにしたいが、なぜか　accessoryButtonTappedFrowRwWith イベントが動かない
-        // detailButton を使用する
-        cell.accessoryType = UITableViewCellAccessoryType.detailButton
         return cell
     }
-    
-    /// Description: アクセサリーボタンを押した時の処理
+
+    /// Description: セルを押した時の処理セル
+    /// - Note: 2018/09/01 - Ver.1.0.1
+    ///              1. アクセサリーボタンのイベント関数[tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath)]を削除
+    ///                 代わりにセル押下のイベントに変更
+    ///              2. 項目[リセット]を追加
     /// - Author: sawatch
-    /// - Date: 2018/08/16
-    /// - Version: 1.0.0
+    /// - Date: 2018/09/01
+    /// - Version: 1.0.1
     /// - Parameters:
-    ///   - tableView:UITableView                                   : テーブルビュー
-    ///   - accessoryButtonTappedForRowWith indexPath:IndexPath     : 選択された行
+    ///   - tableView:UITableView                  : テーブルビュー
+    ///   - didSelectRowAt indexPath:IndexPath     : 選択された行
     /// - Returns:cell 1行のセル
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         switch(indexPath.row)
         {
         case kindItem.version.rawValue:
-                selectItem = kindItem.version.rawValue
-                self.performSegue(withIdentifier: "toInformationDetail", sender: nil)
+            selectItem = kindItem.version.rawValue
+            self.performSegue(withIdentifier: "toInformationDetail", sender: nil)
         case kindItem.disclaimer.rawValue:
-                selectItem = kindItem.disclaimer.rawValue
-                self.performSegue(withIdentifier: "toInformationDetail", sender: nil)
+            selectItem = kindItem.disclaimer.rawValue
+            self.performSegue(withIdentifier: "toInformationDetail", sender: nil)
         case kindItem.inquiry.rawValue:
-                sendMail()
+            sendMail()
+        case kindItem.reset.rawValue:
+            selectItem = kindItem.reset.rawValue
+            self.performSegue(withIdentifier: "toInformationDetail", sender: nil)
         default:
             print("Error")
         }
-
+        
         return
     }
 

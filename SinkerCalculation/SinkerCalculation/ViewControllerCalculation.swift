@@ -33,10 +33,10 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
 
         setUserDefaultsToAppDelegate()
 
-        
         setEurekaControl()
-    
+
         setAdMob()
+
 
         // Do any additional setup after loading the view.
     }

@@ -17,6 +17,8 @@ class ViewControllerWeight: FormViewController {
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     let CCalcDB = CalculationDataBase()
 
+    let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +27,10 @@ class ViewControllerWeight: FormViewController {
 
         // コントロールの設定
         setEurekaControl()
+
+        //
+        settingActivityIndicatorView()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,41 +42,62 @@ class ViewControllerWeight: FormViewController {
     /// Description: [計算], [情報]画面に切替えた際のイベント
     ///              もし項目が１つでも変更されていた場合、
     ///              編集情報を破棄して問題ないか？のメッセージを表示する
-    /// - Note: 2018/08/26 - Ver.1.0.1
     /// - Author: sawatch
-    /// - Date: 2018/08/17
+    /// - Date: 2018/08/29
     /// - Version: 1.0.1
     override func viewWillDisappear(_ animated: Bool) {
 
+        var you_should_change_this_method:Int = 1
         // 未作成
         // 編集フラグをチェック
 
     }
 
     /// Description: 保存ボタンの処理
+    /// - Note: 2018/09/03 - Ver.1.0.1
+    ///              処理中にインジケーターを表示する処理を追加
+    /// - Warning:   ボタン押下後のクロージャー内でインジケータの宣言の処理を記述しても動作しない。
     /// - Author: sawatch
     /// - Date: 2018/08/17
     /// - Version: 1.0.0
     @IBAction func clickButtonSave(_ sender: Any) {
-        // 値を設定
-        setCalculationDataBaseToAppDelegate()
+        // インジケーター start
+        activityIndicatorView.startAnimating()
 
         // "保存しました"
         let alert = UIAlertController(title: "", message: "保存しました", preferredStyle: UIAlertControllerStyle.alert)
         present(alert, animated: true, completion: {
+
             // アラートを閉じる
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 alert.dismiss(animated: true, completion: nil)
             })
+
+            // インジケーター finish
+            if (true == self.activityIndicatorView.isAnimating) {
+                self.activityIndicatorView.stopAnimating()
+            }
         })
+        
+        
+        // 値を設定
+        setCalculationDataBaseToAppDelegate()
+
         return
     }
 
+
     /// Description: 取消しボタンの処理
+    /// - Note: 2018/09/03 - Ver.1.0.1
+    ///              処理中にインジケーターを表示する処理を追加
+    /// - Warning:   ボタン押下後のクロージャー内でインジケータの宣言の処理を記述しても動作しない。
     /// - Author: sawatch
     /// - Date: 2018/08/17
     /// - Version: 1.0.0
     @IBAction func clickButtonCancel(_ sender: Any) {
+
+        // インジケーター start
+        activityIndicatorView.startAnimating()
 
         // アラートを表示
         let title = "キャンセル確認"
@@ -80,12 +107,22 @@ class ViewControllerWeight: FormViewController {
         let defaultAction: UIAlertAction = UIAlertAction(title: "戻る", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) -> Void in
             // ボタン押下後の処理
+            // インジケーター finish
+            if (true == self.activityIndicatorView.isAnimating) {
+                self.activityIndicatorView.stopAnimating()
+            }
         })
 
         let cancelAction: UIAlertAction = UIAlertAction(title: "破棄する", style: UIAlertActionStyle.cancel, handler: {
             (action: UIAlertAction!) -> Void in
+
             // ボタン押下後の処理
             self.setReload()
+
+            // インジケーター finish
+            if (true == self.activityIndicatorView.isAnimating) {
+                self.activityIndicatorView.stopAnimating()
+            }
 
             // "編集中の内容を破棄しました"
             let alert2 = UIAlertController(title: "", message: "編集中の内容を破棄しました", preferredStyle: UIAlertControllerStyle.alert)
@@ -104,6 +141,16 @@ class ViewControllerWeight: FormViewController {
 
         present(alert, animated: true, completion: nil)
 
+    }
+    
+    /// Description: UIActivityIndicatorViewの設定
+    /// - Author: sawatch
+    /// - Date: 2018/09/03
+    /// - Version: 1.0.1
+    func settingActivityIndicatorView(){
+        self.view.addSubview(activityIndicatorView)
+        self.view.bringSubview(toFront: activityIndicatorView)
+        activityIndicatorView.frame = self.view.bounds
     }
 
     /// Description: Eurekaの設定
