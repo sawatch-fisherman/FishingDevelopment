@@ -10,6 +10,13 @@ import Foundation
 
 class DataBaseTable {
     
+    /// Description: Eurekaの項目
+    /// - Note: 2018/09/12 - Ver.1.0.1
+    ///              項目を追加
+    ///              - 1号
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
     enum UserDefaultsTag: String {
         case first_boot = "first_boot"
         
@@ -32,6 +39,7 @@ class DataBaseTable {
         case sinker_b4 = "sinker_b4"
         case sinker_b5 = "sinker_b5"
         case sinker_b6 = "sinker_b6"
+        case sinker_n1 = "sinker_n1"        // 1号
         
         case float_g8 = "float_g8"
         case float_g7 = "float_g7"
@@ -47,19 +55,28 @@ class DataBaseTable {
         case float_b4 = "float_b4"
         case float_b5 = "float_b5"
         case float_b6 = "float_b6"
+        case float_n1 = "float_n1"
 
         static let SinkerTags: [UserDefaultsTag] = [.sinker_g8, .sinker_g7, .sinker_g6, .sinker_g5,
                                                    .sinker_g4, .sinker_g3, .sinker_g2, .sinker_g1,
                                                    .sinker_b1, .sinker_b2, .sinker_b3,
-                                                   .sinker_b4, .sinker_b5, .sinker_b6]
+                                                   .sinker_b4, .sinker_b5, .sinker_b6,
+                                                   .sinker_n1]
 
         static let FloatTags: [UserDefaultsTag] = [.float_g8, .float_g7, .float_g6, .float_g5,
                                                     .float_g4, .float_g3, .float_g2, .float_g1,
                                                     .float_b1, .float_b2, .float_b3,
-                                                    .float_b4, .float_b5, .float_b6]
+                                                    .float_b4, .float_b5, .float_b6,
+                                                    .float_n1]
     }
-    
-    // インデックス文字列
+
+    /// Description: インデックス文字列
+    /// - Note: 2018/09/12 - Ver.1.0.1
+    ///              項目を追加
+    ///              - 1号
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
     enum WeightIndex: String {
         case g8
         case g7
@@ -75,14 +92,22 @@ class DataBaseTable {
         case b4
         case b5
         case b6
+        case n1
         
         static let WeightIndexs: [WeightIndex] = [.g8, .g7, .g6, .g5,
                                                   .g4, .g3, .g2, .g1,
                                                   .b1, .b2, .b3,
-                                                  .b4, .b5, .b6]
+                                                  .b4, .b5, .b6,
+                                                  .n1]
     }
 
-    // インデックス整数
+    /// Description: インデックス整数
+    /// - Note: 2018/09/12 - Ver.1.0.1
+    ///              項目を追加
+    ///              - 1号
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
     enum WeightNumber: Int {
         case g8 = 0
         case g7
@@ -98,13 +123,19 @@ class DataBaseTable {
         case b4
         case b5
         case b6
+        case n1
         
         static let WeightNumbers: [WeightNumber] = [.g8, .g7, .g6, .g5,
                                                     .g4, .g3, .g2, .g1,
                                                     .b1, .b2, .b3,
-                                                    .b4, .b5, .b6]
+                                                    .b4, .b5, .b6,
+                                                    .n1]
     }
-    // Calu画面の設定値
+
+    /// Description: Calu画面の設定値
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
     struct CaluInterfaceTable {
         var usingFloatSelect: String = "B3"
         var usingFloatWeight: Double = 0.0           // これは使用の有無は不明
@@ -120,7 +151,13 @@ class DataBaseTable {
         }
     }
 
-    // オモリとウキのサイズごとの重量テーブル
+    /// Description: オモリとウキのサイズごとの重量テーブル
+    /// - Note: 2018/09/12 - Ver.1.0.1
+    ///              項目を追加
+    ///              - 1号
+    /// - Author: sawatch
+    /// - Date: 2018/08/17
+    /// - Version: 1.0.0
     struct WeightTable {
         var weights: Dictionary = [WeightIndex: Double]()
 
@@ -139,6 +176,7 @@ class DataBaseTable {
             weights[WeightIndex.b4] = 0.0
             weights[WeightIndex.b5] = 0.0
             weights[WeightIndex.b6] = 0.0
+            weights[WeightIndex.n1] = 0.0
         }
     }
     

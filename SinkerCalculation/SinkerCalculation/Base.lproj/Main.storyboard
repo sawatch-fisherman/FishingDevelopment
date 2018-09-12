@@ -114,7 +114,7 @@
         <!--Information-->
         <scene sceneID="8WW-pG-F5V">
             <objects>
-                <viewController id="SB1-KD-FGG" userLabel="Information" customClass="ViewControllerInformation" customModule="SinkerCalculation" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Information" id="SB1-KD-FGG" userLabel="Information" customClass="ViewControllerInformation" customModule="SinkerCalculation" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2vz-fZ-tuG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -158,7 +158,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pjY-sR-taQ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="情報" image="iconInformation" id="0IH-b5-OKr"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="情報" image="iconInformation" id="0IH-b5-OKr"/>
                     <connections>
                         <outlet property="informationTableView" destination="Wmd-bo-0rE" id="Juo-wk-e8C"/>
                         <segue destination="06N-6a-Heh" kind="presentation" identifier="toInformationDetail" id="rbV-Dq-qON"/>
@@ -240,11 +240,11 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--設定-->
+        <!--Weight-->
         <scene sceneID="eLJ-oJ-zKh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m9w-mN-W90" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="設定" image="iconWeight" id="cPa-gy-q4n"/>
+                <navigationController title="Weight" automaticallyAdjustsScrollViewInsets="NO" id="m9w-mN-W90" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="2" title="設定" image="iconWeight" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lVE-dZ-r03">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -261,11 +261,11 @@
             </objects>
             <point key="canvasLocation" x="1413.5999999999999" y="383.65817091454278"/>
         </scene>
-        <!--計算-->
+        <!--Calculation-->
         <scene sceneID="fc0-TM-Q7E">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MMI-0U-5zr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="計算" image="iconCalculation" id="acW-dT-cKf"/>
+                <navigationController title="Calculation" automaticallyAdjustsScrollViewInsets="NO" id="MMI-0U-5zr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="1" title="計算" image="iconCalculation" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iVU-C1-2C8">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

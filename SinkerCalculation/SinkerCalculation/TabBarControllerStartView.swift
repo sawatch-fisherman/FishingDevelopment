@@ -8,16 +8,16 @@
 
 import UIKit
 
-class TabBarControllerStartView: UITabBarController {
+class TabBarControllerStartView: UITabBarController, UITabBarControllerDelegate {
 
     @IBOutlet weak var tabBarMenu: UITabBar!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         settingTabBar()
         // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,17 +30,6 @@ class TabBarControllerStartView: UITabBarController {
         tabBarMenu.tintColor = UIColor.rgb(r: 244, g: 245, b: 247, alpha: 1)        // 円熟した青
         //tabBarMenu.unselectedItemTintColor = UIColor.white
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

@@ -114,6 +114,9 @@ class CalculationCombination {
     // 辞書は順番がランダムのため、2次元配列に変更する
     /// Description:    オモリの配列を作成する
     /// - Note:         辞書は順番がランダムのため、2次元配列に変更する
+    ///                 2018/09/12 - Ver.1.0.1
+    ///                 項目を追加
+    ///                 - 1号
     /// - Author:       sawatch
     /// - Date:         2018/08/17
     /// - Version:      1.0.0
@@ -132,9 +135,13 @@ class CalculationCombination {
         sinkerArrayForCalu.append(Sinker(number: DataBaseTable.WeightIndex.b4.rawValue, weight: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b4]!))
         sinkerArrayForCalu.append(Sinker(number: DataBaseTable.WeightIndex.b5.rawValue, weight: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b5]!))
         sinkerArrayForCalu.append(Sinker(number: DataBaseTable.WeightIndex.b6.rawValue, weight: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b6]!))
+        sinkerArrayForCalu.append(Sinker(number: DataBaseTable.WeightIndex.n1.rawValue, weight: appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.n1]!))
     }
 
     /// Description: 最大値/最小値を求める (ウキの重量 ± 余重)
+    /// - Note: 2018/09/12 - Ver.1.0.1
+    ///              項目を追加
+    ///              - 1号
     /// - Author: sawatch
     /// - Date: 2018/08/17
     /// - Version: 1.0.0
@@ -144,22 +151,22 @@ class CalculationCombination {
         var selectSize:DataBaseTable.WeightIndex = DataBaseTable.WeightIndex.b6
         switch(appDelegate.db_CaluInterface.usingFloatSelect)
         {
-        // ["G8","G7","G6","G5","G4","G3","G2","G1","B","B2","B3","B4","B5","B6"]
-        case "G8": selectSize = DataBaseTable.WeightIndex.g8
-        case "G7": selectSize = DataBaseTable.WeightIndex.g7
-        case "G6": selectSize = DataBaseTable.WeightIndex.g6
-        case "G5": selectSize = DataBaseTable.WeightIndex.g5
-        case "G4": selectSize = DataBaseTable.WeightIndex.g4
-        case "G3": selectSize = DataBaseTable.WeightIndex.g3
-        case "G2": selectSize = DataBaseTable.WeightIndex.g2
-        case "G1": selectSize = DataBaseTable.WeightIndex.g1
-        case "B" : selectSize = DataBaseTable.WeightIndex.b1
-        case "2B": selectSize = DataBaseTable.WeightIndex.b2
-        case "3B": selectSize = DataBaseTable.WeightIndex.b3
-        case "4B": selectSize = DataBaseTable.WeightIndex.b4
-        case "5B": selectSize = DataBaseTable.WeightIndex.b5
-        case "6B": selectSize = DataBaseTable.WeightIndex.b6
-        default: print("setRangeOfWeight-Error")          // Error
+            case "G8": selectSize = DataBaseTable.WeightIndex.g8
+            case "G7": selectSize = DataBaseTable.WeightIndex.g7
+            case "G6": selectSize = DataBaseTable.WeightIndex.g6
+            case "G5": selectSize = DataBaseTable.WeightIndex.g5
+            case "G4": selectSize = DataBaseTable.WeightIndex.g4
+            case "G3": selectSize = DataBaseTable.WeightIndex.g3
+            case "G2": selectSize = DataBaseTable.WeightIndex.g2
+            case "G1": selectSize = DataBaseTable.WeightIndex.g1
+            case "B" : selectSize = DataBaseTable.WeightIndex.b1
+            case "2B": selectSize = DataBaseTable.WeightIndex.b2
+            case "3B": selectSize = DataBaseTable.WeightIndex.b3
+            case "4B": selectSize = DataBaseTable.WeightIndex.b4
+            case "5B": selectSize = DataBaseTable.WeightIndex.b5
+            case "6B": selectSize = DataBaseTable.WeightIndex.b6
+            case "1号": selectSize = DataBaseTable.WeightIndex.n1
+            default: print("setRangeOfWeight-Error")          // Error
         }
 
         selectFlotWeight = appDelegate.db_Weights.db_Float.weights[selectSize]!
@@ -434,6 +441,9 @@ class CalculationCombination {
     ///              例:
     ///              変更[前]: b3
     ///              変更[後]: 3B
+    /// - Note: 2018/09/12 - Ver.1.0.1
+    ///              項目を追加
+    ///              - 1号
     /// - Author: sawatch
     /// - Date: 2018/08/14
     /// - Version: 1.0.0
@@ -459,17 +469,11 @@ class CalculationCombination {
         case "b4": returnDestination = "4B"
         case "b5": returnDestination = "5B"
         case "b6": returnDestination = "6B"
+        case "n1": returnDestination = "1号"
         default: returnDestination = ""          // Error
         }
 
         return returnDestination
-    }
-
-
-    func nothingCombination(){
-        print("")
-        return
-
     }
 
 

@@ -15,6 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     // データベースの定義 start
+    var resetFlag:ResetFlag = ResetFlag()
+    struct ResetFlag{
+        var viewCalculation:Bool = false
+        var viewWeight:Bool = false
+        init(){
+            viewCalculation = false
+            viewWeight = false
+        }
+    }
     // Calu画面の設定値
     var db_CaluInterface: DataBaseTable.CaluInterfaceTable = DataBaseTable.CaluInterfaceTable.init()
 

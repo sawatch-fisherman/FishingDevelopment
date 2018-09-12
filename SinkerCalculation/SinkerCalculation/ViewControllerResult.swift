@@ -29,7 +29,8 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //
+        /// - Warning: 下記のインジケータ処理は失敗している記述場所を変更すること
+        /// - Date: 2018/09/04
         settingActivityIndicatorView()
         activityIndicatorView.startAnimating()
 
@@ -41,12 +42,9 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
 
         //// テーブルビューのデリゲートを設定する
         resultTableView.delegate = self
-        
+
         // テーブルビューのデータソースを設定する
         resultTableView.dataSource = self
-
-        /// - Warning: 下記のインジケータ処理は失敗している記述場所を変更すること
-        /// - Date: 2018/09/01
 
     }
 
@@ -55,8 +53,9 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
 
-    
     override func viewWillAppear(_ animated: Bool) {
+        /// - Warning: 下記のインジケータ処理は失敗している記述場所を変更すること
+        /// - Date: 2018/09/04
         // インジケーター finish
         if (true == activityIndicatorView.isAnimating) {
             activityIndicatorView.stopAnimating()
@@ -73,8 +72,6 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
         return 50
     }
 
-    
-    
     /// Description: UIActivityIndicatorViewの設定
     /// - Author: sawatch
     /// - Date: 2018/09/03
@@ -84,8 +81,7 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
         self.view.bringSubview(toFront: activityIndicatorView)
         activityIndicatorView.frame = self.view.bounds
     }
-    
-    
+
     /// Description: (必須メソッド)ヘッダー(セクション)に表示する文字列を設定する
     ///
     ///              header(section)
@@ -102,8 +98,6 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
         view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 50)
         //view.backgroundColor = UIColor.rgb(r: 83, g: 141, b: 213, alpha: 1)
         view.backgroundColor = UIColor.rgb(r: 0, g: 102, b: 204, alpha: 1)
-
-
 
         let headerLabel = UILabel()
         // "パターン 7個\nオモリ3個: 3B(1.00g)+余重(0.01g)"
@@ -129,9 +123,9 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
     ///              - 例 : [G4 + G3 + B]
     ///              cell(detail)
     ///              - 例 : [合計 : 1.00g,    余り : 0.01g \nG8(0.07g) G7(0.09g) G7(0.09g) G6(0.12g)]
-    /// - Author: sawatch
-    /// - Date: 2018/08/15
-    /// - Version: 1.0.0
+    /// - Author:    sawatch
+    /// - Date:      2018/08/15
+    /// - Version:   1.0.0
     /// - Parameters:
     ///   - paramA: パラメータAの説明
     ///   - paramB: パラメータBの説明
@@ -162,7 +156,6 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
 
         return returnCombination
     }
-
 
 
 }

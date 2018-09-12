@@ -36,14 +36,27 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
         setEurekaControl()
 
         setAdMob()
-
-
+        
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+
+    /// Description: [計算]画面に切り替わった際のイベント
+    ///              もしリセットボタンが押されていた場合、各ボタンをリセットする
+    /// - Author: sawatch
+    /// - Date: 2018/09/06
+    /// - Version: 1.0.1
+    override func viewDidAppear(_ animated: Bool) {
+        if(true == appDelegate.resetFlag.viewCalculation){
+            resetValues()
+            appDelegate.resetFlag.viewCalculation = false
+        }
+        return
     }
 
     /// Description:    Eurekaの設定
@@ -63,15 +76,15 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
         form
             // Section1
             +++ Section("各項目を選択してください")
-            <<< PickerInputRow<String>("UsingFloat"){
+            <<< PickerInputRow<String>(DataBaseTable.UserDefaultsTag.using_float_select.rawValue){
                 $0.title = "使用するウキ"
-                $0.options = ["G8","G7","G6","G5","G4","G3","G2","G1","B","2B","3B","4B","5B","6B"]
+                $0.options = ["G8","G7","G6","G5","G4","G3","G2","G1","B","2B","3B","4B","5B","6B","1号"]
                 $0.value = self.appDelegate.db_CaluInterface.usingFloatSelect
                 }.onChange{ row in
                     self.appDelegate.db_CaluInterface.usingFloatSelect = row.value!
                     self.defaults.set(self.appDelegate.db_CaluInterface.usingFloatSelect, forKey: DataBaseTable.UserDefaultsTag.using_float_select.rawValue)
             }
-            <<< PickerInputRow<Int>(){
+            <<< PickerInputRow<Int>(DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue){
                 $0.title = "使用するオモリの個数"
                 $0.options = [2,3,4]
                 var number:Int = self.appDelegate.db_CaluInterface.theNumberOfSinkers
@@ -84,7 +97,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
                     self.appDelegate.db_CaluInterface.theNumberOfSinkers = row.value!
                     self.defaults.set(self.appDelegate.db_CaluInterface.theNumberOfSinkers, forKey: DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue)
             }
-            <<< DecimalRow() {
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.extra_weight_sinker.rawValue) {
                 $0.title = "余幅 重さ"
                 $0.value = self.appDelegate.db_CaluInterface.extraWeightSinker
                 $0.formatter = wrapFormatter          // これをこのクラスように作らないといけない
@@ -119,6 +132,9 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
     /// - Date: 2018/08/17
     /// - Version: 1.0.0
     func setUserDefaultsToAppDelegate(){
+        #if DEBUG
+        print("Func -setUserDefaultsToAppDelegate-")
+        #endif
         var firstBoot:Bool = false
 
         if (defaults.object(forKey: DataBaseTable.UserDefaultsTag.first_boot.rawValue) == nil) {
@@ -146,10 +162,11 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
             appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.WeightIndexs[index]]! = defaults.double(forKey: DataBaseTable.UserDefaultsTag.SinkerTags[index].rawValue)
 
             #if DEBUG
+            print("Keys:", DataBaseTable.WeightIndex.WeightIndexs[index])
             let debugFloat:Double = defaults.double(forKey: DataBaseTable.UserDefaultsTag.FloatTags[index].rawValue)
-            print(debugFloat)
+            print("Float:", debugFloat)
             let debugSinker:Double = defaults.double(forKey: DataBaseTable.UserDefaultsTag.SinkerTags[index].rawValue)
-            print(debugSinker)
+            print("Sinker:", debugSinker)
             #endif
         }
         return
@@ -157,6 +174,9 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
 
     /// Description: UserDefaultsにデフォルト値を設定する
     /// - Note: setUserDefaultsToAppDelegateから処理を抜粋して作成
+    /// -       2018/09/12 - Ver.1.0.1
+    ///              項目を追加
+    ///              - 1号
     /// - Author: sawatch
     /// - Date: 2018/08/25
     /// - Version: 1.0.1
@@ -183,6 +203,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b4.rawValue : 1.25])
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b5.rawValue : 1.75])
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b6.rawValue : 2.20])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_n1.rawValue : 3.75])
 
         // [設定]画面の設定値 ウキ
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g8.rawValue : 0.07])
@@ -199,8 +220,33 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b4.rawValue : 1.25])
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b5.rawValue : 1.75])
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b6.rawValue : 2.20])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_n1.rawValue : 3.75])
         return
     }
+
+    /// Description: [情報]画面でリセットがONになった場合、各値をリセットする
+    /// - Author: sawatch
+    /// - Date: 2018/09/06
+    /// - Version: 1.0.1
+    /// - Parameters:
+    /// - Returns:
+    func resetValues(){
+        // 使用するウキ
+        form.rowBy(tag: DataBaseTable.UserDefaultsTag.using_float_select.rawValue)?.baseValue = self.appDelegate.db_CaluInterface.usingFloatSelect
+        form.rowBy(tag: DataBaseTable.UserDefaultsTag.using_float_select.rawValue)?.reload()
+        
+        // 使用するオモリの個数
+        form.rowBy(tag: DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue)?.baseValue = self.appDelegate.db_CaluInterface.theNumberOfSinkers
+        form.rowBy(tag: DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue)?.reload()
+
+        // 余幅 重さ
+        form.rowBy(tag: DataBaseTable.UserDefaultsTag.extra_weight_sinker.rawValue)?.baseValue = self.appDelegate.db_CaluInterface.extraWeightSinker
+        form.rowBy(tag: DataBaseTable.UserDefaultsTag.extra_weight_sinker.rawValue)?.reload()
+
+        return
+    }
+
+
 
     //////////////////////
     // AdMob設定 --Start--
