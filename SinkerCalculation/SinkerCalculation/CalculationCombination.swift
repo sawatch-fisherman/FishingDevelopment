@@ -280,20 +280,20 @@ class CalculationCombination {
                 // この処理がないと最後の列でfor文がエラーになる
                 break;
             }
-            
+
             // 削除する配列の番号を格納する
             var arrayIndexOfDelete = [Int]()
             arrayIndexOfDelete.removeAll()
-            
+
             // 重複している1次元配列を検索する
             // 見つかった場合、配列に格納する
             for indexDestination in indexNextOfSource..<numberOfLoopingOutSide
             {
                 var arrayDestination:[Sinker] = resultCombinationArray[indexDestination]
-                
+
                 let numberOfLoopingInSide:Int = arraySource.count
                 var arrayDelete:Bool = true
-                
+
                 for indexCompare in 0..<numberOfLoopingInSide
                 {
                     let sinkerSource:Sinker = arraySource[indexCompare]
@@ -310,7 +310,7 @@ class CalculationCombination {
                     arrayIndexOfDelete.append(indexDestination)
                 }
             }
-            
+
             // 重複している１次元配列を　後ろの番号から削除する
             if(arrayIndexOfDelete.count > 0){
                 for indexDelete in arrayIndexOfDelete.reversed()

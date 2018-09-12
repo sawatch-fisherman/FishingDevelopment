@@ -137,14 +137,14 @@ class DataBaseTable {
     /// - Date: 2018/08/17
     /// - Version: 1.0.0
     struct CaluInterfaceTable {
-        var usingFloatSelect: String = "B3"
+        var usingFloatSelect: String = "3B"
         var usingFloatWeight: Double = 0.0           // これは使用の有無は不明
 
         var theNumberOfSinkers: Int = 2
         var extraWeightSinker: Double = 0.0
         
         init() {
-            usingFloatSelect = "B3"
+            usingFloatSelect = "3B"
             usingFloatWeight = 0.0
             theNumberOfSinkers = 2
             extraWeightSinker = 0.0

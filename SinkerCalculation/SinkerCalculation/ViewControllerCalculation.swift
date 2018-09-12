@@ -183,7 +183,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
     func formatUserDefaults(){
         // 初回起動時はデフォルト値を設定する
         // [計算]画面の設定値
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.using_float_select.rawValue : "B3"])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.using_float_select.rawValue : "3B"])
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.using_float_weight.rawValue : 0.00])
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue : 2])
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.extra_weight_sinker.rawValue : 0.0])

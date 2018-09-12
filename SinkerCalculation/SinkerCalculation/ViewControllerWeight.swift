@@ -68,6 +68,19 @@ class ViewControllerWeight: FormViewController {
     }
 
 
+    /// Description: [設定]画面に切り替わった際のイベント
+    ///              もしリセットボタンが押されていた場合、各ボタンをリセットする
+    /// - Author: sawatch
+    /// - Date: 2018/09/06
+    /// - Version: 1.0.1
+    override func viewDidAppear(_ animated: Bool) {
+        if(true == appDelegate.resetFlag.viewWeight){
+            resetValues()
+            appDelegate.resetFlag.viewWeight = false
+        }
+        return
+    }
+
     /// Description: タブバーを表示する
     ///                 >> 動作のタイミング
     ///                    - [取消し]ボタンの[破棄する]
@@ -434,6 +447,7 @@ class ViewControllerWeight: FormViewController {
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.n1.rawValue, checkValue: row.value!)
         }
 
+        return
     }
 
 
@@ -550,25 +564,83 @@ class ViewControllerWeight: FormViewController {
     }
 
 
-    /// Description: Sinker項目のEurekaの値のチェックを行う
+
+    /// Description: Float項目のEurekaの値のチェックを行う
+    ///              値をチェックする
+    ///              - 0チェック
+    ///              - 変更チェック
+    ///              - 重複チェック
+    ///
     ///              フォーカスの状態
     ///              IN:  editSinkersをtrueにする
-    ///              OUT: 変更された値が、他の項目と重複していないか確認する
+    ///              OUT: 値のチェック処理を実行する
+    ///                   DbWeightFloatの値を更新する
     ///                   editSinkersをfalseにする
-    ///              チェック
-    ///              >> 0 チェック
-    ///              >> 他の項目との重複チェック
-    /// - Note: 2018/08/25 - Ver.1.0.1
+    ///
+    /// - Author: sawatch
+    /// - Date: 2018/09/12
+    /// - Version: 1.0.1
+    /// - Parameters:
+    ///   - argIndex:Int          変更した項目のサイズ
+    ///   - argSetValue:Double    変更する値
+    func checkValueFloats(argIndex:Int, checkValue:Double){
+        // 設定するEurekaのタグ名とインデックスを取得する
+        let selectTag:String = convertIndexToTagFloat(argIndex: argIndex)
+        let selectKey:String = convertIndexToKey(argIndex: argIndex)
+        
+        if(statsFloats[argIndex].edit == false){
+            statsFloats[argIndex].beforeValue = checkValue
+            statsFloats[argIndex].edit = true
+            return
+        }
+        statsFloats[argIndex].edit = false
+
+        let resultZero:Bool = CheckZeroValue(argIndex: argIndex, argTag:selectTag, argSetValue: checkValue, argType: WeightType.float)
+        if(resultZero == true){
+            return
+        }
+
+        let resultNoChange = CheckNoChangeValue(argIndex: argIndex, argSetValue: checkValue, argType: WeightType.float)
+        if(resultNoChange == true){
+            return
+        }
+        
+        let resultDuplication:Bool = CheckDuplicationValueFloat(argIndex: argIndex, argTag:selectTag, argKey:selectKey, argSetValue: checkValue)
+        if(resultDuplication == true){
+            return
+        }
+
+        // 重複なし
+        // 書込み
+        self.CCalcDB.setArrayDataBaseWeightFloat(setKey: DataBaseTable.WeightIndex(rawValue: selectKey)!, setValue: checkValue)
+        // タブバーを隠す
+        hideTabBar()
+        return
+    }
+
+    /// Description: Sinker項目のEurekaの値のチェックを行う
+    ///              値をチェックする
+    ///              - 0チェック
+    ///              - 変更チェック
+    ///              - 重複チェック
+    ///
+    ///              フォーカスの状態
+    ///              IN:  editSinkersをtrueにする
+    ///              OUT: 値のチェック処理を実行する
+    ///                   DbWeightSinkerの値を更新する
+    ///                   editSinkersをfalseにする
+    /// - Note: 2018/09/12 - Ver.1.0.1
     ///              値のチェックする処理を修正
     ///              ・関数名を修正
     ///              ・0チェックの関数を追加
+    ///              ・変更チェックの関数を追加
     ///
     /// - Author: sawatch
     /// - Date: 2018/08/19
     /// - Version: 1.0.0
     /// - Parameters:
-    ///   - argIndex:Int    変更した項目のサイズ
-    ///   - argSetValue:Double     変更する値
+    ///   - argIndex:Int          変更した項目のサイズ
+    ///   - argSetValue:Double    変更する値
     func checkValueSinkers(argIndex:Int, checkValue:Double){
 
         // 設定するEurekaのタグ名とインデックスを取得する
@@ -586,7 +658,7 @@ class ViewControllerWeight: FormViewController {
         if(resultZero == true){
             return
         }
-        
+
         let resultNoChange = CheckNoChangeValue(argIndex: argIndex, argSetValue: checkValue, argType: WeightType.sinker)
         if(resultNoChange == true){
             return
@@ -651,36 +723,99 @@ class ViewControllerWeight: FormViewController {
     ///            false: 値は0.01以上
     func CheckZeroValue(argIndex:Int, argTag:String, argSetValue:Double, argType:WeightType)->Bool{
         if(argSetValue.isZero){
-            // 値はゼロ
-            // アラートを表示
-            let title = "入力値エラー"
-            let message = "重量の値が 0 です。\n0.01以上の重量を設定してください。"
-            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
-                (action: UIAlertAction!) -> Void in
-                // ボタン押下後の処理
-                // 編集前の値に戻す
-                var restoreValue:Double = 0.0
-                if(argType == WeightType.float){
-                    restoreValue = self.statsFloats[argIndex].beforeValue
-                }else{
-                    restoreValue = self.statsSinkers[argIndex].beforeValue
-                }
-                self.form.rowBy(tag: argTag)?.baseValue = restoreValue
-                self.form.rowBy(tag: argTag)?.reload()
-            })
-
-            alert.addAction(defaultAction)
-            present(alert, animated: true, completion: nil)
-            return true
+            return false
         }
-        return false
+        // 値はゼロ
+        // アラートを表示
+        let title = "入力値エラー"
+        let message = "重量の値が 0 です。\n0.01以上の重量を設定してください。"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) -> Void in
+            // ボタン押下後の処理
+            // 編集前の値に戻す
+            var restoreValue:Double = 0.0
+            if(argType == WeightType.float){
+                restoreValue = self.statsFloats[argIndex].beforeValue
+            }else{
+                restoreValue = self.statsSinkers[argIndex].beforeValue
+            }
+            self.form.rowBy(tag: argTag)?.baseValue = restoreValue
+            self.form.rowBy(tag: argTag)?.reload()
+        })
+
+        alert.addAction(defaultAction)
+        present(alert, animated: true, completion: nil)
+        return true
+
     }
 
-    /// Description: 重量が変更された場合、他の項目と重複していないか確認する
+    
+    /// Description: Float重量が変更された場合、他の項目と重複していないか確認する
     ///              重複あり: メッセージを出力する
     ///                       編集前の値に戻す
-    ///              重複なし:DbWeightSinkerの値を更新する
+    ///
+    /// - Note: 2018/09/10 - Ver.1.0.1
+    ///              関数名を修正: "CheckDuplicationValueFloat" → "CheckDuplicationValueSinker"
+    ///              Indexからタグ名と文字型の目次を取得する処理を別関数に置き換え
+    /// - Author: sawatch
+    /// - Date: 2018/09/12
+    /// - Version: 1.0.1
+    /// - Parameters:
+    ///   - argIndex:Int           変更した項目のサイズ
+    ///   - argTag:String          変更した項目のタグ名
+    ///   - argKey:String          変更した項目のキー名
+    ///   - argSetValue:Double     変更する値
+    /// - Returns: true : 重複あり
+    ///            false: 重複なし
+    func CheckDuplicationValueFloat(argIndex:Int, argTag:String, argKey:String ,argSetValue:Double)->Bool{
+        var editFlag:Bool = false
+        var valueCompare:Double = 0.0
+        
+        // 他の項目と重量が重複していないか確認する
+        for indexWeight in DataBaseTable.WeightIndex.WeightIndexs
+        {
+            valueCompare = CCalcDB.getArrayDataBaseWeightFloat(getKey: indexWeight)
+            
+            // 編集中の項目は対象外
+            if(argKey == indexWeight.rawValue){
+                continue
+            }
+            // 他の項目と値が重複した場合、エラーとする
+            if(argSetValue == valueCompare){
+                editFlag = true
+                break
+            }
+        }
+        
+        if(editFlag == false){
+            // 重複なし
+            return false
+        }
+
+        // 重複あり
+        // アラートを表示
+        let title = "重複エラー"
+        let message = "他のオモリと同じ重量になっています。\n他のオモリと異なる重量を設定してください。"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) -> Void in
+            // ボタン押下後の処理
+            // 編集前の値に戻す
+            self.form.rowBy(tag: argTag)?.baseValue = self.statsFloats[argIndex].beforeValue
+            self.form.rowBy(tag: argTag)?.reload()
+        })
+        
+        alert.addAction(defaultAction)
+        present(alert, animated: true, completion: nil)
+
+        return true
+    }
+
+
+    /// Description: Sinker重量が変更された場合、他の項目と重複していないか確認する
+    ///              重複あり: メッセージを出力する
+    ///                       編集前の値に戻す
     ///
     /// - Note: 2018/09/10 - Ver.1.0.1
     ///              関数名を修正: "CheckDuplicationValueFloat" → "CheckDuplicationValueSinker"
@@ -711,7 +846,7 @@ class ViewControllerWeight: FormViewController {
             // 他の項目と値が重複した場合、エラーとする
             if(argSetValue == valueCompare){
                 editFlag = true
-                break;
+                break
             }
         }
 
@@ -782,7 +917,7 @@ class ViewControllerWeight: FormViewController {
         case DataBaseTable.WeightNumber.n1.rawValue:
             selectTag  = DataBaseTable.UserDefaultsTag.float_n1.rawValue
         default:
-            print("convertIndexToTag-Error")
+            print("convertIndexToTagFloat-Error")
         }
 
         return selectTag
@@ -831,7 +966,7 @@ class ViewControllerWeight: FormViewController {
         case DataBaseTable.WeightNumber.n1.rawValue:
             selectTag  = DataBaseTable.UserDefaultsTag.sinker_n1.rawValue
         default:
-            print("convertIndexToTag-Error")
+            print("convertIndexToTagSinker-Error")
         }
         
         return selectTag
