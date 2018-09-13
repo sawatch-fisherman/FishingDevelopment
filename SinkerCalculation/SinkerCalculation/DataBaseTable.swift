@@ -70,6 +70,37 @@ class DataBaseTable {
                                                     .float_n1]
     }
 
+    /// Description: 表示用の文字列
+    ///              表示用の号数
+    /// - Note:      B~6Bは、内部の値はB1~B6となる
+    ///              1号は、内部の値はN1となる
+    /// - Author: sawatch
+    /// - Date: 2018/09/13
+    /// - Version: 1.0.1
+    enum WeightShow: String {
+        case g8 = "G8"
+        case g7 = "G7"
+        case g6 = "G6"
+        case g5 = "G5"
+        case g4 = "G4"
+        case g3 = "G3"
+        case g2 = "G2"
+        case g1 = "G1"
+        case b1 = "B"
+        case b2 = "2B"
+        case b3 = "3B"
+        case b4 = "4B"
+        case b5 = "5B"
+        case b6 = "6B"
+        case n1 = "1号"
+        
+        static let WeightIndexs: [WeightIndex] = [.g8, .g7, .g6, .g5,
+                                                  .g4, .g3, .g2, .g1,
+                                                  .b1, .b2, .b3,
+                                                  .b4, .b5, .b6,
+                                                  .n1]
+    }
+
     /// Description: インデックス文字列
     /// - Note: 2018/09/12 - Ver.1.0.1
     ///              項目を追加

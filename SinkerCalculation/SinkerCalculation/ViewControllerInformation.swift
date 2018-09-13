@@ -270,7 +270,7 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
         appDelegate.resetFlag.viewCalculation = true
         appDelegate.resetFlag.viewWeight = true
 
-        appDelegate.db_CaluInterface.usingFloatSelect = "B3"
+        appDelegate.db_CaluInterface.usingFloatSelect = DataBaseTable.WeightShow.n1.rawValue
 
         appDelegate.db_CaluInterface.theNumberOfSinkers = 2
 

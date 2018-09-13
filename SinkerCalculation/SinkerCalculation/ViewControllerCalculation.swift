@@ -102,6 +102,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
                 $0.value = self.appDelegate.db_CaluInterface.extraWeightSinker
                 $0.formatter = wrapFormatter          // これをこのクラスように作らないといけない
                 }.onChange{ row in
+                    self.alertDelay(argCheckValue: row.value!)
                     self.appDelegate.db_CaluInterface.extraWeightSinker = row.value!
                     self.defaults.set(self.appDelegate.db_CaluInterface.extraWeightSinker, forKey: DataBaseTable.UserDefaultsTag.extra_weight_sinker.rawValue)
             }
@@ -115,6 +116,27 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
                     // move View Controller of "ID:toResult".
                     self.performSegue(withIdentifier: "toResultViewController", sender: nil)
         }
+    }
+
+    /// Description: 余幅が1.00以上の場合、警告メッセージを表示する
+    ///              初回起動時 : デフォルト値を設定する
+    /// - Author: sawatch
+    /// - Date: 2018/09/13
+    /// - Version: 1.0.1
+    func alertDelay(argCheckValue:Double){
+        if(argCheckValue < 1.00){
+            return
+        }
+        // "保存しました"
+        let alert = UIAlertController(title: "", message: "余幅が1.00以上の場合、計算に時間がかかる場合があります。\n0.99以下の値を推奨します。", preferredStyle: UIAlertControllerStyle.alert)
+        present(alert, animated: true, completion: {
+            // アラートを閉じる
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                alert.dismiss(animated: true, completion: nil)
+            })
+            
+        })
+        return
     }
 
     /// Storyboadで ViewControllerResult から ViewControllerCalculation へ戻るために必要
@@ -150,7 +172,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
         if(value != nil){
             appDelegate.db_CaluInterface.usingFloatSelect = value!
         }else{
-            appDelegate.db_CaluInterface.usingFloatSelect = "3B"
+            appDelegate.db_CaluInterface.usingFloatSelect = DataBaseTable.WeightShow.b3.rawValue
         }
         appDelegate.db_CaluInterface.usingFloatWeight = defaults.double(forKey: DataBaseTable.UserDefaultsTag.using_float_weight.rawValue)
         appDelegate.db_CaluInterface.theNumberOfSinkers = defaults.integer(forKey: DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue)
@@ -183,7 +205,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
     func formatUserDefaults(){
         // 初回起動時はデフォルト値を設定する
         // [計算]画面の設定値
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.using_float_select.rawValue : "3B"])
+        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.using_float_select.rawValue : DataBaseTable.WeightShow.b3])
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.using_float_weight.rawValue : 0.00])
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue : 2])
         defaults.register(defaults: [DataBaseTable.UserDefaultsTag.extra_weight_sinker.rawValue : 0.0])
