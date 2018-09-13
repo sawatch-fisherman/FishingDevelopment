@@ -18,25 +18,15 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
 
     var resultCombination = CalculationCombination.resultTable()
 
-    let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-
     /// Description: 起動時の処理
-    /// - Note: 2018/09/01 - Ver.1.0.1
-    ///              処理中にインジケーターを表示する処理を追加
-    /// - Author: sawatch
-    /// - Date: 2018/08/17
-    /// - Version: 1.0.0
+    /// - Note: 2018/09/14 - Ver.1.0.1
+    ///              "CreateResultTable"処理を"viewWillAppear"関数に移動
+    /// - Author:    sawatch
+    /// - Date:      2018/08/17
+    /// - Version:   1.0.0
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        /// - Warning: 下記のインジケータ処理は失敗している記述場所を変更すること
-        /// - Date: 2018/09/04
-        settingActivityIndicatorView()
-        activityIndicatorView.startAnimating()
-
-        // 試しに関数のテスト
-        resultCombination = CreateResultTable()
-        
         // テーブルビュー作成
         resultTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 
@@ -48,19 +38,24 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
 
     }
 
+
+    /// Description: [計算結果]画面が表示される直前 のイベント
+    /// - Warning:   "CreateResultTable"関数は、このタイミングで実行する
+    ///              このタイミングで実行しなければ、[計算]画面で[計算開始]ボタンを押下時に、
+    ///              正常にインジケータが表示されない
+    /// - Author:    sawatch
+    /// - Date:      2018/09/14
+    /// - Version:   1.0.1
+    override func viewWillAppear(_ animated: Bool) {
+        // オモリの組合せを計算する
+        resultCombination = CreateResultTable()
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        /// - Warning: 下記のインジケータ処理は失敗している記述場所を変更すること
-        /// - Date: 2018/09/04
-        // インジケーター finish
-        if (true == activityIndicatorView.isAnimating) {
-            activityIndicatorView.stopAnimating()
-        }
-    }
 
     // セクション数を返す(初期値は1)
     func numberOfSections(in tableView: UITableView) -> Int{
@@ -70,16 +65,6 @@ class ViewControllerResult: UIViewController, UITableViewDelegate, UITableViewDa
     // ヘッダーの高さ
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
-    }
-
-    /// Description: UIActivityIndicatorViewの設定
-    /// - Author: sawatch
-    /// - Date: 2018/09/03
-    /// - Version: 1.0.1
-    func settingActivityIndicatorView(){
-        self.view.addSubview(activityIndicatorView)
-        self.view.bringSubview(toFront: activityIndicatorView)
-        activityIndicatorView.frame = self.view.bounds
     }
 
     /// Description: (必須メソッド)ヘッダー(セクション)に表示する文字列を設定する

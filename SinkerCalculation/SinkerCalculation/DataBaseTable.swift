@@ -94,7 +94,7 @@ class DataBaseTable {
         case b6 = "6B"
         case n1 = "1号"
         
-        static let WeightIndexs: [WeightIndex] = [.g8, .g7, .g6, .g5,
+        static let WeightShows: [WeightShow] = [.g8, .g7, .g6, .g5,
                                                   .g4, .g3, .g2, .g1,
                                                   .b1, .b2, .b3,
                                                   .b4, .b5, .b6,

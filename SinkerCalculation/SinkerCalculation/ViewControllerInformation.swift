@@ -261,7 +261,7 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
     ///              2.UserDefaultを初期化
     /// - Note:
     /// - Author: sawatch
-    /// - Date: 2018/09/12
+    /// - Date: 2018/09/13
     /// - Version: 1.0.1
     func resetDefaultsValues(){
         #if DEBUG
@@ -270,7 +270,7 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
         appDelegate.resetFlag.viewCalculation = true
         appDelegate.resetFlag.viewWeight = true
 
-        appDelegate.db_CaluInterface.usingFloatSelect = DataBaseTable.WeightShow.n1.rawValue
+        appDelegate.db_CaluInterface.usingFloatSelect = DataBaseTable.WeightShow.b3.rawValue
 
         appDelegate.db_CaluInterface.theNumberOfSinkers = 2
 

@@ -139,9 +139,10 @@ class CalculationCombination {
     }
 
     /// Description: 最大値/最小値を求める (ウキの重量 ± 余重)
-    /// - Note: 2018/09/12 - Ver.1.0.1
-    ///              項目を追加
+    /// - Note: 2018/09/13 - Ver.1.0.1
+    ///              >>項目を追加
     ///              - 1号
+    ///              >>caseの値を定数に修正
     /// - Author: sawatch
     /// - Date: 2018/08/17
     /// - Version: 1.0.0
@@ -151,21 +152,21 @@ class CalculationCombination {
         var selectSize:DataBaseTable.WeightIndex = DataBaseTable.WeightIndex.b6
         switch(appDelegate.db_CaluInterface.usingFloatSelect)
         {
-            case "G8": selectSize = DataBaseTable.WeightIndex.g8
-            case "G7": selectSize = DataBaseTable.WeightIndex.g7
-            case "G6": selectSize = DataBaseTable.WeightIndex.g6
-            case "G5": selectSize = DataBaseTable.WeightIndex.g5
-            case "G4": selectSize = DataBaseTable.WeightIndex.g4
-            case "G3": selectSize = DataBaseTable.WeightIndex.g3
-            case "G2": selectSize = DataBaseTable.WeightIndex.g2
-            case "G1": selectSize = DataBaseTable.WeightIndex.g1
-            case "B" : selectSize = DataBaseTable.WeightIndex.b1
-            case "2B": selectSize = DataBaseTable.WeightIndex.b2
-            case "3B": selectSize = DataBaseTable.WeightIndex.b3
-            case "4B": selectSize = DataBaseTable.WeightIndex.b4
-            case "5B": selectSize = DataBaseTable.WeightIndex.b5
-            case "6B": selectSize = DataBaseTable.WeightIndex.b6
-            case "1号": selectSize = DataBaseTable.WeightIndex.n1
+            case DataBaseTable.WeightShow.g8.rawValue: selectSize = DataBaseTable.WeightIndex.g8
+            case DataBaseTable.WeightShow.g7.rawValue: selectSize = DataBaseTable.WeightIndex.g7
+            case DataBaseTable.WeightShow.g6.rawValue: selectSize = DataBaseTable.WeightIndex.g6
+            case DataBaseTable.WeightShow.g5.rawValue: selectSize = DataBaseTable.WeightIndex.g5
+            case DataBaseTable.WeightShow.g4.rawValue: selectSize = DataBaseTable.WeightIndex.g4
+            case DataBaseTable.WeightShow.g3.rawValue: selectSize = DataBaseTable.WeightIndex.g3
+            case DataBaseTable.WeightShow.g2.rawValue: selectSize = DataBaseTable.WeightIndex.g2
+            case DataBaseTable.WeightShow.g1.rawValue: selectSize = DataBaseTable.WeightIndex.g1
+            case DataBaseTable.WeightShow.b1.rawValue: selectSize = DataBaseTable.WeightIndex.b1
+            case DataBaseTable.WeightShow.b2.rawValue: selectSize = DataBaseTable.WeightIndex.b2
+            case DataBaseTable.WeightShow.b3.rawValue: selectSize = DataBaseTable.WeightIndex.b3
+            case DataBaseTable.WeightShow.b4.rawValue: selectSize = DataBaseTable.WeightIndex.b4
+            case DataBaseTable.WeightShow.b5.rawValue: selectSize = DataBaseTable.WeightIndex.b5
+            case DataBaseTable.WeightShow.b6.rawValue: selectSize = DataBaseTable.WeightIndex.b6
+            case DataBaseTable.WeightShow.n1.rawValue: selectSize = DataBaseTable.WeightIndex.n1
             default: print("setRangeOfWeight-Error")          // Error
         }
 
@@ -444,6 +445,7 @@ class CalculationCombination {
     /// - Note: 2018/09/12 - Ver.1.0.1
     ///              項目を追加
     ///              - 1号
+    ///              >>caseの値を定数に修正
     /// - Author: sawatch
     /// - Date: 2018/08/14
     /// - Version: 1.0.0
@@ -454,23 +456,22 @@ class CalculationCombination {
         var returnDestination:String = ""
         switch(argSource)
         {
-        // ["G8","G7","G6","G5","G4","G3","G2","G1","B","B2","B3","B4","B5","B6"]
-        case "g8": returnDestination = "G8"
-        case "g7": returnDestination = "G7"
-        case "g6": returnDestination = "G6"
-        case "g5": returnDestination = "G5"
-        case "g4": returnDestination = "G4"
-        case "g3": returnDestination = "G3"
-        case "g2": returnDestination = "G2"
-        case "g1": returnDestination = "G1"
-        case "b1": returnDestination = "B"
-        case "b2": returnDestination = "2B"
-        case "b3": returnDestination = "3B"
-        case "b4": returnDestination = "4B"
-        case "b5": returnDestination = "5B"
-        case "b6": returnDestination = "6B"
-        case "n1": returnDestination = "1号"
-        default: returnDestination = ""          // Error
+        case DataBaseTable.WeightIndex.g8.rawValue: returnDestination = DataBaseTable.WeightShow.g8.rawValue
+        case DataBaseTable.WeightIndex.g7.rawValue: returnDestination = DataBaseTable.WeightShow.g7.rawValue
+        case DataBaseTable.WeightIndex.g6.rawValue: returnDestination = DataBaseTable.WeightShow.g6.rawValue
+        case DataBaseTable.WeightIndex.g5.rawValue: returnDestination = DataBaseTable.WeightShow.g5.rawValue
+        case DataBaseTable.WeightIndex.g4.rawValue: returnDestination = DataBaseTable.WeightShow.g4.rawValue
+        case DataBaseTable.WeightIndex.g3.rawValue: returnDestination = DataBaseTable.WeightShow.g3.rawValue
+        case DataBaseTable.WeightIndex.g2.rawValue: returnDestination = DataBaseTable.WeightShow.g2.rawValue
+        case DataBaseTable.WeightIndex.g1.rawValue: returnDestination = DataBaseTable.WeightShow.g1.rawValue
+        case DataBaseTable.WeightIndex.b1.rawValue: returnDestination = DataBaseTable.WeightShow.b1.rawValue
+        case DataBaseTable.WeightIndex.b2.rawValue: returnDestination = DataBaseTable.WeightShow.b2.rawValue
+        case DataBaseTable.WeightIndex.b3.rawValue: returnDestination = DataBaseTable.WeightShow.b3.rawValue
+        case DataBaseTable.WeightIndex.b4.rawValue: returnDestination = DataBaseTable.WeightShow.b4.rawValue
+        case DataBaseTable.WeightIndex.b5.rawValue: returnDestination = DataBaseTable.WeightShow.b5.rawValue
+        case DataBaseTable.WeightIndex.b6.rawValue: returnDestination = DataBaseTable.WeightShow.b6.rawValue
+        case DataBaseTable.WeightIndex.n1.rawValue: returnDestination = DataBaseTable.WeightShow.n1.rawValue
+        default: returnDestination = "NULL"          // Error
         }
 
         return returnDestination

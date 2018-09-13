@@ -21,15 +21,18 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
     let defaults: UserDefaults = UserDefaults.standard
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
+    let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     // AdMobバナー
     var bannerAdmobView: GADBannerView!
 
+    /// Description: 起動時の処理
+    /// - Note: 2018/09/14 - Ver.1.0.1
+    ///              インジケータの設定を追加
+    /// - Author:    sawatch
+    /// - Date:      2018/08/17
+    /// - Version:   1.0.0
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //let navigationSetting:UIView = UIView()
-        //navigationSetting.backgroundColor = UIColor.rgb(r: 244, g: 245, b: 247, alpha: 1)
-        //self.navigationItem.titleView = navigationSetting
 
         setUserDefaultsToAppDelegate()
 
@@ -37,7 +40,8 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
 
         setAdMob()
         
-        // Do any additional setup after loading the view.
+        // インジケータの設定
+        settingActivityIndicatorView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,9 +63,36 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
         return
     }
 
+    /// Description: [計算結果]画面に遷移した直後 のイベント
+    ///              インジケータを非表示にする
+    /// - Author: sawatch
+    /// - Date: 2018/09/14
+    /// - Version: 1.0.1
+    override func viewDidDisappear(_ animated: Bool) {
+        // インジケーター finish
+        if (true == self.activityIndicatorView.isAnimating) {
+            self.activityIndicatorView.stopAnimating()
+        }
+    }
+
+    /// Description: UIActivityIndicatorViewの設定
+    /// - Author: sawatch
+    /// - Date: 2018/09/03
+    /// - Version: 1.0.1
+    func settingActivityIndicatorView(){
+        self.view.addSubview(activityIndicatorView)
+        self.view.bringSubview(toFront: activityIndicatorView)
+        activityIndicatorView.frame = self.view.bounds
+    }
+
     /// Description:    Eurekaの設定
-    /// - Note: 2018/08/26 - Ver.1.0.1
+    /// - Note: 2018/09/14 - Ver.1.0.1
     ///                 使用するウキの個数のエラー(範囲値)チェックを追加
+    ///                 >>余幅
+    ///                 - 余幅のチェックを追加
+    ///                 >>計算開始
+    ///                 - インジケータの表示を追加
+    ///
     /// - Author:       sawatch
     /// - Date:         2018/08/17
     /// - Version:      1.0.0
@@ -72,13 +103,17 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
         wrapFormatter.minimumIntegerDigits = 1
         wrapFormatter.maximumFractionDigits = 2
         wrapFormatter.minimumFractionDigits = 2
-        
+
         form
             // Section1
             +++ Section("各項目を選択してください")
             <<< PickerInputRow<String>(DataBaseTable.UserDefaultsTag.using_float_select.rawValue){
                 $0.title = "使用するウキ"
-                $0.options = ["G8","G7","G6","G5","G4","G3","G2","G1","B","2B","3B","4B","5B","6B","1号"]
+                $0.options = [DataBaseTable.WeightShow.g8.rawValue, DataBaseTable.WeightShow.g7.rawValue, DataBaseTable.WeightShow.g6.rawValue, DataBaseTable.WeightShow.g5.rawValue,
+                              DataBaseTable.WeightShow.g4.rawValue, DataBaseTable.WeightShow.g3.rawValue, DataBaseTable.WeightShow.g2.rawValue, DataBaseTable.WeightShow.g1.rawValue,
+                              DataBaseTable.WeightShow.b1.rawValue, DataBaseTable.WeightShow.b2.rawValue, DataBaseTable.WeightShow.b3.rawValue,
+                              DataBaseTable.WeightShow.b4.rawValue, DataBaseTable.WeightShow.b5.rawValue, DataBaseTable.WeightShow.b6.rawValue,
+                              DataBaseTable.WeightShow.n1.rawValue ]
                 $0.value = self.appDelegate.db_CaluInterface.usingFloatSelect
                 }.onChange{ row in
                     self.appDelegate.db_CaluInterface.usingFloatSelect = row.value!
@@ -113,6 +148,10 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
             <<< ButtonRow() {
                 $0.title = "計算開始"
                 }.onCellSelection{ cell, row in
+                    // インジケーター start
+                    // このタイミングで呼び出さなければ、画面切り替え前にインジケータを表示できない
+                    self.activityIndicatorView.startAnimating()
+
                     // move View Controller of "ID:toResult".
                     self.performSegue(withIdentifier: "toResultViewController", sender: nil)
         }
@@ -131,7 +170,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
         let alert = UIAlertController(title: "", message: "余幅が1.00以上の場合、計算に時間がかかる場合があります。\n0.99以下の値を推奨します。", preferredStyle: UIAlertControllerStyle.alert)
         present(alert, animated: true, completion: {
             // アラートを閉じる
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
                 alert.dismiss(animated: true, completion: nil)
             })
             
