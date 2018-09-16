@@ -215,9 +215,10 @@ class ViewControllerWeight: FormViewController {
     }
 
     /// Description: Eurekaの設定
-    /// - Note: 2018/09/12 - Ver.1.0.1
-    ///              項目を追加
+    /// - Note: 2018/09/16 - Ver.1.0.1
+    ///              >>項目を追加
     ///              - 1号
+    ///              >>各引数を定数化
     /// - Author: sawatch
     /// - Date: 2018/08/17
     /// - Version: 1.0.0
@@ -232,215 +233,215 @@ class ViewControllerWeight: FormViewController {
         
         form // ウキの設定
             +++ Section("ウキのオモサ (単位:g)")
-            <<< DecimalRow("float_g8") {
-                $0.title = "G8"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_g8.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g8.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .g8)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .g8, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.g8.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_g7") {
-                $0.title = "G7"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_g7.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g7.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .g7)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .g7, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.g7.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_g6") {
-                $0.title = "G6"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_g6.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g6.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .g6)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .g6, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.g6.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_g5") {
-                $0.title = "G5"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_g5.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g5.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .g5)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .g5, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.g5.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_g4") {
-                $0.title = "G4"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_g4.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g4.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .g4)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .g4, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.g4.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_g3") {
-                $0.title = "G3"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_g3.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g3.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .g3)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .g3, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.g3.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_g2") {
-                $0.title = "G2"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_g2.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g2.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .g2)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .g2, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.g2.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_g1") {
-                $0.title = "G1"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_g1.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g1.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .g1)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .g1, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.g1.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_b1") {
-                $0.title = "B"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_b1.rawValue) {
+                $0.title = DataBaseTable.WeightShow.b1.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .b1)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .b1, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.b1.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_b2") {
-                $0.title = "2B"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_b2.rawValue) {
+                $0.title = DataBaseTable.WeightShow.b2.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .b2)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .b2, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.b2.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_b3") {
-                $0.title = "3B"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_b3.rawValue) {
+                $0.title = DataBaseTable.WeightShow.b3.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .b3)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .b3, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.b3.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_b4") {
-                $0.title = "4B"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_b4.rawValue) {
+                $0.title = DataBaseTable.WeightShow.b4.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .b4)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .b4, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.b4.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_b5") {
-                $0.title = "5B"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_b5.rawValue) {
+                $0.title = DataBaseTable.WeightShow.b5.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .b5)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .b5, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.b5.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_b6") {
-                $0.title = "6B"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_b6.rawValue) {
+                $0.title = DataBaseTable.WeightShow.b6.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .b6)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .b6, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.b6.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("float_n1") {
-                $0.title = "1号"
+            //
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.float_n1.rawValue) {
+                $0.title = DataBaseTable.WeightShow.n1.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightFloat(getKey: .n1)
                 $0.formatter = wrapFormatter
-                }.onChange{ row in
-                    self.CCalcDB.setArrayDataBaseWeightFloat(setKey: .n1, setValue: row.value!)
+                }.onCellHighlightChanged { cell, row in
+                    self.checkValueFloats(argIndex: DataBaseTable.WeightNumber.n1.rawValue, checkValue: row.value!)
             }
 
             // オモリの設定
             +++ Section("オモリのオモサ (単位:g)")
-            <<< DecimalRow("sinker_g8") {
-                $0.title = "G8"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_g8.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g8.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g8)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g8.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_g7") {
-                $0.title = "G7"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_g7.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g7.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g7)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g7.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_g6") {
-                $0.title = "G6"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_g6.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g6.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g6)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g6.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_g5") {
-                $0.title = "G5"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_g5.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g5.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g5)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g5.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_g4") {
-                $0.title = "G4"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_g4.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g4.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g4)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g4.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_g3") {
-                $0.title = "G3"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_g3.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g3.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g3)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g3.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_g2") {
-                $0.title = "G2"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_g2.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g2.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g2)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g2.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_g1") {
-                $0.title = "G1"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_g1.rawValue) {
+                $0.title = DataBaseTable.WeightShow.g1.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .g1)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.g1.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_b1") {
-                $0.title = "B"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_b1.rawValue) {
+                $0.title = DataBaseTable.WeightShow.b1.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .b1)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.b1.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_b2") {
-                $0.title = "2B"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_b2.rawValue) {
+                $0.title = DataBaseTable.WeightShow.b2.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .b2)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.b2.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_b3") {
-                $0.title = "3B"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_b3.rawValue) {
+                $0.title = DataBaseTable.WeightShow.b3.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .b3)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.b3.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_b4") {
-                $0.title = "4B"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_b4.rawValue) {
+                $0.title = DataBaseTable.WeightShow.b4.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .b4)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.b4.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_b5") {
-                $0.title = "5B"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_b5.rawValue) {
+                $0.title = DataBaseTable.WeightShow.b5.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .b5)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.b5.rawValue, checkValue: row.value!)
             }
-            <<< DecimalRow("sinker_b6") {
-                $0.title = "6B"
+            <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_b6.rawValue) {
+                $0.title = DataBaseTable.WeightShow.b6.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .b6)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
                     self.checkValueSinkers(argIndex: DataBaseTable.WeightNumber.b6.rawValue, checkValue: row.value!)
             }
             <<< DecimalRow(DataBaseTable.UserDefaultsTag.sinker_n1.rawValue) {
-                $0.title = "1号"
+                $0.title = DataBaseTable.WeightShow.n1.rawValue
                 $0.value = CCalcDB.getArrayDataBaseWeightSinker(getKey: .n1)
                 $0.formatter = wrapFormatter
                 }.onCellHighlightChanged { cell, row in
@@ -495,7 +496,7 @@ class ViewControllerWeight: FormViewController {
     ///                       2. 取消し
     ///                       3. 他の画面に移動
     /// - Note: 2018/08/26 - Ver.1.0.1
-    ///              初回起動時にAppDelegateの値が全て"0"の不具合を修正
+    ///              初起動時にAppDelegateの値が全て"0"の不具合を修正
     ///              UserDefaultsを初期化する処理を別関数に置き換え
     /// - Author: sawatch
     /// - Date: 2018/08/17
@@ -593,7 +594,6 @@ class ViewControllerWeight: FormViewController {
             statsFloats[argIndex].edit = true
             return
         }
-        statsFloats[argIndex].edit = false
 
         let resultZero:Bool = CheckZeroValue(argIndex: argIndex, argTag:selectTag, argSetValue: checkValue, argType: WeightType.float)
         if(resultZero == true){
@@ -613,6 +613,7 @@ class ViewControllerWeight: FormViewController {
         // 重複なし
         // 書込み
         self.CCalcDB.setArrayDataBaseWeightFloat(setKey: DataBaseTable.WeightIndex(rawValue: selectKey)!, setValue: checkValue)
+        statsFloats[argIndex].edit = false
         // タブバーを隠す
         hideTabBar()
         return
@@ -652,7 +653,6 @@ class ViewControllerWeight: FormViewController {
             statsSinkers[argIndex].edit = true
             return
         }
-        statsSinkers[argIndex].edit = false
 
         let resultZero:Bool = CheckZeroValue(argIndex: argIndex, argTag:selectTag, argSetValue: checkValue, argType: WeightType.sinker)
         if(resultZero == true){
@@ -672,6 +672,7 @@ class ViewControllerWeight: FormViewController {
         // 重複なし
         // 書込み
         self.CCalcDB.setArrayDataBaseWeightSinker(setKey: DataBaseTable.WeightIndex(rawValue: selectKey)!, setValue: checkValue)
+        statsSinkers[argIndex].edit = false
         // タブバーを隠す
         hideTabBar()
 
@@ -712,7 +713,7 @@ class ViewControllerWeight: FormViewController {
     ///              重複なし: 何もしない
     ///
     /// - Author: sawatch
-    /// - Date: 2018/08/25
+    /// - Date: 2018/09/16
     /// - Version: 1.0.1
     /// - Parameters:
     ///   - argIndex:Int           変更した項目のサイズ
@@ -722,7 +723,7 @@ class ViewControllerWeight: FormViewController {
     /// - Returns: true : 値は0.00
     ///            false: 値は0.01以上
     func CheckZeroValue(argIndex:Int, argTag:String, argSetValue:Double, argType:WeightType)->Bool{
-        if(argSetValue.isZero){
+        if(argSetValue.isZero == false){
             return false
         }
         // 値はゼロ
@@ -796,7 +797,7 @@ class ViewControllerWeight: FormViewController {
         // 重複あり
         // アラートを表示
         let title = "重複エラー"
-        let message = "他のオモリと同じ重量になっています。\n他のオモリと異なる重量を設定してください。"
+        let message = "他のウキと同じ重量になっています。\n他のウキと異なる重量を設定してください。"
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) -> Void in

@@ -22,16 +22,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SinkerCalculation/CalculationDataBase.swift"
+            timestampString = "558565194.964363"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "getArrayDataBaseWeightFloat(getKey:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SinkerCalculation/ViewControllerWeight.swift"
-            timestampString = "558564526.889648"
+            filePath = "SinkerCalculation/ViewControllerCalculation.swift"
+            timestampString = "558750393.051052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "899"
-            endingLineNumber = "899"
-            landmarkName = "convertIndexToTagFloat(argIndex:)"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "formatUserDefaults()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SinkerCalculation/ViewControllerWeight.swift"
-            timestampString = "558564526.889757"
+            timestampString = "558750393.052094"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "647"
-            endingLineNumber = "647"
+            startingLineNumber = "649"
+            endingLineNumber = "649"
             landmarkName = "checkValueSinkers(argIndex:checkValue:)"
             landmarkType = "7">
          </BreakpointContent>
