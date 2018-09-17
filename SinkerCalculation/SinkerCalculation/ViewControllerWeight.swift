@@ -68,15 +68,35 @@ class ViewControllerWeight: FormViewController {
     }
 
 
-    /// Description: [設定]画面に切り替わった際のイベント
-    ///              もしリセットボタンが押されていた場合、各ボタンをリセットする
+    /// Description: [設定]画面が表示される直前のイベント
+    ///              もしリセットボタンが押されていた場合、インジケータの表示を開始する
     /// - Author: sawatch
-    /// - Date: 2018/09/06
+    /// - Date: 2018/09/17
+    /// - Version: 1.0.1
+    override func viewWillAppear(_ animated: Bool) {
+        if(true == appDelegate.resetFlag.viewWeight){
+            // インジケーター start
+            activityIndicatorView.startAnimating()
+
+        }
+        return
+    }
+
+    /// Description: [設定]画面が表示された直後のイベント
+    ///              もしリセットボタンが押されていた場合、各ボタンをリセットする、インジケータを終了する
+    /// - Author: sawatch
+    /// - Date: 2018/09/17
     /// - Version: 1.0.1
     override func viewDidAppear(_ animated: Bool) {
         if(true == appDelegate.resetFlag.viewWeight){
             resetValues()
+
             appDelegate.resetFlag.viewWeight = false
+
+            // インジケーター finish
+            if (true == self.activityIndicatorView.isAnimating) {
+                self.activityIndicatorView.stopAnimating()
+            }
         }
         return
     }
@@ -595,8 +615,8 @@ class ViewControllerWeight: FormViewController {
             return
         }
 
-        let resultZero:Bool = CheckZeroValue(argIndex: argIndex, argTag:selectTag, argSetValue: checkValue, argType: WeightType.float)
-        if(resultZero == true){
+        let resultRange:Bool = CheckRangeValue(argIndex: argIndex, argTag:selectTag, argSetValue: checkValue, argType: WeightType.float)
+        if(resultRange == true){
             return
         }
 
@@ -654,8 +674,8 @@ class ViewControllerWeight: FormViewController {
             return
         }
 
-        let resultZero:Bool = CheckZeroValue(argIndex: argIndex, argTag:selectTag, argSetValue: checkValue, argType: WeightType.sinker)
-        if(resultZero == true){
+        let resultRange:Bool = CheckRangeValue(argIndex: argIndex, argTag:selectTag, argSetValue: checkValue, argType: WeightType.sinker)
+        if(resultRange == true){
             return
         }
 
@@ -679,32 +699,48 @@ class ViewControllerWeight: FormViewController {
         return
     }
 
-    /// Description: 重量が変更された場合、値が変更前と同じかチェックする
-    ///              変更あり: 何もしない
-    ///              変更なし: 処理を終了する
+    /// Description: 重量が変更された場合、値が範囲内[0.01 ~ 9.99] かチェックする
+    ///              重複あり: メッセージを出力する
+    ///                       編集前の値に戻す
+    ///              重複なし: 何もしない
     ///
     /// - Author: sawatch
-    /// - Date: 2018/09/12
+    /// - Date: 2018/09/16
     /// - Version: 1.0.1
     /// - Parameters:
     ///   - argIndex:Int           変更した項目のサイズ
+    ///   - argTag:String          変更した項目のタグ名
     ///   - argSetValue:Double     変更する値
     ///   - argType:WeightType     0:Float, 1:Sinker
-    /// - Returns: true : 値は変更なし
-    ///            false: 値は変更あり
-    func CheckNoChangeValue(argIndex:Int, argSetValue:Double, argType:WeightType)->Bool{
-        var valueCompare:Double = 0.0
-
-        if(argType == WeightType.float){
-            valueCompare = self.statsFloats[argIndex].beforeValue
-        }else{
-            valueCompare = self.statsSinkers[argIndex].beforeValue
+    /// - Returns: true : 値は0.01 ~ 9.99 以内
+    ///            false: 値は0.00以下、10.00以上
+    func CheckRangeValue(argIndex:Int, argTag:String, argSetValue:Double, argType:WeightType)->Bool{
+        if( (argSetValue.isZero == false) && (10.00 > argSetValue)){
+            return false
         }
-
-        if(valueCompare == argSetValue){
-            return true
-        }
-        return false
+        // 値はゼロ
+        // アラートを表示
+        let title = "入力値エラー"
+        let message = "重量の値が 範囲外です です。\n[0.01~9.99] の重量を設定してください。"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) -> Void in
+            // ボタン押下後の処理
+            // 編集前の値に戻す
+            var restoreValue:Double = 0.0
+            if(argType == WeightType.float){
+                restoreValue = self.statsFloats[argIndex].beforeValue
+            }else{
+                restoreValue = self.statsSinkers[argIndex].beforeValue
+            }
+            self.form.rowBy(tag: argTag)?.baseValue = restoreValue
+            self.form.rowBy(tag: argTag)?.reload()
+        })
+        
+        alert.addAction(defaultAction)
+        present(alert, animated: true, completion: nil)
+        return true
+        
     }
 
     /// Description: 重量が変更された場合、値が0かチェックする
@@ -751,7 +787,36 @@ class ViewControllerWeight: FormViewController {
 
     }
 
+
+    /// Description: 重量が変更された場合、値が変更前と同じかチェックする
+    ///              変更あり: 何もしない
+    ///              変更なし: 処理を終了する
+    ///
+    /// - Author: sawatch
+    /// - Date: 2018/09/12
+    /// - Version: 1.0.1
+    /// - Parameters:
+    ///   - argIndex:Int           変更した項目のサイズ
+    ///   - argSetValue:Double     変更する値
+    ///   - argType:WeightType     0:Float, 1:Sinker
+    /// - Returns: true : 値は変更なし
+    ///            false: 値は変更あり
+    func CheckNoChangeValue(argIndex:Int, argSetValue:Double, argType:WeightType)->Bool{
+        var valueCompare:Double = 0.0
+        
+        if(argType == WeightType.float){
+            valueCompare = self.statsFloats[argIndex].beforeValue
+        }else{
+            valueCompare = self.statsSinkers[argIndex].beforeValue
+        }
+        
+        if(valueCompare == argSetValue){
+            return true
+        }
+        return false
+    }
     
+
     /// Description: Float重量が変更された場合、他の項目と重複していないか確認する
     ///              重複あり: メッセージを出力する
     ///                       編集前の値に戻す

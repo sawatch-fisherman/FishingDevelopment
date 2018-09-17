@@ -42,28 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SinkerCalculation/ViewControllerCalculation.swift"
-            timestampString = "558750393.051052"
+            timestampString = "558863667.453395"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
-            landmarkName = "formatUserDefaults()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SinkerCalculation/ViewControllerWeight.swift"
-            timestampString = "558750393.052094"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "649"
-            endingLineNumber = "649"
-            landmarkName = "checkValueSinkers(argIndex:checkValue:)"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "setEurekaControl()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

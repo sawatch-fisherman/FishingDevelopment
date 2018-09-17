@@ -310,26 +310,9 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
         appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.b6] = 2.20
         appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.n1] = 3.75
 
-        // 初回起動時はデフォルト値を設定する
-        // [計算]画面の設定値
-        defaults.set(appDelegate.db_CaluInterface.usingFloatSelect, forKey: DataBaseTable.UserDefaultsTag.using_float_select.rawValue)
-        defaults.set(appDelegate.db_CaluInterface.theNumberOfSinkers, forKey: DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue)
-        defaults.set(appDelegate.db_CaluInterface.extraWeightSinker, forKey: DataBaseTable.UserDefaultsTag.extra_weight_sinker.rawValue)
+        let CManageUD = ManagementUserDefaults()
+        CManageUD.setAllAppDelegateToDefaults()
 
-        // [設定]画面の設定値
-        for index in 0..<DataBaseTable.WeightNumber.WeightNumbers.count{
-            
-            defaults.set(appDelegate.db_Weights.db_Float.weights[DataBaseTable.WeightIndex.WeightIndexs[index]], forKey: DataBaseTable.UserDefaultsTag.FloatTags[index].rawValue)
-            defaults.set(appDelegate.db_Weights.db_Sinker.weights[DataBaseTable.WeightIndex.WeightIndexs[index]], forKey: DataBaseTable.UserDefaultsTag.SinkerTags[index].rawValue)
-            
-            #if DEBUG
-            print("Keys:", DataBaseTable.WeightIndex.WeightIndexs[index])
-            let debugFloat:Double = defaults.double(forKey: DataBaseTable.UserDefaultsTag.FloatTags[index].rawValue)
-            print("Float:",debugFloat)
-            let debugSinker:Double = defaults.double(forKey: DataBaseTable.UserDefaultsTag.SinkerTags[index].rawValue)
-            print("Sinker:",debugSinker)
-            #endif
-        }
         return
     }
 

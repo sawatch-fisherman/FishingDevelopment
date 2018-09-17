@@ -38,7 +38,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
 
         setEurekaControl()
 
-        setAdMob()
+//        setAdMob()
         
         // インジケータの設定
         settingActivityIndicatorView()
@@ -123,7 +123,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
                 $0.title = "使用するオモリの個数"
                 $0.options = [2,3,4]
                 var number:Int = self.appDelegate.db_CaluInterface.theNumberOfSinkers
-                if ( (2>number) && (4<number) ) {
+                if ( (2>number) || (4<number) ) {
                     // 範囲外の値の場合,"2"を設定する
                     number = 2
                 }
@@ -201,10 +201,11 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
         if (defaults.object(forKey: DataBaseTable.UserDefaultsTag.first_boot.rawValue) == nil) {
             firstBoot = true
         }
+        
+        let CManageUD = ManagementUserDefaults()
         if(true == firstBoot){
             // 初回起動時はデフォルト値を設定する
-            formatUserDefaults()
-            defaults.set(true, forKey: DataBaseTable.UserDefaultsTag.first_boot.rawValue)
+            CManageUD.formatAllUserDefaults()
         }
         // [計算]画面の設定値
         let value:String? = defaults.string(forKey: DataBaseTable.UserDefaultsTag.using_float_select.rawValue)
@@ -230,58 +231,13 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
             print("Sinker:", debugSinker)
             #endif
         }
-        return
-    }
-
-    /// Description: UserDefaultsにデフォルト値を設定する
-    /// - Note: setUserDefaultsToAppDelegateから処理を抜粋して作成
-    /// -       2018/09/12 - Ver.1.0.1
-    ///              項目を追加
-    ///              - 1号
-    /// - Author: sawatch
-    /// - Date: 2018/08/25
-    /// - Version: 1.0.1
-    func formatUserDefaults(){
-        // 初回起動時はデフォルト値を設定する
-        // [計算]画面の設定値
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.using_float_select.rawValue : DataBaseTable.WeightShow.b3.rawValue])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.using_float_weight.rawValue : 0.00])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue : 2])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.extra_weight_sinker.rawValue : 0.0])
-
-        // [設定]画面の設定値 オモリ
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g8.rawValue : 0.07])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g7.rawValue : 0.09])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g6.rawValue : 0.12])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g5.rawValue : 0.17])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g4.rawValue : 0.20])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g3.rawValue : 0.25])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g2.rawValue : 0.33])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_g1.rawValue : 0.45])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b1.rawValue : 0.55])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b2.rawValue : 0.80])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b3.rawValue : 1.00])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b4.rawValue : 1.25])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b5.rawValue : 1.75])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_b6.rawValue : 2.20])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.float_n1.rawValue : 3.75])
-
-        // [設定]画面の設定値 ウキ
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g8.rawValue : 0.07])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g7.rawValue : 0.09])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g6.rawValue : 0.12])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g5.rawValue : 0.17])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g4.rawValue : 0.20])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g3.rawValue : 0.25])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g2.rawValue : 0.33])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_g1.rawValue : 0.45])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b1.rawValue : 0.55])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b2.rawValue : 0.80])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b3.rawValue : 1.00])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b4.rawValue : 1.25])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b5.rawValue : 1.75])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_b6.rawValue : 2.20])
-        defaults.register(defaults: [DataBaseTable.UserDefaultsTag.sinker_n1.rawValue : 3.75])
+        if(true == firstBoot){
+            // 初回起動時は設定した値を保存する
+            // この処理を実行しないと、何も操作せずにアプリを起動した場合、
+            // 全ての値が "0" になってしまう。
+            CManageUD.setAllAppDelegateToDefaults()
+            defaults.set(true, forKey: DataBaseTable.UserDefaultsTag.first_boot.rawValue)
+        }
         return
     }
 

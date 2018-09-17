@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE05859F214F377100B48672 /* ManagementUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE05859E214F377100B48672 /* ManagementUserDefaults.swift */; };
 		BE691687212957D600C3EEFC /* TabBarControllerStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE691686212957D600C3EEFC /* TabBarControllerStartView.swift */; };
 		BE9B476B211F9DE100FE6266 /* DataBaseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B476A211F9DE100FE6266 /* DataBaseTable.swift */; };
 		BE9B476D211F9F2800FE6266 /* CalculationDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B476C211F9F2800FE6266 /* CalculationDataBase.swift */; };
@@ -28,6 +29,7 @@
 		2C732692112CC38385A0F0A8 /* Pods-SinkerCalculation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SinkerCalculation.release.xcconfig"; path = "Pods/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation.release.xcconfig"; sourceTree = "<group>"; };
 		31F252484F8B2ECD01876F1B /* Pods_SinkerCalculation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SinkerCalculation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB096E73EFD428365888C03 /* Pods-SinkerCalculation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SinkerCalculation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation.debug.xcconfig"; sourceTree = "<group>"; };
+		BE05859E214F377100B48672 /* ManagementUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementUserDefaults.swift; sourceTree = "<group>"; };
 		BE691686212957D600C3EEFC /* TabBarControllerStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerStartView.swift; sourceTree = "<group>"; };
 		BE9B476A211F9DE100FE6266 /* DataBaseTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseTable.swift; sourceTree = "<group>"; };
 		BE9B476C211F9F2800FE6266 /* CalculationDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationDataBase.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				BEBD042C20DF69AB00325635 /* AppDelegate.swift */,
 				BE9B476C211F9F2800FE6266 /* CalculationDataBase.swift */,
 				BE9B476E211FB10200FE6266 /* CalculationCombination.swift */,
+				BE05859E214F377100B48672 /* ManagementUserDefaults.swift */,
 				BE9B476A211F9DE100FE6266 /* DataBaseTable.swift */,
 				BEBD044420DF712900325635 /* ViewControllerCalculation.swift */,
 				BEBD044620E2D26200325635 /* ViewControllerResult.swift */,
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEBD044320DF6FFC00325635 /* ViewControllerWeight.swift in Sources */,
+				BE05859F214F377100B48672 /* ManagementUserDefaults.swift in Sources */,
 				BE9B476F211FB10200FE6266 /* CalculationCombination.swift in Sources */,
 				BE9B476B211F9DE100FE6266 /* DataBaseTable.swift in Sources */,
 				BEBD044520DF712900325635 /* ViewControllerCalculation.swift in Sources */,
