@@ -20,7 +20,7 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
     let defaults: UserDefaults = UserDefaults.standard
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
-    let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    let activityIndicatorView = UIActivityIndicatorView(style: .large)
 
     /// Description: アプリ情報のインデックス
     /// - Note: 2018/09/01 - Ver.1.0.1
@@ -78,7 +78,7 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
     /// - Version: 1.0.1
     func settingActivityIndicatorView(){
         self.view.addSubview(activityIndicatorView)
-        self.view.bringSubview(toFront: activityIndicatorView)
+        self.view.bringSubviewToFront(activityIndicatorView)
         activityIndicatorView.frame = self.view.bounds
     }
 
@@ -217,8 +217,8 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
         let title = "リセット確認"
         let message = "全ての設定値を初期化してよろしいですか？ \n※編集した内容が全て初期状態に戻ります。"
 
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let defaultAction: UIAlertAction = UIAlertAction(title: "戻る", style: UIAlertActionStyle.default, handler: {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "戻る", style: UIAlertAction.Style.default, handler: {
             (action: UIAlertAction!) -> Void in
             // ボタン押下後の処理
             // インジケーター finish
@@ -227,7 +227,7 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
             }
         })
         
-        let cancelAction: UIAlertAction = UIAlertAction(title: "初期化する", style: UIAlertActionStyle.cancel, handler: {
+        let cancelAction: UIAlertAction = UIAlertAction(title: "初期化する", style: UIAlertAction.Style.cancel, handler: {
             (action: UIAlertAction!) -> Void in
             // ボタン押下後の処理
             self.resetDefaultsValues()
@@ -238,7 +238,7 @@ class ViewControllerInformation: UIViewController, UITableViewDelegate, UITableV
             }
 
             // "編集中の内容を破棄しました"
-            let alert2 = UIAlertController(title: "", message: "全ての設定値を初期化しました", preferredStyle: UIAlertControllerStyle.alert)
+            let alert2 = UIAlertController(title: "", message: "全ての設定値を初期化しました", preferredStyle: UIAlertController.Style.alert)
             self.present(alert2, animated: true, completion: {
                 // アラートを閉じる
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {

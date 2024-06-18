@@ -15,19 +15,24 @@ import Eureka
 import GoogleMobileAds
 
 class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
-
     
     // AppDelegateのインスタンスを取得
     let defaults: UserDefaults = UserDefaults.standard
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 
-    let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    let activityIndicatorView = UIActivityIndicatorView(style: .large)
+
+    /// Description: 使用するオモリの個数を表現する画像
+    let sinkerImageView = UIImageView();
+
     // AdMobバナー
     var bannerAdmobView: GADBannerView!
 
     /// Description: 起動時の処理
     /// - Note: 2018/09/14 - Ver.1.0.1
     ///              インジケータの設定を追加
+    /// - Note: 2021/07/04 - Ver.1.0.3
+    ///                 使用するオモリの個数を表現する画像の設定 を追加
     /// - Author:    sawatch
     /// - Date:      2018/08/17
     /// - Version:   1.0.0
@@ -36,10 +41,12 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
 
         setUserDefaultsToAppDelegate()
 
+        setSinkerImageViewControl();
+
         setEurekaControl()
 
-//        setAdMob()
-        
+        setAdMob()
+
         // インジケータの設定
         settingActivityIndicatorView()
     }
@@ -81,10 +88,67 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
     /// - Version: 1.0.1
     func settingActivityIndicatorView(){
         self.view.addSubview(activityIndicatorView)
-        self.view.bringSubview(toFront: activityIndicatorView)
+        self.view.bringSubviewToFront(activityIndicatorView)
         activityIndicatorView.frame = self.view.bounds
     }
 
+    
+    /// Description:    sinkerImageViewの設定
+    /// - Note: 2021/07/04 - Ver.1.0.3
+    ///                 使用するオモリの個数を表現する画像の設定
+    /// - Author:       sawatch
+    /// - Date:         2021/07/14
+    /// - Version:      1.0.3
+    func setSinkerImageViewControl() {
+
+        let screenW:CGFloat = view.frame.size.width
+        let screenH:CGFloat = view.frame.size.height
+        
+        var multiple:Double = 0.9
+        if(screenW < 340){
+            multiple = 0.65
+        }
+        let frameW:CGFloat = screenW * CGFloat(multiple)
+        // 16:9 の比率を算出する
+        let frameH:CGFloat = (frameW/16) * 9
+        sinkerImageView.frame = CGRect(x:0, y:0, width: frameW, height: frameH)
+        sinkerImageView.center = CGPoint(x:screenW/2, y:screenH * 0.7)
+        
+        sinkerImageView.backgroundColor = UIColor.white
+        
+        sinkerImageView.image = UIImage(named:"useSinkerTwo")
+
+        self.view.addSubview(sinkerImageView)
+        
+        return;
+    }
+    
+    /// Description: 使用するオモリの個数を表現する画像 の変更
+    /// - Note: 2021/07/04 - Ver.1.0.3
+    ///                 使用するオモリの個数を表現する画像の変更する
+    /// - Author:       sawatch
+    /// - Date:         2021/07/14
+    /// - Version:      1.0.3
+    func changeSinkerImage(argHowManySinker:Int ) {
+        switch(argHowManySinker){
+        case 2:
+            sinkerImageView.image = UIImage(named:"useSinkerTwo")
+            break;
+        case 3:
+            sinkerImageView.image = UIImage(named:"useSinkerThree")
+            break;
+        case 4:
+            sinkerImageView.image = UIImage(named:"useSinkerFour")
+            break;
+        default:
+            sinkerImageView.image = UIImage(named:"useSinkerTwo")
+        }
+
+        self.view.addSubview(sinkerImageView)
+
+        return;
+    }
+    
     /// Description:    Eurekaの設定
     /// - Note: 2018/09/14 - Ver.1.0.1
     ///                 使用するウキの個数のエラー(範囲値)チェックを追加
@@ -92,6 +156,8 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
     ///                 - 余幅のチェックを追加
     ///                 >>計算開始
     ///                 - インジケータの表示を追加
+    /// - Note: 2021/07/04 - Ver.1.0.3
+    ///                 使用するオモリの個数の画像を表示する処理を追加した
     ///
     /// - Author:       sawatch
     /// - Date:         2018/08/17
@@ -128,9 +194,16 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
                     number = 2
                 }
                 $0.value = number
+
+                // 画像の切替
+                changeSinkerImage(argHowManySinker: number)
+                
+                // イベント
                 }.onChange{ row in
                     self.appDelegate.db_CaluInterface.theNumberOfSinkers = row.value!
                     self.defaults.set(self.appDelegate.db_CaluInterface.theNumberOfSinkers, forKey: DataBaseTable.UserDefaultsTag.the_number_of_sinkers.rawValue)
+                    // 画像の切替
+                    self.changeSinkerImage(argHowManySinker: row.value!)
             }
             <<< DecimalRow(DataBaseTable.UserDefaultsTag.extra_weight_sinker.rawValue) {
                 $0.title = "余幅 重さ"
@@ -143,7 +216,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
             }
 
             // Section_2
-            +++ Section("")
+            +++ Section()       // ""を入れると微妙に空行が入る
             
             <<< ButtonRow() {
                 $0.title = "計算開始"
@@ -154,6 +227,11 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
 
                     // move View Controller of "ID:toResult".
                     self.performSegue(withIdentifier: "toResultViewController", sender: nil)
+                    
+                    // インジケーター finish
+                    if (true == self.activityIndicatorView.isAnimating) {
+                        self.activityIndicatorView.stopAnimating()
+                    }
         }
     }
 
@@ -167,7 +245,7 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
             return
         }
         // "保存しました"
-        let alert = UIAlertController(title: "", message: "余幅が1.00以上の場合、計算に時間がかかる場合があります。\n0.99以下の値を推奨します。", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "", message: "余幅が1.00以上の場合、計算に時間がかかる場合があります。\n0.99以下の値を推奨します。", preferredStyle: UIAlertController.Style.alert)
         present(alert, animated: true, completion: {
             // アラートを閉じる
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
@@ -263,8 +341,6 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
         return
     }
 
-
-
     //////////////////////
     // AdMob設定 --Start--
     //////////////////////
@@ -288,8 +364,12 @@ class ViewControllerCalculation: FormViewController, GADBannerViewDelegate {
             [NSLayoutConstraint(item: bannerView,
                                 attribute: .bottom,
                                 relatedBy: .equal,
-                                toItem: bottomLayoutGuide,
-                                attribute: .top,
+                                // Rep Str 2021.06.08
+                                //toItem: bottomLayoutGuide,
+                                //attribute: .top,
+                                toItem: view.safeAreaLayoutGuide,
+                                attribute: .bottom,
+                                // Rep End
                                 multiplier: 1,
                                 constant: 0),
              NSLayoutConstraint(item: bannerView,

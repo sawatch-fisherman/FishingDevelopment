@@ -217,7 +217,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g81-QK-Uqp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gmc-pW-NKX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1564" y="1284.1079460269866"/>
+            <point key="canvasLocation" x="1494" y="1893"/>
+        </scene>
+        <!--View Controller Information Web-->
+        <scene sceneID="MuX-3c-7pf">
+            <objects>
+                <viewController id="n1M-oB-eFo" userLabel="View Controller Information Web" customClass="ViewControllerInformationWeb" customModule="SinkerCalculation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="530-Gd-epr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6o-0w-zjw">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="アプリについて" id="Mlb-IT-nkw"/>
+                                </items>
+                            </navigationBar>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03b-77-m2e">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="y6o-0w-zjw" secondAttribute="trailing" id="0DJ-ZU-t2L"/>
+                            <constraint firstItem="y6o-0w-zjw" firstAttribute="leading" secondItem="530-Gd-epr" secondAttribute="leading" id="48N-33-yK9"/>
+                            <constraint firstItem="y6o-0w-zjw" firstAttribute="leading" secondItem="03b-77-m2e" secondAttribute="leading" id="aTb-eC-Y55"/>
+                            <constraint firstItem="03b-77-m2e" firstAttribute="bottom" secondItem="hSk-ww-KIe" secondAttribute="bottom" id="fWs-Sh-tWe"/>
+                            <constraint firstItem="y6o-0w-zjw" firstAttribute="trailing" secondItem="03b-77-m2e" secondAttribute="trailing" id="li3-96-iXs"/>
+                            <constraint firstItem="y6o-0w-zjw" firstAttribute="top" secondItem="hSk-ww-KIe" secondAttribute="top" id="wCv-Qb-u7Z"/>
+                            <constraint firstItem="03b-77-m2e" firstAttribute="top" secondItem="y6o-0w-zjw" secondAttribute="bottom" id="xPF-eW-B3b"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hSk-ww-KIe"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="03b-77-m2e" id="qaP-Wb-Q0a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZXR-nj-If1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2383.1999999999998" y="1659.2203898050975"/>
         </scene>
         <!--Tab Bar Controller Start View-->
         <scene sceneID="yl2-sM-qoP">

@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		BE05859F214F377100B48672 /* ManagementUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE05859E214F377100B48672 /* ManagementUserDefaults.swift */; };
+		BE23613321872FFC0051CCAE /* ViewControllerInformationWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE23613221872FFC0051CCAE /* ViewControllerInformationWeb.swift */; };
 		BE691687212957D600C3EEFC /* TabBarControllerStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE691686212957D600C3EEFC /* TabBarControllerStartView.swift */; };
 		BE9B476B211F9DE100FE6266 /* DataBaseTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B476A211F9DE100FE6266 /* DataBaseTable.swift */; };
 		BE9B476D211F9F2800FE6266 /* CalculationDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9B476C211F9F2800FE6266 /* CalculationDataBase.swift */; };
@@ -30,6 +31,7 @@
 		31F252484F8B2ECD01876F1B /* Pods_SinkerCalculation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SinkerCalculation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB096E73EFD428365888C03 /* Pods-SinkerCalculation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SinkerCalculation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation.debug.xcconfig"; sourceTree = "<group>"; };
 		BE05859E214F377100B48672 /* ManagementUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementUserDefaults.swift; sourceTree = "<group>"; };
+		BE23613221872FFC0051CCAE /* ViewControllerInformationWeb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerInformationWeb.swift; sourceTree = "<group>"; };
 		BE691686212957D600C3EEFC /* TabBarControllerStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerStartView.swift; sourceTree = "<group>"; };
 		BE9B476A211F9DE100FE6266 /* DataBaseTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseTable.swift; sourceTree = "<group>"; };
 		BE9B476C211F9F2800FE6266 /* CalculationDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationDataBase.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				BEBD044220DF6FFC00325635 /* ViewControllerWeight.swift */,
 				BEBD044020DF6FB300325635 /* ViewControllerInformation.swift */,
 				BECCF6152125647900D681E9 /* ViewControllerInformationDetail.swift */,
+				BE23613221872FFC0051CCAE /* ViewControllerInformationWeb.swift */,
 				BE691686212957D600C3EEFC /* TabBarControllerStartView.swift */,
 				BEBD043220DF69AB00325635 /* Main.storyboard */,
 				BEBD043520DF69AC00325635 /* Assets.xcassets */,
@@ -148,11 +151,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = sawatch;
 				TargetAttributes = {
 					BEBD042820DF69AB00325635 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -211,17 +215,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SinkerCalculation/Pods-SinkerCalculation-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -240,6 +243,7 @@
 				BEBD042D20DF69AB00325635 /* AppDelegate.swift in Sources */,
 				BEBD044720E2D26200325635 /* ViewControllerResult.swift in Sources */,
 				BE691687212957D600C3EEFC /* TabBarControllerStartView.swift in Sources */,
+				BE23613321872FFC0051CCAE /* ViewControllerInformationWeb.swift in Sources */,
 				BEBD044120DF6FB300325635 /* ViewControllerInformation.swift in Sources */,
 				BE9B476D211F9F2800FE6266 /* CalculationDataBase.swift in Sources */,
 			);
@@ -293,6 +297,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -318,7 +323,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -353,6 +358,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -372,7 +378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -387,15 +393,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V69XSSMP4J;
 				INFOPLIST_FILE = SinkerCalculation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = sawatch.fishrman.SinkerCalculation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -406,15 +415,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V69XSSMP4J;
 				INFOPLIST_FILE = SinkerCalculation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = sawatch.fishrman.SinkerCalculation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

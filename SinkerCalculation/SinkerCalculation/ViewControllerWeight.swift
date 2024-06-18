@@ -17,7 +17,7 @@ class ViewControllerWeight: FormViewController {
     let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
     let CCalcDB = CalculationDataBase()
 
-    let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    let activityIndicatorView = UIActivityIndicatorView(style: .large)
 
     enum WeightType:Int{
         case float = 0
@@ -141,7 +141,7 @@ class ViewControllerWeight: FormViewController {
         activityIndicatorView.startAnimating()
 
         // "保存しました"
-        let alert = UIAlertController(title: "", message: "保存しました", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "", message: "保存しました", preferredStyle: UIAlertController.Style.alert)
         present(alert, animated: true, completion: {
 
             // アラートを閉じる
@@ -182,8 +182,8 @@ class ViewControllerWeight: FormViewController {
         let title = "キャンセル確認"
         let message = "編集中の内容を破棄してよろしいですか？"
 
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let defaultAction: UIAlertAction = UIAlertAction(title: "戻る", style: UIAlertActionStyle.default, handler: {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "戻る", style: UIAlertAction.Style.default, handler: {
             (action: UIAlertAction!) -> Void in
             // ボタン押下後の処理
             // インジケーター finish
@@ -192,7 +192,7 @@ class ViewControllerWeight: FormViewController {
             }
         })
 
-        let cancelAction: UIAlertAction = UIAlertAction(title: "破棄する", style: UIAlertActionStyle.cancel, handler: {
+        let cancelAction: UIAlertAction = UIAlertAction(title: "破棄する", style: UIAlertAction.Style.cancel, handler: {
             (action: UIAlertAction!) -> Void in
 
             // ボタン押下後の処理
@@ -207,7 +207,7 @@ class ViewControllerWeight: FormViewController {
             }
 
             // "編集中の内容を破棄しました"
-            let alert2 = UIAlertController(title: "", message: "編集中の内容を破棄しました", preferredStyle: UIAlertControllerStyle.alert)
+            let alert2 = UIAlertController(title: "", message: "編集中の内容を破棄しました", preferredStyle: UIAlertController.Style.alert)
             //present(alert, animated: true, completion: nil)
             self.present(alert2, animated: true, completion: {
                 // アラートを閉じる
@@ -230,7 +230,7 @@ class ViewControllerWeight: FormViewController {
     /// - Version: 1.0.1
     func settingActivityIndicatorView(){
         self.view.addSubview(activityIndicatorView)
-        self.view.bringSubview(toFront: activityIndicatorView)
+        self.view.bringSubviewToFront(activityIndicatorView)
         activityIndicatorView.frame = self.view.bounds
     }
 
@@ -722,8 +722,8 @@ class ViewControllerWeight: FormViewController {
         // アラートを表示
         let title = "入力値エラー"
         let message = "重量の値が 範囲外です です。\n[0.01~9.99] の重量を設定してください。"
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
             (action: UIAlertAction!) -> Void in
             // ボタン押下後の処理
             // 編集前の値に戻す
@@ -766,8 +766,8 @@ class ViewControllerWeight: FormViewController {
         // アラートを表示
         let title = "入力値エラー"
         let message = "重量の値が 0 です。\n0.01以上の重量を設定してください。"
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
             (action: UIAlertAction!) -> Void in
             // ボタン押下後の処理
             // 編集前の値に戻す
@@ -863,8 +863,8 @@ class ViewControllerWeight: FormViewController {
         // アラートを表示
         let title = "重複エラー"
         let message = "他のウキと同じ重量になっています。\n他のウキと異なる重量を設定してください。"
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
             (action: UIAlertAction!) -> Void in
             // ボタン押下後の処理
             // 編集前の値に戻す
@@ -925,8 +925,8 @@ class ViewControllerWeight: FormViewController {
         // アラートを表示
         let title = "重複エラー"
         let message = "他のオモリと同じ重量になっています。\n他のオモリと異なる重量を設定してください。"
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {
             (action: UIAlertAction!) -> Void in
             // ボタン押下後の処理
             // 編集前の値に戻す

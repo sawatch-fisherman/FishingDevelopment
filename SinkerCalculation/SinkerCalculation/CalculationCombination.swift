@@ -274,7 +274,7 @@ class CalculationCombination {
         
         for indexSource in 0..<numberOfLoopingOutSide
         {
-            var arraySource:[Sinker] = resultCombinationArray[indexSource]
+            let arraySource:[Sinker] = resultCombinationArray[indexSource]
             
             let indexNextOfSource:Int = indexSource + 1;
             if(indexNextOfSource >= numberOfLoopingOutSide){
@@ -290,7 +290,7 @@ class CalculationCombination {
             // 見つかった場合、配列に格納する
             for indexDestination in indexNextOfSource..<numberOfLoopingOutSide
             {
-                var arrayDestination:[Sinker] = resultCombinationArray[indexDestination]
+                let arrayDestination:[Sinker] = resultCombinationArray[indexDestination]
 
                 let numberOfLoopingInSide:Int = arraySource.count
                 var arrayDelete:Bool = true
